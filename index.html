@@ -1,16 +1,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tamim Ahmed - Official Website</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto&display=swap" rel="stylesheet" />
 
   <style>
     :root { --gold: #ffd700; }
 
-    /* PAGE BACKGROUND = marble texture + dark overlay + soft gold glow */
     body {
       margin: 0;
       font-family: "Roboto", sans-serif;
@@ -21,12 +20,11 @@
       justify-content: center;
       align-items: center;
 
-      /* Top layer (subtle gold glow), then dark overlay, then the marble texture */
       background:
         radial-gradient(800px 400px at 10% 0%, rgba(255,215,0,0.12), transparent 60%),
         linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.60)),
         url("black-marble.jpg") center center / cover fixed no-repeat;
-      background-color: #000; /* fallback if image fails */
+      background-color: #000;
     }
 
     .container {
@@ -37,13 +35,16 @@
       padding: 60px 40px;
       border-radius: 20px;
       box-shadow: 0 0 40px rgba(255, 215, 0, 0.45);
+
+      min-height: 700px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      justify-content: space-between;
+      /* spacing top to bottom */
+    }
 
-      /* only change box taller */
-      min-height: 700px;
-      justify-content: center;
+    .top-content {
+      /* Wraps logo + heading + intro paragraph */
     }
 
     .profile-pic {
@@ -71,12 +72,19 @@
       line-height: 1.6;
     }
 
+    /* Move only this line slightly higher */
+    .social-text {
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
     .social-links {
       display: flex;
       justify-content: center;
       gap: 28px;
       flex-wrap: wrap;
-      margin-top: 18px;
+      margin-top: 0;
     }
 
     .social-links a {
@@ -107,7 +115,6 @@
       stroke: var(--gold);
     }
 
-    /* === PREVENT DRAGGING & COPYING === */
     img, a, svg {
       user-select: none;
       -webkit-user-drag: none;
@@ -119,41 +126,31 @@
 </head>
 <body>
   <div class="container">
-    <div>
+    <div class="top-content">
       <img id="profileImage" class="profile-pic" src="6779.jpg" alt="Tamim Ahmed" draggable="false" />
-
       <h1>Tamim Ahmed</h1>
-
-      <p>
-        Welcome to my website. I think you already know that I am
-        <strong>The Tamim Ahmed</strong>.
-      </p>
-
-      <p style="margin-top: 0; margin-bottom: 2px;">
-        Well, here you can visit my social media:
-      </p>
+      <p>Welcome to my website. I think you already know that I am <strong>The Tamim Ahmed</strong>.</p>
     </div>
 
-    <div class="social-links">
-      <!-- Facebook -->
-      <a href="https://www.facebook.com/tamimahmedxearth?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" aria-label="Facebook" draggable="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22V13.5H16.5L17 10.5H13.5V8.25c0-.75.375-1.5 1.875-1.5H17V4.125A23.2 23.2 0 0014.25 4c-2.625 0-4.375 1.575-4.375 4.5V10.5H8.25v3h1.625V22h3.625z"/></svg>
-      </a>
+    <div>
+      <p class="social-text">Well, here you can visit my social media:</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/tamimahmedxearth?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" aria-label="Facebook" draggable="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22V13.5H16.5L17 10.5H13.5V8.25c0-.75.375-1.5 1.875-1.5H17V4.125A23.2 23.2 0 0014.25 4c-2.625 0-4.375 1.575-4.375 4.5V10.5H8.25v3h1.625V22h3.625z"/></svg>
+        </a>
 
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/tamimahmedxearth" target="_blank" rel="noopener noreferrer" aria-label="Instagram" draggable="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6zm4.5-3a1.125 1.125 0 110 2.25 1.125 1.125 0 010-2.25z"/></svg>
-      </a>
+        <a href="https://www.instagram.com/tamimahmedxearth" target="_blank" rel="noopener noreferrer" aria-label="Instagram" draggable="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6zm4.5-3a1.125 1.125 0 110 2.25 1.125 1.125 0 010-2.25z"/></svg>
+        </a>
 
-      <!-- X (Twitter) -->
-      <a href="https://x.com/TamimAhmedz?t=at89MEBzsJqLXql_9OWLaw&s=09" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" draggable="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2H21.5l-7.55 8.635L22 22h-6.955l-5.45-7.06L3.5 22H.243l8.243-9.414L2 2h6.955l5.163 6.608L18.244 2zM16.955 20h1.822L7.14 4H5.196l11.759 16z" fill="#ffd700"/></svg>
-      </a>
+        <a href="https://x.com/TamimAhmedz?t=at89MEBzsJqLXql_9OWLaw&s=09" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" draggable="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2H21.5l-7.55 8.635L22 22h-6.955l-5.45-7.06L3.5 22H.243l8.243-9.414L2 2h6.955l5.163 6.608L18.244 2zM16.955 20h1.822L7.14 4H5.196l11.759 16z" fill="#ffd700"/></svg>
+        </a>
 
-      <!-- Discord -->
-      <a href="https://discord.com/users/tamimahmedz" target="_blank" rel="noopener noreferrer" aria-label="Discord" draggable="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561 19.9 19.9 0 006.0667 3.0354.0777.0777 0 00.0842-.0276c.4676-.6304.8827-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057 13.2393 13.2393 0 01-1.872-.8996.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.119.099.246.1981.372.2924a.0766.0766 0 01-.006.1276 12.8737 12.8737 0 01-1.873.8994.0766.0766 0 00-.0407.106c.3604.698.7751 1.3628 1.222 1.9932a.076.076 0 00.0842.028 19.876 19.876 0 006.067-3.0354.0823.0823 0 00.0305-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.9554 2.419-2.1569 2.419zm7.9748 0c-1.1826 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.946 2.419-2.1568 2.419z"/></svg>
-      </a>
+        <a href="https://discord.com/users/tamimahmedz" target="_blank" rel="noopener noreferrer" aria-label="Discord" draggable="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561 19.9 19.9 0 006.0667 3.0354.0777.0777 0 00.0842-.0276c.4676-.6304.8827-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057 13.2393 13.2393 0 01-1.872-.8996.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.119.099.246.1981.372.2924a.0766.0766 0 01-.006.1276 12.8737 12.8737 0 01-1.873.8994.0766.0766 0 00-.0407.106c.3604.698.7751 1.3628 1.222 1.9932a.076.076 0 00.0842.028 19.876 19.876 0 006.067-3.0354.0823.0823 0 00.0305-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.9554 2.419-2.1569 2.419zm7.9748 0c-1.1826 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.946 2.419-2.1568 2.419z"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </body>
