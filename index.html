@@ -17,18 +17,17 @@
     }
 
     /* HERO */
-   .hero {
-  height: 30vh; /* smaller hero section */
-  background: url('1060.jpg') no-repeat center center fixed;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 20px; /* reduced padding */
-  position: relative;
-  overflow: hidden;
-}
-
+    .hero {
+      height: 30vh;
+      background: url('1060.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 20px;
+      position: relative;
+      overflow: hidden;
+    }
     .hero h1 {
       font-weight: 700;
       font-size: 3.5rem;
@@ -134,6 +133,45 @@
     .side-panel nav a { color: #eee; text-decoration: none; font-size: 1.2rem; padding: 0.8rem 0; border-bottom: 1px solid #444; }
     .overlay { position: fixed; top: 0; left: 0; height: 100vh; width: 100vw; background: rgba(0,0,0,0.5); opacity: 0; visibility: hidden; transition: opacity 0.3s ease; z-index: 999; }
     .overlay.active { opacity: 1; visibility: visible; }
+
+    /* === Responsive Media Queries === */
+    @media (max-width: 1024px) {
+      .hero h1 { font-size: 3rem; }
+      .color-strip { gap: 2rem; font-size: 1.1rem; }
+      .owner-container { padding: 30px; min-height: auto; }
+      .owner-pic { width: 150px; height: 150px; }
+      .owner-container h1 { font-size: 1.8rem; }
+      .owner-container p { font-size: 0.95rem; }
+      .social-links { gap: 24px; }
+      .social-links a { width: 50px; height: 50px; }
+      .social-links svg { width: 36px; height: 36px; }
+    }
+
+    @media (max-width: 768px) {
+      .hero { height: 40vh; padding-top: 15px; }
+      .hero h1 { font-size: 2.5rem; }
+      .color-strip { gap: 1.5rem; font-size: 1rem; flex-wrap: wrap; padding: 0 10px; }
+      .owner-container { padding: 25px; }
+      .owner-pic { width: 130px; height: 130px; }
+      .owner-container h1 { font-size: 1.5rem; }
+      .owner-container p { font-size: 0.9rem; }
+      .social-links { gap: 20px; }
+      .social-links a { width: 45px; height: 45px; }
+      .social-links svg { width: 32px; height: 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero { height: 35vh; padding-top: 10px; }
+      .hero h1 { font-size: 2rem; }
+      .color-strip { gap: 1rem; font-size: 0.9rem; flex-wrap: wrap; }
+      .owner-container { padding: 20px; }
+      .owner-pic { width: 120px; height: 120px; }
+      .owner-container h1 { font-size: 1.3rem; }
+      .owner-container p { font-size: 0.85rem; }
+      .social-links { gap: 16px; }
+      .social-links a { width: 40px; height: 40px; }
+      .social-links svg { width: 28px; height: 28px; }
+    }
   </style>
 </head>
 <body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
