@@ -268,7 +268,10 @@ function createBackgroundVideo(src) {
   video.autoplay = true;
   const onended = () => {
     if(videoPauseTimeout) clearTimeout(videoPauseTimeout);
-    videoPauseTimeout = setTimeout(()=>{ try { video.currentTime=0;} catch(e){} video.play().catch(()=>{}); },10000);
+    videoPauseTimeout = setTimeout(()=>{
+      try { video.currentTime=0;} catch(e){}
+      video.play().catch(()=>{});
+    },1000);
   };
   video._onended = onended;
   video.addEventListener('ended',onended);
@@ -278,7 +281,11 @@ function createBackgroundVideo(src) {
 }
 
 function stopCurrentAudio() {
-  if(currentAudio){ currentAudio.pause(); try{currentAudio.currentTime=0;}catch(e){} currentAudio=null;}
+  if(currentAudio){ 
+    currentAudio.pause(); 
+    try{currentAudio.currentTime=0;}catch(e){} 
+    currentAudio=null;
+  }
   if(audioTimeout){ clearTimeout(audioTimeout); audioTimeout=null;}
 }
 
@@ -287,7 +294,11 @@ function playAudioLoop(audioFile){
   currentAudio=new Audio(audioFile);
   currentAudio.preload='auto';
   currentAudio.play().catch(()=>{});
-  currentAudio.onended = ()=>{ audioTimeout=setTimeout(()=>{ if(currentAudio){ currentAudio.currentTime=0; currentAudio.play().catch(()=>{});} },10000); };
+  currentAudio.onended = ()=>{
+    audioTimeout=setTimeout(()=>{
+      if(currentAudio){ currentAudio.currentTime=0; currentAudio.play().catch(()=>{});}
+    },1000);
+  };
 }
 
 const hamburger = document.getElementById('hamburger');
@@ -320,7 +331,7 @@ function showSection(key){
 
 links.forEach(link=>{ link.addEventListener('click', e=>{ e.preventDefault(); showSection(link.getAttribute('data-key')); }); });
 
-hamburger.onclick = ()=>{ sidePanel.classList.add('open'); overlay.classList.add('active'); hamburger.style.display='none'; };
+hamburger.onclick = ()=>{ sidePanel.classList.add('open'); overlay.classList.add('active'); hamburger.style.display='flex'; hamburger.style.display='none'; };
 closeBtn.onclick = overlay.onclick = ()=>{ sidePanel.classList.remove('open'); overlay.classList.remove('active'); hamburger.style.display='flex'; };
 
 // DEFAULT
