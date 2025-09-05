@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -20,7 +20,7 @@
     /* HERO */
     .hero {
       height: 30vh;
-      background: url('505.jpg') no-repeat center center fixed;
+      background: url('images/505.jpg') no-repeat center center fixed;
       background-size: cover;
       display: flex;
       justify-content: center;
@@ -143,7 +143,7 @@
       display: flex;
       justify-content: center;
       padding: 60px 0;
-      background: url('owner-bg.jpg') no-repeat center top;
+      background: url('images/owner-bg.jpg') no-repeat center top;
       background-size: cover;
       z-index: 0;
       overflow: hidden;
@@ -164,11 +164,7 @@
       position: relative;
       z-index: 1;
     }
-    .owner-container * {
-      user-select: none;
-      -webkit-user-drag: none;
-      -webkit-touch-callout: none;
-    }
+    .owner-container * { user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none; }
     .owner-pic { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid #ffd700; box-shadow: 0 0 18px rgba(255,215,0,0.35); margin-bottom: 16px; align-self: center; }
     .owner-container h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #ffd700; margin: 8px 0; text-shadow: 0 0 12px rgba(255,215,0,0.35); }
     .owner-container p { font-family: 'Roboto', sans-serif; color: #ddd; font-size: 1rem; line-height: 1.6; }
@@ -215,29 +211,12 @@
 <section class="content" id="contentArea"></section>
 
 <script>
-const hamburger = document.getElementById('hamburger');
-const sidePanel = document.getElementById('sidePanel');
-const closeBtn = document.getElementById('closeBtn');
-const overlay = document.getElementById('overlay');
-const contentArea = document.getElementById('contentArea');
-const links = document.querySelectorAll('.color-strip a');
-
-hamburger.onclick = () => { 
-  sidePanel.classList.add('open'); 
-  overlay.classList.add('active'); 
-  hamburger.style.display = 'none'; 
-};
-closeBtn.onclick = overlay.onclick = () => { 
-  sidePanel.classList.remove('open'); 
-  overlay.classList.remove('active'); 
-  hamburger.style.display = 'flex'; 
-};
-
+// OWNER HTML
 const ownerHTML = `
 <section class="owner-section">
   <div class="owner-container">
     <div>
-      <img class="owner-pic" src="6779.jpg" alt="Tamim Ahmed" />
+      <img class="owner-pic" src="images/6779.jpg" alt="Tamim Ahmed" />
       <h1>Tamim Ahmed</h1>
       <p>Welcome to my website. I think you already know that I am <strong>The Tamim Ahmed</strong>.</p>
     </div>
@@ -247,13 +226,14 @@ const ownerHTML = `
         <a href="https://www.facebook.com/tamimahmedxearth" target="_blank"><svg viewBox="0 0 24 24"><path d="M13.5 22V13.5H16.5L17 10.5H13.5V8.25c0-.75.375-1.5 1.875-1.5H17V4.125A23.2 23.2 0 0014.25 4c-2.625 0-4.375 1.575-4.375 4.5V10.5H8.25v3h1.625V22h3.625z"/></svg></a>
         <a href="https://www.instagram.com/tamimahmedxearth" target="_blank"><svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6zm4.5-3a1.125 1.125 0 110 2.25 1.125 1.125 0 010-2.25z"/></svg></a>
         <a href="https://x.com/TamimAhmedz" target="_blank"><svg viewBox="0 0 24 24"><path d="M18.244 2H21.5l-7.55 8.635L22 22h-6.955l-5.45-7.06L3.5 22H.243l8.243-9.414L2 2h6.955l5.163 6.608L18.244 2zM16.955 20h1.822L7.14 4H5.196l11.759 16z"/></svg></a>
-        <a href="https://discord.com/users/tamimahmedz" target="_blank"><svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561 19.9 19.9 0 006.0667 3.0354.0777.0777 0 00.0842-.0276c.4676-.6304.8827-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057 13.2393 13.2393 0 01-1.872-.8996.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.119.099.246.1981.372.2924a.0766.0766 0 01-.006.1276 12.8737 12.8737 0 01-1.873.8994.0766.0766 0 00-.0407.106c.3604.698.7751 1.3628 1.222 1.9932a.076.076 0 00.0842.028 19.876 19.876 0 006.067-3.0354.0823.0823 0 00.0305-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.9554 2.419-2.1569 2.419zm7.9748 0c-1.1826 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.946 2.419-2.1568 2.419z"/></svg></a>
+         <a href="https://discord.com/users/tamimahmedz" target="_blank"><svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561 19.9 19.9 0 006.0667 3.0354.0777.0777 0 00.0842-.0276c.4676-.6304.8827-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057 13.2393 13.2393 0 01-1.872-.8996.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.119.099.246.1981.372.2924a.0766.0766 0 01-.006.1276 12.8737 12.8737 0 01-1.873.8994.0766.0766 0 00-.0407.106c.3604.698.7751 1.3628 1.222 1.9932a.076.076 0 00.0842.028 19.876 19.876 0 006.067-3.0354.0823.0823 0 00.0305-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.9554 2.419-2.1569 2.419zm7.9748 0c-1.1826 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.946 2.419-2.1568 2.419z"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 `;
 
+// VIDEO + AUDIO PATHS
 const contentData = {
   content: { video: "nicee.mp4", audio: "good.mp3", html: "Welcome to Content section! Here you can find all main content soon." },
   informations: { video: "qq.mp4", audio: "cool.mp3", html: "Informations section here. Important details will appear here soon." },
@@ -262,8 +242,6 @@ const contentData = {
 
 let currentAudio = null;
 let audioTimeout = null;
-
-// video management
 let currentVideoElem = null;
 let videoPauseTimeout = null;
 
@@ -274,119 +252,78 @@ function removeCurrentVideo() {
     currentVideoElem.remove();
     currentVideoElem = null;
   }
-  if (videoPauseTimeout) {
-    clearTimeout(videoPauseTimeout);
-    videoPauseTimeout = null;
-  }
+  if (videoPauseTimeout) { clearTimeout(videoPauseTimeout); videoPauseTimeout = null; }
 }
 
 function createBackgroundVideo(src) {
   removeCurrentVideo();
-
   const video = document.createElement('video');
   video.className = 'bg-video';
   video.src = src;
   video.preload = 'auto';
-  video.muted = true;           // muted so autoplay works
+  video.muted = true;
   video.playsInline = true;
-  video.setAttribute('playsinline', '');
-  video.setAttribute('webkit-playsinline', '');
+  video.setAttribute('playsinline','');
+  video.setAttribute('webkit-playsinline','');
   video.autoplay = true;
-
-  // when ended -> wait 10s then play again
   const onended = () => {
-    // ensure we clear any existing timeout
-    if (videoPauseTimeout) clearTimeout(videoPauseTimeout);
-    videoPauseTimeout = setTimeout(() => {
-      // reset and play
-      try { video.currentTime = 0; } catch(e) {}
-      video.play().catch(()=>{});
-    }, 10000);
+    if(videoPauseTimeout) clearTimeout(videoPauseTimeout);
+    videoPauseTimeout = setTimeout(()=>{ try { video.currentTime=0;} catch(e){} video.play().catch(()=>{}); },10000);
   };
   video._onended = onended;
-  video.addEventListener('ended', onended);
-
-  // append to body (fixed positioning keeps it fullscreen)
+  video.addEventListener('ended',onended);
   document.body.appendChild(video);
   currentVideoElem = video;
-
-  // attempt to play right away
-  video.play().catch(()=>{ /* autoplay might be blocked until user interacts */ });
+  video.play().catch(()=>{});
 }
 
 function stopCurrentAudio() {
-  if (currentAudio) {
-    currentAudio.pause();
-    try { currentAudio.currentTime = 0; } catch(e) {}
-    currentAudio = null;
-  }
-  if (audioTimeout) {
-    clearTimeout(audioTimeout);
-    audioTimeout = null;
-  }
+  if(currentAudio){ currentAudio.pause(); try{currentAudio.currentTime=0;}catch(e){} currentAudio=null;}
+  if(audioTimeout){ clearTimeout(audioTimeout); audioTimeout=null;}
 }
 
-function playAudioLoop(audioFile) {
-  // stop previous audio & timeouts
-  if (currentAudio) {
-    currentAudio.pause();
-    try { currentAudio.currentTime = 0; } catch(e) {}
-    clearTimeout(audioTimeout);
-    audioTimeout = null;
-  }
-
-  currentAudio = new Audio(audioFile);
-  currentAudio.preload = 'auto';
-  currentAudio.play().catch(()=>{ /* autoplay may be blocked until user interacts */ });
-
-  currentAudio.onended = () => {
-    audioTimeout = setTimeout(() => {
-      if (currentAudio) {
-        currentAudio.currentTime = 0;
-        currentAudio.play().catch(()=>{});
-      }
-    }, 10000);
-  };
+function playAudioLoop(audioFile){
+  stopCurrentAudio();
+  currentAudio=new Audio(audioFile);
+  currentAudio.preload='auto';
+  currentAudio.play().catch(()=>{});
+  currentAudio.onended = ()=>{ audioTimeout=setTimeout(()=>{ if(currentAudio){ currentAudio.currentTime=0; currentAudio.play().catch(()=>{});} },10000); };
 }
 
-function showSection(key) {
-  links.forEach(link => link.classList.remove('active'));
+const hamburger = document.getElementById('hamburger');
+const sidePanel = document.getElementById('sidePanel');
+const closeBtn = document.getElementById('closeBtn');
+const overlay = document.getElementById('overlay');
+const contentArea = document.getElementById('contentArea');
+const links = document.querySelectorAll('.color-strip a');
+
+function showSection(key){
+  links.forEach(link=>link.classList.remove('active'));
   const sel = document.querySelector(`.color-strip a[data-key="${key}"]`);
-  if (sel) sel.classList.add('active');
+  if(sel) sel.classList.add('active');
 
-  if (key === 'owner') {
+  if(key==='owner'){
     document.body.classList.remove('content-active');
-    // remove video and show owner section
     removeCurrentVideo();
     stopCurrentAudio();
     contentArea.innerHTML = contentData.owner.html;
-    if (contentData.owner.audio) playAudioLoop(contentData.owner.audio);
-  } else {
+    if(contentData.owner.audio) playAudioLoop(contentData.owner.audio);
+  }else{
     document.body.classList.add('content-active');
-    // put the text/html content
     contentArea.innerHTML = `<div class="content-fullscreen">${contentData[key].html}</div>`;
-    // create video (without native loop) and handle pause/resume
-    if (contentData[key].video) {
-      createBackgroundVideo(contentData[key].video);
-    } else {
-      removeCurrentVideo();
-    }
-    // audio
+    if(contentData[key].video) createBackgroundVideo(contentData[key].video);
+    else removeCurrentVideo();
     stopCurrentAudio();
-    if (contentData[key].audio) playAudioLoop(contentData[key].audio);
+    if(contentData[key].audio) playAudioLoop(contentData[key].audio);
   }
 }
 
-// attach click listeners
-links.forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const key = link.getAttribute('data-key');
-    showSection(key);
-  });
-});
+links.forEach(link=>{ link.addEventListener('click', e=>{ e.preventDefault(); showSection(link.getAttribute('data-key')); }); });
 
-// Default show Content
+hamburger.onclick = ()=>{ sidePanel.classList.add('open'); overlay.classList.add('active'); hamburger.style.display='none'; };
+closeBtn.onclick = overlay.onclick = ()=>{ sidePanel.classList.remove('open'); overlay.classList.remove('active'); hamburger.style.display='flex'; };
+
+// DEFAULT
 showSection('content');
 </script>
 </body>
