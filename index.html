@@ -255,45 +255,129 @@ const ownerHTML = `
 `;
 
 const contentData = {
-  content: { video: "nicee.mp4", audio: "good.mp3", html: "Welcome to Content section! Here you can find all main content soon." },
-  informations: { video: "qq.mp4", audio: "cool.mp3", html: "Informations section here. Important details will appear here soon." },
-  owner: { html: ownerHTML, audio: "cool.mp3" }
+  content: { video: "content.mp4", audio: "content-audio.mp3", html: "Welcome to Content section! Here you can find all main content soon." },
+  informations: { video: "information.mp4", audio: "information-audio.mp3", html: "Informations section here. Important details will appear here soon." },
+  owner: { html: ownerHTML, audio: "owner-audio.mp3" }
 };
 
 let currentAudio = null;
 let audioTimeout = null;
 
-function playAudioLoop(audioFile) {
+// video management
+let currentVideoElem = null;
+let videoPauseTimeout = null;
+
+function removeCurrentVideo() {
+  if (currentVideoElem) {
+    currentVideoElem.pause();
+    currentVideoElem.removeEventListener('ended', currentVideoElem._onended);
+    currentVideoElem.remove();
+    currentVideoElem = null;
+  }
+  if (videoPauseTimeout) {
+    clearTimeout(videoPauseTimeout);
+    videoPauseTimeout = null;
+  }
+}
+
+function createBackgroundVideo(src) {
+  removeCurrentVideo();
+
+  const video = document.createElement('video');
+  video.className = 'bg-video';
+  video.src = src;
+  video.preload = 'auto';
+  video.muted = true;           // muted so autoplay works
+  video.playsInline = true;
+  video.setAttribute('playsinline', '');
+  video.setAttribute('webkit-playsinline', '');
+  video.autoplay = true;
+
+  // when ended -> wait 10s then play again
+  const onended = () => {
+    // ensure we clear any existing timeout
+    if (videoPauseTimeout) clearTimeout(videoPauseTimeout);
+    videoPauseTimeout = setTimeout(() => {
+      // reset and play
+      try { video.currentTime = 0; } catch(e) {}
+      video.play().catch(()=>{});
+    }, 10000);
+  };
+  video._onended = onended;
+  video.addEventListener('ended', onended);
+
+  // append to body (fixed positioning keeps it fullscreen)
+  document.body.appendChild(video);
+  currentVideoElem = video;
+
+  // attempt to play right away
+  video.play().catch(()=>{ /* autoplay might be blocked until user interacts */ });
+}
+
+function stopCurrentAudio() {
   if (currentAudio) {
     currentAudio.pause();
-    currentAudio.currentTime = 0;
+    try { currentAudio.currentTime = 0; } catch(e) {}
+    currentAudio = null;
+  }
+  if (audioTimeout) {
     clearTimeout(audioTimeout);
+    audioTimeout = null;
+  }
+}
+
+function playAudioLoop(audioFile) {
+  // stop previous audio & timeouts
+  if (currentAudio) {
+    currentAudio.pause();
+    try { currentAudio.currentTime = 0; } catch(e) {}
+    clearTimeout(audioTimeout);
+    audioTimeout = null;
   }
 
   currentAudio = new Audio(audioFile);
-  currentAudio.play();
+  currentAudio.preload = 'auto';
+  currentAudio.play().catch(()=>{ /* autoplay may be blocked until user interacts */ });
 
   currentAudio.onended = () => {
-    audioTimeout = setTimeout(() => currentAudio.play(), 10000); // 10 seconds pause
+    audioTimeout = setTimeout(() => {
+      if (currentAudio) {
+        currentAudio.currentTime = 0;
+        currentAudio.play().catch(()=>{});
+      }
+    }, 10000);
   };
 }
 
 function showSection(key) {
   links.forEach(link => link.classList.remove('active'));
-  document.querySelector(`.color-strip a[data-key="${key}"]`).classList.add('active');
+  const sel = document.querySelector(`.color-strip a[data-key="${key}"]`);
+  if (sel) sel.classList.add('active');
 
   if (key === 'owner') {
     document.body.classList.remove('content-active');
-    contentArea.innerHTML = ownerHTML;
-    playAudioLoop(contentData.owner.audio);
+    // remove video and show owner section
+    removeCurrentVideo();
+    stopCurrentAudio();
+    contentArea.innerHTML = contentData.owner.html;
+    if (contentData.owner.audio) playAudioLoop(contentData.owner.audio);
   } else {
     document.body.classList.add('content-active');
-    const videoTag = `<video class="bg-video" autoplay muted loop playsinline src="${contentData[key].video}"></video>`;
-    contentArea.innerHTML = videoTag + `<div class="content-fullscreen">${contentData[key].html}</div>`;
-    playAudioLoop(contentData[key].audio);
+    // put the text/html content
+    contentArea.innerHTML = `<div class="content-fullscreen">${contentData[key].html}</div>`;
+    // create video (without native loop) and handle pause/resume
+    if (contentData[key].video) {
+      createBackgroundVideo(contentData[key].video);
+    } else {
+      removeCurrentVideo();
+    }
+    // audio
+    stopCurrentAudio();
+    if (contentData[key].audio) playAudioLoop(contentData[key].audio);
   }
 }
 
+// attach click listeners
 links.forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
