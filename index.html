@@ -235,8 +235,8 @@ const ownerHTML = `
 
 // VIDEO + AUDIO PATHS
 const contentData = {
-  content: { video: "v.mp4", audio: "good.mp3", html: "Welcome to Content section! Here you can find all main content soon." },
-  informations: { video: "v.mp4", audio: "cool.mp3", html: "Informations section here. Important details will appear here soon." },
+  content: { video: "x.mp4", audio: "good.mp3", html: "Welcome to Content section! Here you can find all main content soon." },
+  informations: { video: "x.mp4", audio: "cool.mp3", html: "Informations section here. Important details will appear here soon." },
   owner: { html: ownerHTML, audio: "cool.mp3" }
 };
 
@@ -261,31 +261,37 @@ function createBackgroundVideo(src) {
   video.className = 'bg-video';
   video.src = src;
   video.preload = 'auto';
-  video.muted = true;
+  video.muted = true;               // Must be set before play()
+  video.autoplay = true;
   video.playsInline = true;
   video.setAttribute('playsinline','');
   video.setAttribute('webkit-playsinline','');
-  video.autoplay = true;
+
+  // Start video after first user interaction (required by browsers)
+  const startVideo = () => { 
+    video.play().catch(()=>{}); 
+    document.removeEventListener('click', startVideo);
+    document.removeEventListener('touchstart', startVideo);
+  };
+  document.addEventListener('click', startVideo);
+  document.addEventListener('touchstart', startVideo);
+
   const onended = () => {
     if(videoPauseTimeout) clearTimeout(videoPauseTimeout);
     videoPauseTimeout = setTimeout(()=>{
       try { video.currentTime=0;} catch(e){}
       video.play().catch(()=>{});
-    },1000);
+    },10000);
   };
   video._onended = onended;
   video.addEventListener('ended',onended);
+
   document.body.appendChild(video);
   currentVideoElem = video;
-  video.play().catch(()=>{});
 }
 
 function stopCurrentAudio() {
-  if(currentAudio){ 
-    currentAudio.pause(); 
-    try{currentAudio.currentTime=0;}catch(e){} 
-    currentAudio=null;
-  }
+  if(currentAudio){ currentAudio.pause(); try{currentAudio.currentTime=0;}catch(e){} currentAudio=null;}
   if(audioTimeout){ clearTimeout(audioTimeout); audioTimeout=null;}
 }
 
@@ -294,11 +300,7 @@ function playAudioLoop(audioFile){
   currentAudio=new Audio(audioFile);
   currentAudio.preload='auto';
   currentAudio.play().catch(()=>{});
-  currentAudio.onended = ()=>{
-    audioTimeout=setTimeout(()=>{
-      if(currentAudio){ currentAudio.currentTime=0; currentAudio.play().catch(()=>{});}
-    },1000);
-  };
+  currentAudio.onended = ()=>{ audioTimeout=setTimeout(()=>{ if(currentAudio){ currentAudio.currentTime=0; currentAudio.play().catch(()=>{});} },10000); };
 }
 
 const hamburger = document.getElementById('hamburger');
@@ -331,7 +333,7 @@ function showSection(key){
 
 links.forEach(link=>{ link.addEventListener('click', e=>{ e.preventDefault(); showSection(link.getAttribute('data-key')); }); });
 
-hamburger.onclick = ()=>{ sidePanel.classList.add('open'); overlay.classList.add('active'); hamburger.style.display='flex'; hamburger.style.display='none'; };
+hamburger.onclick = ()=>{ sidePanel.classList.add('open'); overlay.classList.add('active'); hamburger.style.display='flex'; };
 closeBtn.onclick = overlay.onclick = ()=>{ sidePanel.classList.remove('open'); overlay.classList.remove('active'); hamburger.style.display='flex'; };
 
 // DEFAULT
