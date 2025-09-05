@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -14,6 +14,7 @@
       overflow-x: hidden;
       user-select: none;          
       -webkit-user-drag: none;    
+      transition: all 0.3s ease;
     }
 
     /* HERO */
@@ -34,6 +35,7 @@
       color: #f0f4ff;
       text-shadow: 0 0 6px rgba(240, 244, 255, 0.6), 0 2px 6px rgba(0, 0, 30, 0.7);
       position: relative;
+      transition: all 0.3s ease;
     }
     .hero h1::before {
       content: '';
@@ -55,13 +57,14 @@
     /* NAV STRIP */
     .color-strip {
       height: 62px;
-      background-color: #62A29A;
+      background-color: #050505;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 3rem;
       font-size: 1.25rem;
       font-weight: 600;
+      transition: all 0.3s ease;
     }
     .color-strip a {
       color: white;
@@ -79,13 +82,28 @@
     .color-strip a:hover, .color-strip a:focus { background: rgba(255,255,255,0.35); color: #e0f2f1; }
     .color-strip a.active {
       background-color: rgba(20, 70, 65, 0.9);
-      color: #a7d8d5;
+      color: #1a7f78;
       box-shadow: 0 0 8px rgba(167, 216, 213, 0.8);
     }
 
+    /* Transparent mode for Content */
+    body.content-active .hero h1 {
+      color: rgba(255,255,255,0.25);
+      text-shadow: 0 0 6px rgba(255,255,255,0.1), 0 2px 6px rgba(0,0,0,0.2);
+    }
+    body.content-active .color-strip a {
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.25);
+    }
+    body.content-active .color-strip a.active {
+      background-color: rgba(20, 70, 65, 0.25);
+      color: rgba(26,127,120,0.35);
+      box-shadow: 0 0 8px rgba(167,216,213,0.25);
+    }
+
+    /* CONTENT FULLSCREEN */
     .content {
       min-height: 100vh;
-      background-color: #333;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -93,9 +111,43 @@
       font-size: 1.25rem;
       padding: 2rem;
       text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .content-fullscreen {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      font-size: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .bg-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
     }
 
-    /* OWNER */
+    /* OWNER SECTION */
+    .owner-section {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 60px 0;
+      background: url('owner-bg.jpg') no-repeat center top;
+      background-size: cover;
+      z-index: 0;
+      overflow: hidden;
+    }
     .owner-container {
       width: min(92vw, 800px);
       background: rgba(17,17,17,0.85);
@@ -109,6 +161,8 @@
       justify-content: space-between;
       min-height: 600px;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
     .owner-container * {
       user-select: none;
@@ -126,52 +180,13 @@
 
     /* SIDE PANEL */
     .hamburger { position: fixed; top: 20px; left: 20px; width: 30px; height: 24px; cursor: pointer; z-index: 1001; display: flex; flex-direction: column; justify-content: space-between; }
-    .hamburger div { height: 4px; background-color: #00EDF5; border-radius: 2px; }
+    .hamburger div { height: 4px; background-color: #ffffff; border-radius: 2px; }
     .side-panel { position: fixed; top: 0; left: 0; width: 280px; height: 100vh; background-color: #222; padding: 2rem 1.5rem; transform: translateX(-100%); transition: transform 0.3s ease; z-index: 1000; display: flex; flex-direction: column; color: #eee; }
     .side-panel.open { transform: translateX(0); }
     .close-btn { align-self: flex-end; font-size: 3rem; cursor: pointer; color: #aaa; }
     .side-panel nav a { color: #eee; text-decoration: none; font-size: 1.2rem; padding: 0.8rem 0; border-bottom: 1px solid #444; }
     .overlay { position: fixed; top: 0; left: 0; height: 100vh; width: 100vw; background: rgba(0,0,0,0.5); opacity: 0; visibility: hidden; transition: opacity 0.3s ease; z-index: 999; }
     .overlay.active { opacity: 1; visibility: visible; }
-
-    /* === Responsive Media Queries === */
-    @media (max-width: 1024px) {
-      .hero h1 { font-size: 3rem; }
-      .color-strip { gap: 2rem; font-size: 1.1rem; }
-      .owner-container { padding: 30px; min-height: auto; }
-      .owner-pic { width: 150px; height: 150px; }
-      .owner-container h1 { font-size: 1.8rem; }
-      .owner-container p { font-size: 0.95rem; }
-      .social-links { gap: 24px; }
-      .social-links a { width: 50px; height: 50px; }
-      .social-links svg { width: 36px; height: 36px; }
-    }
-
-    @media (max-width: 768px) {
-      .hero { height: 40vh; padding-top: 15px; }
-      .hero h1 { font-size: 2.5rem; }
-      .color-strip { gap: 1.5rem; font-size: 1rem; flex-wrap: wrap; padding: 0 10px; }
-      .owner-container { padding: 25px; }
-      .owner-pic { width: 130px; height: 130px; }
-      .owner-container h1 { font-size: 1.5rem; }
-      .owner-container p { font-size: 0.9rem; }
-      .social-links { gap: 20px; }
-      .social-links a { width: 45px; height: 45px; }
-      .social-links svg { width: 32px; height: 32px; }
-    }
-
-    @media (max-width: 480px) {
-      .hero { height: 35vh; padding-top: 10px; }
-      .hero h1 { font-size: 2rem; }
-      .color-strip { gap: 1rem; font-size: 0.9rem; flex-wrap: wrap; }
-      .owner-container { padding: 20px; }
-      .owner-pic { width: 120px; height: 120px; }
-      .owner-container h1 { font-size: 1.3rem; }
-      .owner-container p { font-size: 0.85rem; }
-      .social-links { gap: 16px; }
-      .social-links a { width: 40px; height: 40px; }
-      .social-links svg { width: 28px; height: 28px; }
-    }
   </style>
 </head>
 <body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
@@ -197,60 +212,98 @@
   <a href="#" data-key="owner">Owner</a>
 </section>
 
-<section class="content" id="contentArea">Welcome to Content section! Here you can find all main content soon,If the owner wants.</section>
+<section class="content" id="contentArea"></section>
 
 <script>
 const hamburger = document.getElementById('hamburger');
 const sidePanel = document.getElementById('sidePanel');
 const closeBtn = document.getElementById('closeBtn');
 const overlay = document.getElementById('overlay');
-hamburger.onclick = () => { sidePanel.classList.add('open'); overlay.classList.add('active'); hamburger.style.display = 'none'; };
-closeBtn.onclick = overlay.onclick = () => { sidePanel.classList.remove('open'); overlay.classList.remove('active'); hamburger.style.display = 'flex'; };
-
 const contentArea = document.getElementById('contentArea');
 const links = document.querySelectorAll('.color-strip a');
 
+hamburger.onclick = () => { 
+  sidePanel.classList.add('open'); 
+  overlay.classList.add('active'); 
+  hamburger.style.display = 'none'; 
+};
+closeBtn.onclick = overlay.onclick = () => { 
+  sidePanel.classList.remove('open'); 
+  overlay.classList.remove('active'); 
+  hamburger.style.display = 'flex'; 
+};
+
 const ownerHTML = `
-<div class="owner-container">
-  <div>
-    <img class="owner-pic" src="6779.jpg" alt="Tamim Ahmed" />
-    <h1>Tamim Ahmed</h1>
-    <p>Welcome to my website. I think you already know that I am <strong>The Tamim Ahmed</strong>.</p>
-  </div>
-  <div style="margin-top:auto">
-    <p class="social-text">Well, here you can visit my social media:</p>
-    <div class="social-links">
-      <a href="https://www.facebook.com/tamimahmedxearth" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M13.5 22V13.5H16.5L17 10.5H13.5V8.25c0-.75.375-1.5 1.875-1.5H17V4.125A23.2 23.2 0 0014.25 4c-2.625 0-4.375 1.575-4.375 4.5V10.5H8.25v3h1.625V22h3.625z"/></svg>
-      </a>
-      <a href="https://www.instagram.com/tamimahmedxearth" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6zm4.5-3a1.125 1.125 0 110 2.25 1.125 1.125 0 010-2.25z"/></svg>
-      </a>
-      <a href="https://x.com/TamimAhmedz" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M18.244 2H21.5l-7.55 8.635L22 22h-6.955l-5.45-7.06L3.5 22H.243l8.243-9.414L2 2h6.955l5.163 6.608L18.244 2zM16.955 20h1.822L7.14 4H5.196l11.759 16z"/></svg>
-      </a>
-      <a href="https://discord.com/users/tamimahmedz" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561 19.9 19.9 0 006.0667 3.0354.0777.0777 0 00.0842-.0276c.4676-.6304.8827-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057 13.2393 13.2393 0 01-1.872-.8996.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.119.099.246.1981.372.2924a.0766.0766 0 01-.006.1276 12.8737 12.8737 0 01-1.873.8994.0766.0766 0 00-.0407.106c.3604.698.7751 1.3628 1.222 1.9932a.076.076 0 00.0842.028 19.876 19.876 0 006.067-3.0354.0823.0823 0 00.0305-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.9554 2.419-2.1569 2.419zm7.9748 0c-1.1826 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.946 2.419-2.1568 2.419z"/></svg>
-      </a>
+<section class="owner-section">
+  <div class="owner-container">
+    <div>
+      <img class="owner-pic" src="6779.jpg" alt="Tamim Ahmed" />
+      <h1>Tamim Ahmed</h1>
+      <p>Welcome to my website. I think you already know that I am <strong>The Tamim Ahmed</strong>.</p>
+    </div>
+    <div style="margin-top:auto">
+      <p class="social-text">Well, here you can visit my social media:</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/tamimahmedxearth" target="_blank"><svg viewBox="0 0 24 24"><path d="M13.5 22V13.5H16.5L17 10.5H13.5V8.25c0-.75.375-1.5 1.875-1.5H17V4.125A23.2 23.2 0 0014.25 4c-2.625 0-4.375 1.575-4.375 4.5V10.5H8.25v3h1.625V22h3.625z"/></svg></a>
+        <a href="https://www.instagram.com/tamimahmedxearth" target="_blank"><svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6zm4.5-3a1.125 1.125 0 110 2.25 1.125 1.125 0 010-2.25z"/></svg></a>
+        <a href="https://x.com/TamimAhmedz" target="_blank"><svg viewBox="0 0 24 24"><path d="M18.244 2H21.5l-7.55 8.635L22 22h-6.955l-5.45-7.06L3.5 22H.243l8.243-9.414L2 2h6.955l5.163 6.608L18.244 2zM16.955 20h1.822L7.14 4H5.196l11.759 16z"/></svg></a>
+        <a href="https://discord.com/users/tamimahmedz" target="_blank"><svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561 19.9 19.9 0 006.0667 3.0354.0777.0777 0 00.0842-.0276c.4676-.6304.8827-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057 13.2393 13.2393 0 01-1.872-.8996.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.119.099.246.1981.372.2924a.0766.0766 0 01-.006.1276 12.8737 12.8737 0 01-1.873.8994.0766.0766 0 00-.0407.106c.3604.698.7751 1.3628 1.222 1.9932a.076.076 0 00.0842.028 19.876 19.876 0 006.067-3.0354.0823.0823 0 00.0305-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.9554 2.419-2.1569 2.419zm7.9748 0c-1.1826 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.946 2.419-2.1568 2.419z"/></svg></a>
+      </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 const contentData = {
-  content: "Welcome to Content section! Here you can find all main content soon,if the owner wants.",
-  informations: "Informations are provided here to help you understand better.",
-  owner: ownerHTML
+  content: { video: "content.mp4", audio: "content-audio.mp3", html: "Welcome to Content section! Here you can find all main content soon." },
+  informations: { video: "information.mp4", audio: "information-audio.mp3", html: "Informations section here. Important details will appear here soon." },
+  owner: { html: ownerHTML, audio: "owner-audio.mp3" }
 };
+
+let currentAudio = null;
+let audioTimeout = null;
+
+function playAudioLoop(audioFile) {
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    clearTimeout(audioTimeout);
+  }
+
+  currentAudio = new Audio(audioFile);
+  currentAudio.play();
+
+  currentAudio.onended = () => {
+    audioTimeout = setTimeout(() => currentAudio.play(), 10000); // 10 seconds pause
+  };
+}
+
+function showSection(key) {
+  links.forEach(link => link.classList.remove('active'));
+  document.querySelector(`.color-strip a[data-key="${key}"]`).classList.add('active');
+
+  if (key === 'owner') {
+    document.body.classList.remove('content-active');
+    contentArea.innerHTML = ownerHTML;
+    playAudioLoop(contentData.owner.audio);
+  } else {
+    document.body.classList.add('content-active');
+    const videoTag = `<video class="bg-video" autoplay muted loop playsinline src="${contentData[key].video}"></video>`;
+    contentArea.innerHTML = videoTag + `<div class="content-fullscreen">${contentData[key].html}</div>`;
+    playAudioLoop(contentData[key].audio);
+  }
+}
 
 links.forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
-    links.forEach(l => l.classList.remove('active'));
-    link.classList.add('active');
-    contentArea.innerHTML = contentData[link.dataset.key] || "No content available.";
+    const key = link.getAttribute('data-key');
+    showSection(key);
   });
 });
+
+// Default show Content
+showSection('content');
 </script>
 </body>
 </html>
