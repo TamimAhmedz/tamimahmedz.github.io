@@ -218,7 +218,7 @@ const ownerHTML = `
     <div>
       <img class="owner-pic" src="6779.jpg" alt="Tamim Ahmed" />
       <h1>Tamim Ahmed</h1>
-      <p>Welcome to my website.Well you came this far,good for you y.I am <strong>The Tamim Ahmed</strong>.</p>
+      <p>Welcome to my website.Well you came this far,good for you.I am <strong>The Tamim Ahmed</strong>.</p>
     </div>
     <div style="margin-top:auto">
       <p class="social-text">Well, here you can visit my social media:</p>
@@ -235,8 +235,18 @@ const ownerHTML = `
 
 // VIDEO + AUDIO PATHS
 const contentData = {
-  content: { video: "x.mp4", audio: "good.mp3", html: "Welcome to Content section! Here you can find all main content soon." },
-  informations: { video: "x.mp4", audio: "cool.mp3", html: "Informations section here. Important details will appear here soon." },
+  content: { 
+    // calm green mountain (remote mp4)
+    video: "https://cdn.coverr.co/videos/coverr-green-mountains-6612/1080p.mp4", 
+    audio: "good.mp3", 
+    html: "Welcome to Content section! Here you can find all main content soon." 
+  },
+  informations: { 
+    // Grand Canyon (remote mp4)
+    video: "https://cdn.coverr.co/videos/coverr-grand-canyon-4750/1080p.mp4", 
+    audio: "cool.mp3", 
+    html: "Informations section here. Important details will appear here soon." 
+  },
   owner: { html: ownerHTML, audio: "cool.mp3" }
 };
 
@@ -248,7 +258,8 @@ let videoPauseTimeout = null;
 function removeCurrentVideo() {
   if (currentVideoElem) {
     currentVideoElem.pause();
-    currentVideoElem.removeEventListener('ended', currentVideoElem._onended);
+    // if an 'ended' listener exists, remove it (safe even if not present)
+    if (currentVideoElem._onended) currentVideoElem.removeEventListener('ended', currentVideoElem._onended);
     currentVideoElem.remove();
     currentVideoElem = null;
   }
@@ -261,37 +272,33 @@ function createBackgroundVideo(src) {
   video.className = 'bg-video';
   video.src = src;
   video.preload = 'auto';
-  video.muted = true;               // Must be set before play()
-  video.autoplay = true;
+  video.muted = true;
+  video.loop = true;               // <-- ADDED: ensure browser-level looping
   video.playsInline = true;
   video.setAttribute('playsinline','');
   video.setAttribute('webkit-playsinline','');
-
-  // Start video after first user interaction (required by browsers)
-  const startVideo = () => { 
-    video.play().catch(()=>{}); 
-    document.removeEventListener('click', startVideo);
-    document.removeEventListener('touchstart', startVideo);
-  };
-  document.addEventListener('click', startVideo);
-  document.addEventListener('touchstart', startVideo);
-
+  video.autoplay = true;
   const onended = () => {
     if(videoPauseTimeout) clearTimeout(videoPauseTimeout);
     videoPauseTimeout = setTimeout(()=>{
       try { video.currentTime=0;} catch(e){}
       video.play().catch(()=>{});
-    },10000);
+    },1000);
   };
   video._onended = onended;
+  // keep ended listener as fallback (harmless when loop=true)
   video.addEventListener('ended',onended);
-
   document.body.appendChild(video);
   currentVideoElem = video;
+  video.play().catch(()=>{});
 }
 
 function stopCurrentAudio() {
-  if(currentAudio){ currentAudio.pause(); try{currentAudio.currentTime=0;}catch(e){} currentAudio=null;}
+  if(currentAudio){ 
+    currentAudio.pause(); 
+    try{currentAudio.currentTime=0;}catch(e){} 
+    currentAudio=null;
+  }
   if(audioTimeout){ clearTimeout(audioTimeout); audioTimeout=null;}
 }
 
@@ -300,7 +307,11 @@ function playAudioLoop(audioFile){
   currentAudio=new Audio(audioFile);
   currentAudio.preload='auto';
   currentAudio.play().catch(()=>{});
-  currentAudio.onended = ()=>{ audioTimeout=setTimeout(()=>{ if(currentAudio){ currentAudio.currentTime=0; currentAudio.play().catch(()=>{});} },10000); };
+  currentAudio.onended = ()=>{
+    audioTimeout=setTimeout(()=>{
+      if(currentAudio){ currentAudio.currentTime=0; currentAudio.play().catch(()=>{});}
+    },1000);
+  };
 }
 
 const hamburger = document.getElementById('hamburger');
@@ -333,10 +344,10 @@ function showSection(key){
 
 links.forEach(link=>{ link.addEventListener('click', e=>{ e.preventDefault(); showSection(link.getAttribute('data-key')); }); });
 
-hamburger.onclick = ()=>{ sidePanel.classList.add('open'); overlay.classList.add('active'); hamburger.style.display='flex'; };
+hamburger.onclick = ()=>{ sidePanel.classList.add('open'); overlay.classList.add('active'); hamburger.style.display='flex'; hamburger.style.display='none'; };
 closeBtn.onclick = overlay.onclick = ()=>{ sidePanel.classList.remove('open'); overlay.classList.remove('active'); hamburger.style.display='flex'; };
 
-// DEFAULT
+ // DEFAULT
 showSection('content');
 </script>
 </body>
