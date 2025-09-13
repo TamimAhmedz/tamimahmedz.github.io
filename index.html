@@ -46,13 +46,11 @@
       height: 150%;
       background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 80%);
       transform: translateY(-50%) rotate(25deg);
-      animation: smoothShine 3.5s infinite;
       pointer-events: none;
       z-index: 1;
       filter: blur(12px);
       border-radius: 50%;
     }
-    @keyframes smoothShine { 0% { left: -40%; } 100% { left: 110%; } }
 
     /* NAV STRIP */
     .color-strip {
@@ -101,20 +99,18 @@
       box-shadow: 0 0 8px rgba(167,216,213,0.25);
     }
 
-    /* CONTENT FULLSCREEN */
+    /* MAIN CONTENT AREA - ADJUSTED FOR NEW LAYOUT */
     .content {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-size: 1.25rem;
-      padding: 2rem;
-      text-align: center;
-      transition: all 0.3s ease;
+      /* Remove previous flex properties that centered content */
+      display: block; /* Change to block to allow natural flow of child elements */
+      min-height: auto; /* Remove fixed height constraint, let content dictate height */
+      padding: 0; /* Remove padding here, content inside will handle it */
+      text-align: left; /* Allow text alignment to be set by inner components */
       position: relative;
-      overflow: hidden;
+      overflow: hidden; /* Ensure video background is clipped if needed */
+      color: white; /* Default color for the section */
     }
+    /* This class was only for generic text content, no longer needed directly */
     .content-fullscreen {
       width: 100%;
       height: 100vh;
@@ -126,14 +122,6 @@
       font-size: 1.5rem;
       position: relative;
       z-index: 1;
-    }
-    .bg-video {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
     }
 
     /* OWNER SECTION */
@@ -183,6 +171,40 @@
     .side-panel nav a { color: #eee; text-decoration: none; font-size: 1.2rem; padding: 0.8rem 0; border-bottom: 1px solid #444; }
     .overlay { position: fixed; top: 0; left: 0; height: 100vh; width: 100vw; background: rgba(0,0,0,0.5); opacity: 0; visibility: hidden; transition: opacity 0.3s ease; z-index: 999; }
     .overlay.active { opacity: 1; visibility: visible; }
+
+    /* New CSS from the second file for content section */
+    /* Adjusting video-bg to be relative to its parent .content and z-index 0 */
+    .content .video-bg{
+        position: absolute; /* Changed from fixed to absolute within contentArea */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0; /* Lower z-index to be behind content */
+        pointer-events: none;
+    }
+
+    .top-text{text-align:center;padding:60px 20px;color:rgba(255,255,255,0.85);text-shadow:2px 2px 5px rgba(0,0,0,0.7); z-index: 2; position: relative;}
+    .top-text h1{margin:0;font-size:3em}
+    .top-text p:first-of-type{font-size:1.6em;margin:10px auto 0}
+    .top-text p:last-of-type{font-size:1.4em;margin:5px auto 0}
+    /* Renamed from .content to .content-area-inner to avoid conflict with main .content */
+    .content-area-inner{position:relative;padding:100px 40px 60px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px; z-index: 2; position: relative;}
+    .card{background:rgba(0,0,0,0.4);border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.4);text-align:left;transition:transform 0.3s}
+    .card:hover{transform:translateY(-5px)}
+    .card img{width:100%;height:200px;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none}
+    .card-content{padding:20px}
+    .card h2{font-size:1.5em;margin:0 0 10px}
+    .card p{font-size:1em;color:#e0e0e0;line-height:1.5;margin:0 0 10px}
+    .summary-creative{position:relative;margin:60px 40px;background:rgba(0,0,0,0.55);border-radius:18px;padding:50px 40px;box-shadow:0 10px 30px rgba(0,0,0,0.8);color:#fff;text-align:center; z-index: 2; position: relative;}
+    .summary-creative h2{font-size:2.2em;margin-bottom:40px;text-shadow:2px 2px 6px rgba(0,0,0,0.8);letter-spacing:1px}
+    .summary-columns{display:flex;flex-wrap:wrap;gap:40px;justify-content:center;text-align:left}
+    .summary-columns .col{flex:1 1 250px;min-width:250px;padding:0 10px;border-left:2px solid rgba(255,255,255,0.2)}
+    .summary-columns .col:first-child{border-left:none}
+    .summary-columns .col p{font-size:1.1em;line-height:1.7;margin-bottom:20px}
+    .footer{background:black;color:white;text-align:center;padding:60px 20px;font-size:2em;font-weight:bold;letter-spacing:2px; z-index: 2; position: relative;}
+    .footer span{display:block;font-size:1em;margin-top:10px;opacity:0.7;font-weight:normal}
   </style>
 </head>
 <body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
@@ -233,70 +255,55 @@ const ownerHTML = `
 </section>
 `;
 
-// VIDEO + AUDIO PATHS
+// NEW CONTENT HTML
+const newContentHTML = `
+<video class="video-bg" autoplay muted loop><source src="https://www.pexels.com/download/video/2711116/" type="video/mp4">Your browser does not support HTML5 video.</video>
+
+<div class="top-text">
+<h1>Who Is He</h1>
+<p>He is a visionary, he is an artist, he is a man who thinks in a different way than others.</p>
+<p>Who knows...</p>
+</div>
+
+<div class="content-area-inner">
+<div class="card"><img src="https://images.pexels.com/photos/355241/pexels-photo-355241.jpeg"><div class="card-content"><h2>17 Places You Must Visit in Turkey</h2><p>Turkey is a land of contrasts, where ancient meets modern, Europe is separated from Asia and the East.</p></div></div>
+<div class="card"><img src="https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg"><div class="card-content"><h2>Thailand’s Top 11 Gems</h2><p>Thailand is a vibrant country with stunning places and a fascinating history that draws people from all over.</p></div></div>
+<div class="card"><img src="https://images.pexels.com/photos/21014/pexels-photo.jpg"><div class="card-content"><h2>A Guide to Traveling Bangkok</h2><p>Bangkok is an enchanting city with street food, nightlife, ancient sites and historical significance.</p></div></div>
+<div class="card"><img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg"><div class="card-content"><h2>Exploring Bali Beaches</h2><p>Bali is famous for its beaches, coral reefs, and vibrant culture, attracting millions of tourists yearly.</p></div></div>
+<div class="card"><img src="https://images.pexels.com/photos/276587/pexels-photo-276587.jpeg"><div class="card-content"><h2>Amazon Rainforest Adventure</h2><p>The Amazon Rainforest offers unmatched biodiversity, thrilling adventures, and incredible wildlife encounters.</p></div></div>
+<div class="card"><img src="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg"><div class="card-content"><h2>Sahara Desert Wonders</h2><p>The Sahara Desert is an endless landscape of dunes, sunsets, and unique cultural experiences.</p></div></div>
+<div class="card"><img src="https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg"><div class="card-content"><h2>New York City Lights</h2><p>New York City is a bustling metropolis filled with iconic landmarks, culture, and endless opportunities.</p></div></div>
+<div class="card"><img src="https://images.pexels.com/photos/66997/pexels-photo-66997.jpeg"><div class="card-content"><h2>European Countryside</h2><p>Explore the charming villages, scenic landscapes, and rich history of Europe’s countryside regions.</p></div></div>
+<div class="card"><img src="https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg"><div class="card-content"><h2>Japan Travel Guide</h2><p>Japan blends tradition and modernity, offering stunning landscapes, cuisine, and cultural experiences.</p></div></div>
+</div>
+
+<div class="summary-creative">
+<h2>Why He Stands Out</h2>
+<div class="summary-columns">
+<div class="col"><p>He broadens perspectives by embracing diverse cultures and ideas.</p><p>He immerses in local traditions to understand the world deeply.</p><p>He challenges assumptions and encourages personal growth.</p><p>He observes the world with curiosity and attention to detail.</p></div>
+<div class="col"><p>He raises global awareness through experiences in different environments.</p><p>He values creativity, innovation, and problem-solving in every action.</p><p>He inspires others by leading with vision and purpose.</p><p>He adapts easily, learning from every journey and encounter.</p></div>
+<div class="col"><p>He communicates effectively across cultures and perspectives.</p><p>He celebrates diversity and fosters empathy in every interaction.</p><p>He continuously seeks knowledge and new experiences.</p><p>He creates meaningful connections wherever he goes.</p></div>
+</div>
+</div>
+
+<div class="footer">THE GATE WAY<span>- by you know who</span></div>
+`;
+
+
+// CONTENT + AUDIO (videos removed)
 const contentData = {
-  content: { 
-    // calm green mountain (remote mp4)
-    video: "https://cdn.coverr.co/videos/coverr-green-mountains-6612/1080p.mp4", 
-    audio: "good.mp3", 
-    html: "Welcome to Content section! Here you can find all main content soooooooooooooon." 
-  },
-  informations: { 
-    // Grand Canyon (remote mp4)
-    video: "https://cdn.coverr.co/videos/coverr-grand-canyon-4750/1080p.mp4", 
-    audio: "cool.mp3", 
-    html: "Informations section here. Important details will appear here soon." 
-  },
+  content: { html: newContentHTML, audio: "good.mp3" }, // Updated this line
+  informations: { html: "Informations section here. Important details will appear here soon.", audio: "cool.mp3" },
   owner: { html: ownerHTML, audio: "cool.mp3" }
 };
 
 let currentAudio = null;
 let audioTimeout = null;
-let currentVideoElem = null;
-let videoPauseTimeout = null;
-
-function removeCurrentVideo() {
-  if (currentVideoElem) {
-    currentVideoElem.pause();
-    // if an 'ended' listener exists, remove it (safe even if not present)
-    if (currentVideoElem._onended) currentVideoElem.removeEventListener('ended', currentVideoElem._onended);
-    currentVideoElem.remove();
-    currentVideoElem = null;
-  }
-  if (videoPauseTimeout) { clearTimeout(videoPauseTimeout); videoPauseTimeout = null; }
-}
-
-function createBackgroundVideo(src) {
-  removeCurrentVideo();
-  const video = document.createElement('video');
-  video.className = 'bg-video';
-  video.src = src;
-  video.preload = 'auto';
-  video.muted = true;
-  video.loop = true;               // <-- ADDED: ensure browser-level looping
-  video.playsInline = true;
-  video.setAttribute('playsinline','');
-  video.setAttribute('webkit-playsinline','');
-  video.autoplay = true;
-  const onended = () => {
-    if(videoPauseTimeout) clearTimeout(videoPauseTimeout);
-    videoPauseTimeout = setTimeout(()=>{
-      try { video.currentTime=0;} catch(e){}
-      video.play().catch(()=>{});
-    },1000);
-  };
-  video._onended = onended;
-  // keep ended listener as fallback (harmless when loop=true)
-  video.addEventListener('ended',onended);
-  document.body.appendChild(video);
-  currentVideoElem = video;
-  video.play().catch(()=>{});
-}
 
 function stopCurrentAudio() {
-  if(currentAudio){ 
-    currentAudio.pause(); 
-    try{currentAudio.currentTime=0;}catch(e){} 
+  if(currentAudio){
+    currentAudio.pause();
+    try{currentAudio.currentTime=0;}catch(e){}
     currentAudio=null;
   }
   if(audioTimeout){ clearTimeout(audioTimeout); audioTimeout=null;}
@@ -326,28 +333,48 @@ function showSection(key){
   const sel = document.querySelector(`.color-strip a[data-key="${key}"]`);
   if(sel) sel.classList.add('active');
 
+  // Stop any existing video playback before changing content
+  const existingVideo = contentArea.querySelector('.video-bg');
+  if (existingVideo) {
+    existingVideo.pause();
+    existingVideo.currentTime = 0;
+    // existingVideo.remove(); // No need to remove, just re-assign innerHTML will replace it
+  }
+
   if(key==='owner'){
     document.body.classList.remove('content-active');
-    removeCurrentVideo();
-    stopCurrentAudio();
     contentArea.innerHTML = contentData.owner.html;
     if(contentData.owner.audio) playAudioLoop(contentData.owner.audio);
-  }else{
+  } else if (key === 'content') {
+    document.body.classList.add('content-active');
+    // For the content section, directly set the HTML
+    contentArea.innerHTML = contentData.content.html;
+
+    // Find the video and ensure it plays
+    const videoElement = contentArea.querySelector('.video-bg');
+    if (videoElement) {
+        videoElement.play().catch(e => console.error("Video autoplay failed:", e));
+    }
+    if(contentData[key].audio) playAudioLoop(contentData[key].audio);
+  }
+  else{
     document.body.classList.add('content-active');
     contentArea.innerHTML = `<div class="content-fullscreen">${contentData[key].html}</div>`;
-    if(contentData[key].video) createBackgroundVideo(contentData[key].video);
-    else removeCurrentVideo();
-    stopCurrentAudio();
     if(contentData[key].audio) playAudioLoop(contentData[key].audio);
   }
 }
 
-links.forEach(link=>{ link.addEventListener('click', e=>{ e.preventDefault(); showSection(link.getAttribute('data-key')); }); });
+links.forEach(link=>{
+  link.addEventListener('click', e=>{
+    e.preventDefault();
+    showSection(link.getAttribute('data-key'));
+  });
+});
 
-hamburger.onclick = ()=>{ sidePanel.classList.add('open'); overlay.classList.add('active'); hamburger.style.display='flex'; hamburger.style.display='none'; };
+hamburger.onclick = ()=>{ sidePanel.classList.add('open'); overlay.classList.add('active'); hamburger.style.display='none'; };
 closeBtn.onclick = overlay.onclick = ()=>{ sidePanel.classList.remove('open'); overlay.classList.remove('active'); hamburger.style.display='flex'; };
 
- // DEFAULT
+// DEFAULT
 showSection('content');
 </script>
 </body>
