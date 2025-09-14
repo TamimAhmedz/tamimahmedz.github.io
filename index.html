@@ -51,6 +51,7 @@
       text-shadow: none; /* Removed text shadow */
       position: relative;
       transition: all 0.3s ease;
+      text-align: center; /* Ensures text is centered on small screens */
     }
     .hero h1::before {
       content: '';
@@ -82,6 +83,7 @@
       position: sticky; /* Makes nav bar stick to top */
       top: 0;
       z-index: 999;
+      padding: 0 1rem; /* Added padding for smaller screens */
     }
     .color-strip a {
       color: var(--primary-text-color);
@@ -232,6 +234,95 @@
     .summary-columns .col p{font-size:1.1em;line-height:1.7;margin-bottom:20px}
     .footer{background:black;color:white;text-align:center;padding:60px 20px;font-size:2em;font-weight:bold;letter-spacing:2px; z-index: 2; position: relative;}
     .footer span{display:block;font-size:1em;margin-top:10px;opacity:0.7;font-weight:normal}
+
+
+    /* --- ADDED FOR RESPONSIVENESS --- */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem; /* Smaller title on mobile */
+      }
+
+      .color-strip {
+        gap: 0.5rem; /* Tighter gap for nav links */
+        font-size: 0.9rem; /* Smaller font for nav links */
+      }
+      .color-strip a {
+        padding: 0.5rem 1rem; /* Adjust padding for smaller links */
+      }
+
+      .owner-container {
+        padding: 30px 20px;
+        min-height: auto;
+      }
+      .owner-pic {
+        width: 140px;
+        height: 140px;
+      }
+      .social-links {
+        gap: 1.2rem;
+      }
+       .social-links a {
+        width: 50px;
+        height: 50px;
+       }
+       .social-links svg {
+        width: 32px;
+        height: 32px;
+       }
+
+      .top-text h1 {
+        font-size: 2.2em;
+      }
+      .top-text p:first-of-type {
+        font-size: 1.2em;
+      }
+      .top-text p:last-of-type {
+        font-size: 1em;
+      }
+
+      .content-area-inner {
+        padding: 60px 20px;
+        gap: 20px;
+      }
+      
+      .summary-creative {
+        margin: 60px 20px;
+        padding: 40px 25px;
+      }
+      .summary-creative h2 {
+        font-size: 1.8em;
+      }
+      .summary-columns .col {
+        border-left: none; /* Remove side borders */
+        border-top: 1px solid rgba(255,255,255,0.2); /* Add top borders for stacking */
+        padding: 20px 0 0 0;
+      }
+      .summary-columns .col:first-child {
+        border-top: none; /* No border on the very first item */
+        padding-top: 0;
+      }
+
+      .footer {
+        font-size: 1.5em;
+        padding: 40px 20px;
+      }
+
+      /* Responsive styles for Informations section */
+      #information-content .container {
+        padding: 2rem 1rem;
+        grid-template-columns: 1fr; /* Stack cards in a single column */
+        gap: 2rem;
+      }
+      #information-content .card {
+        min-height: auto;
+      }
+      #information-content .summary-section ul {
+        grid-template-columns: 1fr;
+      }
+      #information-content .summary-section {
+        padding: 2rem 1rem;
+      }
+    }
   </style>
 </head>
 <body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
@@ -316,7 +407,7 @@ const newContentHTML = `
 const informationHTML = `
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto&display=swap" rel="stylesheet">
 <style>
-#information-content{margin:0;padding:0;background:linear-gradient(135deg,#e0f2f7,#f7fbfc);font-family:'Roboto',sans-serif;color:#333;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+#information-content{margin:0;padding:0;background:linear-gradient(135deg,#e0f2f7,#9ff5d0);font-family:'Roboto',sans-serif;color:#333;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
 #information-content header{text-align:center;padding:2rem 1rem;background:linear-gradient(45deg,#2c7a7b,#319795);color:white;border-bottom:6px solid #285e61}
 #information-content header h1{font-family:'Fredoka One',cursive;font-size:3rem;margin:0;letter-spacing:2px}
 #information-content .container{display:grid;grid-template-columns:repeat(4,1fr);gap:4rem;row-gap:8rem;padding:6rem}
@@ -367,7 +458,7 @@ const contentData = {
 };
 
 let currentAudio = null;
-let audioTimeout = null;
+
 
 function stopCurrentAudio() {
   if(currentAudio){
@@ -375,19 +466,14 @@ function stopCurrentAudio() {
     try{currentAudio.currentTime=0;}catch(e){}
     currentAudio=null;
   }
-  if(audioTimeout){ clearTimeout(audioTimeout); audioTimeout=null;}
 }
 
-function playAudioLoop(audioFile){
+// MODIFICATION: Renamed function and removed loop logic
+function playAudioOnce(audioFile){
   stopCurrentAudio();
   currentAudio=new Audio(audioFile);
   currentAudio.preload='auto';
   currentAudio.play().catch(()=>{});
-  currentAudio.onended = ()=>{
-    audioTimeout=setTimeout(()=>{
-      if(currentAudio){ currentAudio.currentTime=0; currentAudio.play().catch(()=>{});}
-    },1000);
-  };
 }
 
 const hamburger = document.getElementById('hamburger');
@@ -411,8 +497,8 @@ function showSection(key){
   if(key==='owner'){
     document.body.classList.remove('content-active');
     contentArea.innerHTML = contentData.owner.html;
-    if(contentData.owner.audio) playAudioLoop(contentData.owner.audio);
-  } else if (key === 'content' || key === 'informations') { // Modified to include 'informations'
+    if(contentData.owner.audio) playAudioOnce(contentData.owner.audio);
+  } else if (key === 'content' || key === 'informations') {
     document.body.classList.add('content-active');
     contentArea.innerHTML = contentData[key].html;
 
@@ -422,12 +508,12 @@ function showSection(key){
             videoElement.play().catch(e => console.error("Video autoplay failed:", e));
         }
     }
-    if(contentData[key].audio) playAudioLoop(contentData[key].audio);
+    if(contentData[key].audio) playAudioOnce(contentData[key].audio);
   }
-  else{ // Fallback for any other links
+  else{ 
     document.body.classList.add('content-active');
     contentArea.innerHTML = `<div class="content-fullscreen">${contentData[key] ? contentData[key].html : 'Content not found'}</div>`;
-    if(contentData[key] && contentData[key].audio) playAudioLoop(contentData[key].audio);
+    if(contentData[key] && contentData[key].audio) playAudioOnce(contentData[key].audio);
   }
 }
 
