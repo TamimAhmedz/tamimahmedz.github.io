@@ -193,13 +193,64 @@
     .social-links a:hover { transform: scale(1.15); border-color: #ffd700; box-shadow: 0 0 18px rgba(255,215,0,0.45); }
     .social-links svg { width: 44px; height: 44px; fill: #ffd700; }
 
-    /* SIDE PANEL */
+    /* SIDE PANEL UPDATED */
     .hamburger { position: fixed; top: 20px; left: 20px; width: 30px; height: 24px; cursor: pointer; z-index: 1001; display: flex; flex-direction: column; justify-content: space-between; }
     .hamburger div { height: 4px; background-color: #ffffff; border-radius: 2px; }
-    .side-panel { position: fixed; top: 0; left: 0; width: 280px; height: 100vh; background-color: #222; padding: 2rem 1.5rem; transform: translateX(-100%); transition: transform 0.3s ease; z-index: 1000; display: flex; flex-direction: column; color: #eee; }
+    .side-panel { 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      max-width: 350px;
+      height: 100vh; 
+      background-color: #1a1a1a; 
+      padding: 1.5rem; 
+      transform: translateX(-100%); 
+      transition: transform 0.3s ease; 
+      z-index: 1000; 
+      display: flex; 
+      flex-direction: column; 
+      color: #eee; 
+      box-sizing: border-box;
+    }
     .side-panel.open { transform: translateX(0); }
-    .close-btn { align-self: flex-end; font-size: 3rem; cursor: pointer; color: #aaa; }
-    .side-panel nav a { color: #eee; text-decoration: none; font-size: 1.2rem; padding: 0.8rem 0; border-bottom: 1px solid #444; }
+    .close-btn { 
+      align-self: flex-end; 
+      cursor: pointer; 
+      color: #a9d638; /* kinda green color for the X */
+      margin-bottom: 2rem;
+    }
+    .close-btn svg {
+      width: 28px;
+      height: 28px;
+    }
+    .side-panel nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .side-panel nav a { 
+      background-color: #2c2c2c;
+      color: #fff; 
+      text-decoration: none; 
+      font-size: 1.1rem; 
+      font-weight: 600;
+      padding: 1rem; 
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: background-color 0.2s ease;
+    }
+    .side-panel nav a:hover {
+      background-color: #3a3a3a;
+    }
+    .side-panel nav a svg {
+      width: 24px;
+      height: 24px;
+      color: #a9d638; /* kinda green color for icons */
+    }
+
     .overlay { position: fixed; top: 0; left: 0; height: 100vh; width: 100vw; background: rgba(0,0,0,0.5); opacity: 0; visibility: hidden; transition: opacity 0.3s ease; z-index: 999; }
     .overlay.active { opacity: 1; visibility: visible; }
 
@@ -318,13 +369,18 @@
 
 <div class="hamburger" id="hamburger"><div></div><div></div><div></div></div>
 <aside class="side-panel" id="sidePanel">
-  <div class="close-btn" id="closeBtn">&times;</div>
+  <div class="close-btn" id="closeBtn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+  </div>
   <nav>
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Contact</a>
-    <a href="#">Settings</a>
+    <a href="#">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      <span>Home</span>
+    </a>
+    <a href="#">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+      <span>About</span>
+    </a>
   </nav>
 </aside>
 <div class="overlay" id="overlay"></div>
@@ -347,7 +403,7 @@ const ownerHTML = `
     <div>
       <img class="owner-pic" src="6779.jpg" alt="Tamim Ahmed" />
       <h1>Tamim Ahmed</h1>
-      <p>Welcome to my websitee.I am the final boss.I am <strong>The Tamim Ahmed</strong>.</p>
+      <p>Welcome to my website.I am the final boss.I am <strong>The Tamim Ahmed</strong>.</p>
     </div>
     <div style="margin-top:auto">
       <p class="social-text">Well, here you can visit my social media:</p>
@@ -423,7 +479,7 @@ const newContentHTML_Mobile = `
 <div class="footer">THE GATE WAY<span>- by you know who</span></div>
 `;
 
-// INFORMATIONS HTML (FROM Z CODE) - CORRECTED
+// INFORMATIONS HTML (FROM Z CODE)
 const informationHTML = `
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto&display=swap" rel="stylesheet">
 <style>
@@ -445,28 +501,13 @@ const informationHTML = `
 #information-content .summary-section ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:800px;margin:0 auto;text-align:left}
 #information-content .summary-section li{background:white;padding:1rem 1.5rem;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.08);font-size:1.1rem;color:#444;display:flex;align-items:center}
 #information-content .summary-section li::before{content:"✴";margin-right:10px;font-size:1.2rem}
-
-/* --- ADDED TO FIX MOBILE VIEW --- */
-@media (max-width: 768px) {
-    #information-content header h1 {
-        font-size: 2.2rem;
-    }
-    #information-content .container {
-        padding: 2rem 1.5rem;
-        gap: 2rem;
-    }
-    #information-content .card {
-        min-height: auto; /* This is the most important fix */
-    }
-    #information-content .summary-section {
-        padding: 2.5rem 1.5rem;
-    }
-    #information-content .summary-section h2 {
-        font-size: 1.8rem;
-    }
-    #information-content .summary-section ul {
-        grid-template-columns: 1fr;
-    }
+@media (max-width:768px){
+    #information-content .summary-section ul{grid-template-columns:1fr} 
+    #information-content .summary-section{padding:2rem}
+    #information-content .container { padding: 2rem 1.5rem; gap: 2rem; }
+    #information-content .card { min-height: auto; }
+    #information-content header h1 { font-size: 2.2rem; }
+    #information-content .summary-section h2 { font-size: 1.8rem; }
 }
 </style>
 <div id="information-content">
@@ -478,7 +519,7 @@ const informationHTML = `
     <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Gaza_Mediterranean.jpg/800px-Gaza_Mediterranean.jpg" alt="Gaza Coast"><h2>Beautiful Coast</h2><p>It has a scenic Mediterranean coastline with sandy beaches and rich marine life.</p></div>
     <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Palestinian_children_Gaza.jpg/800px-Gaza_Children.jpg" alt="Gaza Children"><h2>Resilient People</h2><p>The people of Gaza show incredible strength, resilience, and hope despite hardships.</p></div>
     <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Olive_tree.jpg/800px-Olive_tree.jpg" alt="Olive Tree"><h2>Symbol of Peace</h2><p>The olive tree is a symbol of peace and endurance, deeply rooted in Gaza’s culture.</p></div>
-    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Gaza_University.jpg/800px-Gaza_University.jpg" alt="Gaza Education"><h2>Education & Future</h2><p>Despite challenges, Gaza has universities, schools, and many aspiring young minds.</p></div>
+    <div class="card"><img src="https://upload.wikimedia.org/wikipedia.com/thumb/e/e3/Gaza_University.jpg/800px-Gaza_University.jpg" alt="Gaza Education"><h2>Education & Future</h2><p>Despite challenges, Gaza has universities, schools, and many aspiring young minds.</p></div>
     <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Gaza_Reconstruction.jpg/800px-Gaza_Reconstruction.jpg" alt="Rebuilding Gaza"><h2>Hope for Tomorrow</h2><p>Communities continue to rebuild and dream of a peaceful and free future.</p></div>
   </section>
   <section class="summary-section">
@@ -577,6 +618,18 @@ links.forEach(link=>{
     showSection(link.getAttribute('data-key'));
   });
 });
+
+// --- ADDED TO MAKE SIDE PANEL 'HOME' BUTTON FUNCTIONAL ---
+const sidePanelHomeButton = document.querySelector('.side-panel nav a:first-child');
+
+sidePanelHomeButton.onclick = (e) => {
+  e.preventDefault(); // Prevent the link from trying to navigate
+  showSection('content'); // Show the main content section
+  // Close the side panel
+  sidePanel.classList.remove('open'); 
+  overlay.classList.remove('active'); 
+  hamburger.style.display='flex'; 
+};
 
 hamburger.onclick = ()=>{ sidePanel.classList.add('open'); overlay.classList.add('active'); hamburger.style.display='none'; };
 closeBtn.onclick = overlay.onclick = ()=>{ sidePanel.classList.remove('open'); overlay.classList.remove('active'); hamburger.style.display='flex'; };
