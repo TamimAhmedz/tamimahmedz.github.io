@@ -242,6 +242,13 @@
         font-size: 2.5rem; /* Smaller title on mobile */
       }
 
+      /* --- ADDED FOR MOBILE-SPECIFIC CONTENT BACKGROUND --- */
+      /* This rule targets the .hero section ONLY when the body has the .content-active class on screens 768px or smaller */
+      body.content-active .hero {
+        background: url('https://images.pexels.com/photos/1528640/pexels-photo-1528640.jpeg') no-repeat center center;
+        background-size: cover;
+      }
+
       .color-strip {
         gap: 0.5rem; /* Tighter gap for nav links */
         font-size: 0.9rem; /* Smaller font for nav links */
