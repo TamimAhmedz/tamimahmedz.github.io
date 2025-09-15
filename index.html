@@ -242,7 +242,6 @@
         font-size: 2.5rem; /* Smaller title on mobile */
       }
 
-      /* --- CHANGE 1: ADDED NEW MOBILE BACKGROUND FOR THE .content area --- */
       .content {
         background: url('phone.jpeg') no-repeat center center;
         background-size: cover;
@@ -311,22 +310,6 @@
       .footer {
         font-size: 1.5em;
         padding: 40px 20px;
-      }
-
-      /* Responsive styles for Informations section */
-      #information-content .container {
-        padding: 2rem 1rem;
-        grid-template-columns: 1fr; /* Stack cards in a single column */
-        gap: 2rem;
-      }
-      #information-content .card {
-        min-height: auto;
-      }
-      #information-content .summary-section ul {
-        grid-template-columns: 1fr;
-      }
-      #information-content .summary-section {
-        padding: 2rem 1rem;
       }
     }
   </style>
@@ -440,7 +423,7 @@ const newContentHTML_Mobile = `
 <div class="footer">THE GATE WAY<span>- by you know who</span></div>
 `;
 
-// INFORMATIONS HTML (FROM Z CODE)
+// INFORMATIONS HTML (FROM Z CODE) - CORRECTED
 const informationHTML = `
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto&display=swap" rel="stylesheet">
 <style>
@@ -454,7 +437,7 @@ const informationHTML = `
 #information-content .card:hover{transform:translateY(-10px)}
 #information-content .card img{width:100%;height:200px;object-fit:cover;border-radius:15px;margin-bottom:1rem;-webkit-user-drag:none;-khtml-user-drag:none;-moz-user-drag:none;-o-user-drag:none;user-drag:none}
 #information-content .card h2{color:#2c7a7b;margin-bottom:.5rem;font-size:1.3rem;font-family:'Fredoka One',cursive}
-#information-content .card p{font-size:1rem;line-height:1.5}
+#information-content .card p{font-size:1rem;line-height:1.5;color:#000000;}
 #information-content footer{text-align:center;padding:1.5rem;background:#319795;border-top:6px solid #285e61;color:#fff;font-weight:bold;font-family:'Fredoka One',cursive;letter-spacing:1px}
 #information-content .card::after{content:"🕊️";font-size:4rem;position:absolute;bottom:-10px;right:-10px;opacity:.05;transform:rotate(-20deg)}
 #information-content .summary-section{background:#f0f8f8;padding:4rem 6rem;margin-top:4rem;text-align:center;border-top:4px solid #319795;border-bottom:4px solid #319795}
@@ -462,7 +445,29 @@ const informationHTML = `
 #information-content .summary-section ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:800px;margin:0 auto;text-align:left}
 #information-content .summary-section li{background:white;padding:1rem 1.5rem;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.08);font-size:1.1rem;color:#444;display:flex;align-items:center}
 #information-content .summary-section li::before{content:"✴";margin-right:10px;font-size:1.2rem}
-@media (max-width:768px){#information-content .summary-section ul{grid-template-columns:1fr} #information-content .summary-section{padding:2rem}}
+
+/* --- ADDED TO FIX MOBILE VIEW --- */
+@media (max-width: 768px) {
+    #information-content header h1 {
+        font-size: 2.2rem;
+    }
+    #information-content .container {
+        padding: 2rem 1.5rem;
+        gap: 2rem;
+    }
+    #information-content .card {
+        min-height: auto; /* This is the most important fix */
+    }
+    #information-content .summary-section {
+        padding: 2.5rem 1.5rem;
+    }
+    #information-content .summary-section h2 {
+        font-size: 1.8rem;
+    }
+    #information-content .summary-section ul {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
 <div id="information-content">
   <header><h1>Voices of Gaza</h1></header>
@@ -537,7 +542,6 @@ function showSection(key){
     if(contentData.owner.audio) playAudioOnce(contentData.owner.audio);
   } 
   
-  // --- CHANGE 3: UPDATED JAVASCRIPT LOGIC ---
   else if (key === 'content') {
     document.body.classList.add('content-active');
     
