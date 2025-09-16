@@ -70,7 +70,7 @@
 
     /* --- NAVIGATION BAR STYLES UPDATED --- */
     .navbar-wrapper {
-      background-color: #808080; /* ADDED */
+      background-color: #a9d638; /* ADDED */
       padding: 10px 0;
       position: sticky;
       top: 0;
@@ -138,6 +138,7 @@
       position: relative;
       overflow: hidden; 
       color: white; 
+      transition: opacity 0.2s ease-in-out; /* For smooth transition */
     }
     .content-fullscreen {
       width: 100%;
@@ -546,7 +547,6 @@ const informationHTML = `
 
 // --- SCRIPT SECTION ---
 
-// CONTENT + AUDIO
 const contentData = {
   content: { html: newContentHTML, audio: "good.mp3" },
   informations: { html: informationHTML, audio: "cool.mp3" },
@@ -554,7 +554,7 @@ const contentData = {
 };
 
 let currentAudio = null;
-
+let isInitialLoad = true; 
 
 function stopCurrentAudio() {
   if(currentAudio){
@@ -564,7 +564,6 @@ function stopCurrentAudio() {
   }
 }
 
-// MODIFICATION: Renamed function and removed loop logic
 function playAudioOnce(audioFile){
   stopCurrentAudio();
   currentAudio=new Audio(audioFile);
@@ -579,49 +578,62 @@ const overlay = document.getElementById('overlay');
 const contentArea = document.getElementById('contentArea');
 const links = document.querySelectorAll('.color-strip a');
 
-function showSection(key){
-  links.forEach(link=>link.classList.remove('active'));
+// --- CHANGE 1: MODIFIED showSection TO HANDLE HISTORY ---
+function showSection(key, fromPopState = false){
+  // Only push to history if it's a new user click, not a back button press
+  if (!fromPopState) {
+    // We use the page's URL and add a hash to create a unique history entry
+    history.pushState({ key: key }, '', `#${key}`);
+  }
+
+  links.forEach(link => link.classList.remove('active'));
   const sel = document.querySelector(`.color-strip a[data-key="${key}"]`);
   if(sel) sel.classList.add('active');
 
-  const existingVideo = contentArea.querySelector('.video-bg');
-  if (existingVideo) {
-    existingVideo.pause();
-    existingVideo.currentTime = 0;
-  }
-
-  if(key==='owner'){
-    document.body.classList.remove('content-active');
-    contentArea.innerHTML = contentData.owner.html;
-    if(contentData.owner.audio) playAudioOnce(contentData.owner.audio);
-  } 
-  
-  else if (key === 'content') {
-    document.body.classList.add('content-active');
-    
-    // Check if the screen is mobile-sized
-    if (window.innerWidth <= 768) {
-      contentArea.innerHTML = newContentHTML_Mobile; // Use the version WITHOUT the video
-    } else {
-      contentArea.innerHTML = newContentHTML; // Use the normal version WITH the video
-      const videoElement = contentArea.querySelector('.video-bg');
-      if (videoElement) {
-        videoElement.play().catch(e => console.error("Video autoplay failed:", e));
-      }
+  const updateContent = () => {
+    const existingVideo = contentArea.querySelector('.video-bg');
+    if (existingVideo) {
+      existingVideo.pause();
+      existingVideo.currentTime = 0;
     }
-    
-    if(contentData.content.audio) playAudioOnce(contentData.content.audio);
-  } 
-  
-  else if (key === 'informations') {
-    document.body.classList.add('content-active');
-    contentArea.innerHTML = contentData.informations.html;
-    if(contentData.informations.audio) playAudioOnce(contentData.informations.audio);
-  }
-  else{ 
-    document.body.classList.add('content-active');
-    contentArea.innerHTML = `<div class="content-fullscreen">${contentData[key] ? contentData[key].html : 'Content not found'}</div>`;
-    if(contentData[key] && contentData[key].audio) playAudioOnce(contentData[key].audio);
+
+    if(key==='owner'){
+      document.body.classList.remove('content-active');
+      contentArea.innerHTML = contentData.owner.html;
+      if(contentData.owner.audio) playAudioOnce(contentData.owner.audio);
+    } 
+    else if (key === 'content') {
+      document.body.classList.add('content-active');
+      if (window.innerWidth <= 768) {
+        contentArea.innerHTML = newContentHTML_Mobile;
+      } else {
+        contentArea.innerHTML = newContentHTML;
+        const videoElement = contentArea.querySelector('.video-bg');
+        if (videoElement) {
+          videoElement.play().catch(e => console.error("Video autoplay failed:", e));
+        }
+      }
+      if(contentData.content.audio) playAudioOnce(contentData.content.audio);
+    } 
+    else if (key === 'informations') {
+      document.body.classList.add('content-active');
+      contentArea.innerHTML = contentData.informations.html;
+      if(contentData.informations.audio) playAudioOnce(contentData.informations.audio);
+    }
+    else { 
+      document.body.classList.add('content-active');
+      contentArea.innerHTML = `<div class="content-fullscreen">${contentData[key] ? contentData[key].html : 'Content not found'}</div>`;
+      if(contentData[key] && contentData[key].audio) playAudioOnce(contentData[key].audio);
+    }
+    contentArea.style.opacity = 1;
+  };
+
+  if (isInitialLoad) {
+    updateContent();
+    isInitialLoad = false;
+  } else {
+    contentArea.style.opacity = 0;
+    setTimeout(updateContent, 200);
   }
 }
 
@@ -632,13 +644,10 @@ links.forEach(link=>{
   });
 });
 
-// --- ADDED TO MAKE SIDE PANEL 'HOME' BUTTON FUNCTIONAL ---
 const sidePanelHomeButton = document.querySelector('.side-panel nav a:first-child');
-
 sidePanelHomeButton.onclick = (e) => {
-  e.preventDefault(); // Prevent the link from trying to navigate
-  showSection('content'); // Show the main content section
-  // Close the side panel
+  e.preventDefault();
+  showSection('content');
   sidePanel.classList.remove('open'); 
   overlay.classList.remove('active'); 
   hamburger.style.display='flex'; 
@@ -647,8 +656,22 @@ sidePanelHomeButton.onclick = (e) => {
 hamburger.onclick = ()=>{ sidePanel.classList.add('open'); overlay.classList.add('active'); hamburger.style.display='none'; };
 closeBtn.onclick = overlay.onclick = ()=>{ sidePanel.classList.remove('open'); overlay.classList.remove('active'); hamburger.style.display='flex'; };
 
-// DEFAULT
+// --- CHANGE 2: ADDED EVENT LISTENER FOR THE BACK BUTTON ---
+window.addEventListener('popstate', (event) => {
+  if (event.state && event.state.key) {
+    // If the history state has a key, show that section
+    showSection(event.state.key, true); // The 'true' flag prevents a new history entry
+  } else {
+    // If there's no state, it's the initial page, so show 'content'
+    showSection('content', true);
+  }
+});
+
+// --- CHANGE 3: SET THE INITIAL STATE OF THE PAGE ON LOAD ---
+// This replaces the old state so the back button doesn't get stuck on the first page
+history.replaceState({ key: 'content' }, '', '#content');
 showSection('content');
+
 </script>
 </body>
 </html>
