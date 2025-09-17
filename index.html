@@ -110,7 +110,7 @@
     }
     .color-strip a.active {
       background-color: var(--accent-color);
-      color: var(--heading-color);
+      color: #000; /* Active text color changed to black */
       box-shadow: 0 0 12px var(--accent-shadow-color);
     }
 
@@ -124,7 +124,7 @@
     }
     body.content-active .color-strip a.active {
       background-color: var(--accent-color);
-      color: var(--heading-color);
+      color: #000; /* Active text color changed to black */
       box-shadow: 0 0 12px var(--accent-shadow-color);
     }
 
@@ -291,11 +291,11 @@
     .summary-creative{position:relative;margin:60px 40px;background:rgba(0,0,0,0.55);border-radius:18px;padding:50px 40px;box-shadow:0 10px 30px rgba(0,0,0,0.8);color:#fff;text-align:center; z-index: 2; position: relative;}
     .summary-creative h2{font-size:2.2em;margin-bottom:40px;text-shadow:2px 2px 6px rgba(0,0,0,0.8);letter-spacing:1px}
     .summary-columns{display:flex;flex-wrap:wrap;gap:40px;justify-content:center;text-align:left}
-    .summary-columns .col{flex:1 1 250px;min-width:250px;padding:0 10px;border-left:2px solid rgba(255,255,255,0.2)}
+    .summary-columns .col{flex:1 1 250px;min-width:250px;padding:0 10px;border-left:2px solid rgba(169, 214, 56, 0.2);} /* --- CHANGE 1: Line color updated --- */
     .summary-columns .col:first-child{border-left:none}
     .summary-columns .col p{font-size:1.1em;line-height:1.7;margin-bottom:20px}
     .footer{background:black;color:white;text-align:center;padding:60px 20px;font-size:2em;font-weight:bold;letter-spacing:2px; z-index: 2; position: relative;}
-    .footer span{display:block;font-size:1em;margin-top:10px;opacity:0.7;font-weight:normal}
+    .footer span{display:block;font-size:1em;margin-top:10px;opacity:0.9;font-weight:normal; color: #a9d638;} /* --- CHANGE 2: Text color updated --- */
 
 
     /* --- ADDED FOR RESPONSIVENESS --- */
@@ -361,7 +361,7 @@
       }
       .summary-columns .col {
         border-left: none; /* Remove side borders */
-        border-top: 1px solid rgba(255,255,255,0.2); /* Add top borders for stacking */
+        border-top: 1px solid rgba(169, 214, 56, 0.2); /* --- CHANGE 1: Line color updated for mobile --- */
         padding: 20px 0 0 0;
       }
       .summary-columns .col:first-child {
