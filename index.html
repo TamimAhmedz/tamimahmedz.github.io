@@ -471,7 +471,7 @@
     /* --- Container for the new navigation bar --- */
     .pc-only-strip {
         display: none; 
-        position: absolute; /* --- THIS IS THE FIX: Changed from 'sticky' to 'absolute' --- */
+        position: absolute;
         top: 0;
         left: 0;
         width: 100%;
@@ -498,8 +498,9 @@
     .pc-only-strip .logo a {
         text-decoration: none;
     }
+    /* --- THIS IS THE FIX: Styles for the logo image --- */
     .pc-only-strip .logo img {
-        height: 40px; 
+        height: 55px; /* Increased size */
         width: auto; 
         display: block; 
         -webkit-user-drag: none;
@@ -509,6 +510,7 @@
         -ms-user-select: none;
         user-select: none;
         pointer-events: none;
+        mix-blend-mode: screen; /* Removes white background, works best on dark backgrounds */
     }
     .pc-only-strip .main-nav {
         display: flex;
