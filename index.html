@@ -31,27 +31,25 @@
 
     /* HERO */
     .hero {
-      height: 30vh;
+      height: 45vh;
       background: url('ohh.jpg') no-repeat center center fixed;
       background-size: cover;
       display: flex;
       justify-content: center;
-      /* Centered vertically for better presentation */
       align-items: center; 
       padding-top: 0;
       position: relative;
       overflow: hidden;
     }
-    /* MODIFICATION: "The Gate Way" text style updated */
     .hero h1 {
-      font-family: 'Playfair Display', serif; /* Changed font to match image */
-      font-weight: 400; /* Adjusted weight for a softer look */
-      font-size: 4rem; /* Slightly larger font size */
-      color: #999; /* Changed color to grey */
-      text-shadow: none; /* Removed text shadow */
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: 4rem;
+      color: #ffffff;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
       position: relative;
       transition: all 0.3s ease;
-      text-align: center; /* Ensures text is centered on small screens */
+      text-align: center;
     }
     .hero h1::before {
       content: '';
@@ -116,7 +114,7 @@
 
     /* Transparent mode for Content */
     body.content-active .hero h1 {
-      color: rgba(153, 153, 153, 0.25); /* Adjusted transparent color */
+      color: rgba(255, 255, 255, 0.25); /* Adjusted transparent color */
       text-shadow: none;
     }
     body.content-active .color-strip a {
@@ -204,8 +202,19 @@
     .social-links a:hover { transform: scale(1.15); border-color: #ffd700; box-shadow: 0 0 18px rgba(255,215,0,0.45); }
     .social-links svg { width: 44px; height: 44px; fill: #ffd700; }
 
-    /* SIDE PANEL UPDATED */
-    .hamburger { position: fixed; top: 20px; left: 20px; width: 30px; height: 24px; cursor: pointer; z-index: 1001; display: flex; flex-direction: column; justify-content: space-between; }
+    /* --- SIDE PANEL (Z-INDEX CHANGES HERE) --- */
+    .hamburger { 
+        position: fixed; 
+        top: 20px; 
+        left: 20px; 
+        width: 30px; 
+        height: 24px; 
+        cursor: pointer; 
+        z-index: 1003; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: space-between; 
+    }
     .hamburger div { height: 4px; background-color: #ffffff; border-radius: 2px; }
     .side-panel { 
       position: fixed; 
@@ -218,7 +227,7 @@
       padding: 1.5rem; 
       transform: translateX(-100%); 
       transition: transform 0.3s ease; 
-      z-index: 1000; 
+      z-index: 1005;
       display: flex; 
       flex-direction: column; 
       color: #eee; 
@@ -262,7 +271,18 @@
       color: #a9d638; /* kinda green color for icons */
     }
 
-    .overlay { position: fixed; top: 0; left: 0; height: 100vh; width: 100vw; background: rgba(0,0,0,0.5); opacity: 0; visibility: hidden; transition: opacity 0.3s ease; z-index: 999; }
+    .overlay { 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        height: 100vh; 
+        width: 100vw; 
+        background: rgba(0,0,0,0.5); 
+        opacity: 0; 
+        visibility: hidden; 
+        transition: opacity 0.3s ease; 
+        z-index: 1004;
+    }
     .overlay.active { opacity: 1; visibility: visible; }
 
     /* New CSS from the second file for content section */
@@ -447,9 +467,154 @@
         transform: translateX(24px);
     }
     /* --- END: CSS FOR MUSIC TOGGLE COMPONENT --- */
+
+    /* --- Container for the new navigation bar --- */
+    .pc-only-strip {
+        display: none; 
+        position: sticky; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1002;
+    }
+    
+    /* --- START: CSS FOR THE NEW NAVIGATION BAR --- */
+    .pc-only-strip header {
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .pc-only-strip .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+    .pc-only-strip .logo a {
+        text-decoration: none;
+    }
+    /* --- THIS IS THE FIX: Added styles to prevent logo dragging/copying --- */
+    .pc-only-strip .logo img {
+        height: 40px; 
+        width: auto; 
+        display: block; 
+        -webkit-user-drag: none;
+        user-drag: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
+    }
+    .pc-only-strip .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+    }
+    .pc-only-strip .nav-btn {
+        background-color: transparent;
+        color: #d1d5db;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s, color 0.3s;
+        position: relative;
+    }
+    .pc-only-strip .nav-btn:not(:last-child):after {
+        content: '';
+        position: absolute;
+        height: 16px;
+        width: 1px;
+        background-color: #4a4a4a;
+        right: -16px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .pc-only-strip .nav-btn:hover {
+        background-color: #a3e635;
+        color: #000;
+    }
+    .pc-only-strip .action-buttons {
+        display: flex;
+        gap: 15px;
+    }
+    .pc-only-strip .btn {
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    .pc-only-strip .btn-light {
+        background-color: #e2e222;
+        color: black;
+        box-shadow: 0 0 0px #e2e222;
+    }
+    .pc-only-strip .btn-light:hover {
+        background-color: #f0f066;
+        box-shadow: 0 0 5px #e2e222, 
+                    0 0 15px #e2e222, 
+                    0 0 25px #e2e222;
+    }
+    .pc-only-strip .btn-dark {
+        background-color: #1f1f1f;
+        color: white;
+        border: 1px solid #4a4a4a;
+        box-shadow: 0 0 0px #ffffff;
+    }
+    .pc-only-strip .btn-dark:hover {
+        background-color: #333;
+        box-shadow: 0 0 5px #ffffff,
+                    0 0 10px #ffffff;
+    }
+    /* --- END: CSS FOR THE NEW NAVIGATION BAR --- */
+
+
+    /* Media query to target PC screens */
+    @media (min-width: 769px) {
+      /* Show the strip only when the 'content' section is active */
+      body.showing-content .pc-only-strip {
+        display: block;
+      }
+    }
   </style>
 </head>
 <body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
+
+<!-- START: HTML FOR THE NEW NAVIGATION BAR (REPLACES THE OLD STRIP) -->
+<div class="pc-only-strip">
+    <header>
+        <div class="nav-left">
+            <div class="logo">
+                <a href="#">
+                     <img src="dc.png" alt="Your Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <button class="nav-btn">Support</button>
+                <button class="nav-btn">Business</button>
+                <button class="nav-btn">Detail</button>
+            </nav>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="btn btn-light">Learn more</button>
+            <a href="https://www.facebook.com/inventhrax" target="_blank" class="btn btn-dark">Follow us</a>
+        </div>
+    </header>
+</div>
+<!-- END: HTML FOR THE NEW NAVIGATION BAR -->
 
 <div class="hamburger" id="hamburger"><div></div><div></div><div></div></div>
 <aside class="side-panel" id="sidePanel">
@@ -634,7 +799,7 @@ const informationHTML = `
 </div>
 `;
 
-// --- SCRIPT SECTION ---
+// --- SCRIPT SECTION (No changes needed) ---
 
 // --- START: JAVASCRIPT FOR MUSIC TOGGLE COMPONENT (Placed early for access by other functions) ---
 const musicToggle = document.getElementById('music-toggle');
@@ -732,12 +897,15 @@ const overlay = document.getElementById('overlay');
 const contentArea = document.getElementById('contentArea');
 const links = document.querySelectorAll('.color-strip a');
 
-// --- CHANGE 1: MODIFIED showSection TO HANDLE HISTORY ---
+// --- SCRIPT TO CONTROL VISIBILITY (No changes needed) ---
 function showSection(key, fromPopState = false){
-  // Only push to history if it's a new user click, not a back button press
   if (!fromPopState) {
-    // We use the page's URL and add a hash to create a unique history entry
     history.pushState({ key: key }, '', `#${key}`);
+  }
+  
+  document.body.classList.remove('showing-content');
+  if (key === 'content') {
+    document.body.classList.add('showing-content');
   }
 
   links.forEach(link => link.classList.remove('active'));
@@ -810,19 +978,14 @@ sidePanelHomeButton.onclick = (e) => {
 hamburger.onclick = ()=>{ sidePanel.classList.add('open'); overlay.classList.add('active'); hamburger.style.display='none'; };
 closeBtn.onclick = overlay.onclick = ()=>{ sidePanel.classList.remove('open'); overlay.classList.remove('active'); hamburger.style.display='flex'; };
 
-// --- CHANGE 2: ADDED EVENT LISTENER FOR THE BACK BUTTON ---
 window.addEventListener('popstate', (event) => {
   if (event.state && event.state.key) {
-    // If the history state has a key, show that section
-    showSection(event.state.key, true); // The 'true' flag prevents a new history entry
+    showSection(event.state.key, true);
   } else {
-    // If there's no state, it's the initial page, so show 'content'
     showSection('content', true);
   }
 });
 
-// --- CHANGE 3: SET THE INITIAL STATE OF THE PAGE ON LOAD ---
-// This replaces the old state so the back button doesn't get stuck on the first page
 history.replaceState({ key: 'content' }, '', '#content');
 showSection('content');
 
