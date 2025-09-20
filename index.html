@@ -471,7 +471,7 @@
     /* --- Container for the new navigation bar --- */
     .pc-only-strip {
         display: none; 
-        position: sticky; 
+        position: absolute; /* --- THIS IS THE FIX: Changed from 'sticky' to 'absolute' --- */
         top: 0;
         left: 0;
         width: 100%;
@@ -493,11 +493,11 @@
         display: flex;
         align-items: center;
         gap: 30px;
+        margin-left: 60px;
     }
     .pc-only-strip .logo a {
         text-decoration: none;
     }
-    /* --- THIS IS THE FIX: Added styles to prevent logo dragging/copying --- */
     .pc-only-strip .logo img {
         height: 40px; 
         width: auto; 
@@ -598,7 +598,7 @@
         <div class="nav-left">
             <div class="logo">
                 <a href="#">
-                     <img src="dc.png" alt="Your Logo">
+                     <img src="dcc.png" alt="Your Logo">
                 </a>
             </div>
             <nav class="main-nav">
