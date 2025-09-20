@@ -510,7 +510,7 @@
         -ms-user-select: none;
         user-select: none;
         pointer-events: none;
-        mix-blend-mode: screen; /* Removes white background, works best on dark backgrounds */
+        mix-blend-mode: multiply; /* THIS IS THE FIX: Removes white background on light/grey surfaces */
     }
     .pc-only-strip .main-nav {
         display: flex;
@@ -600,7 +600,7 @@
         <div class="nav-left">
             <div class="logo">
                 <a href="#">
-                     <img src="dc.png" alt="Your Logo">
+                     <img src="dcc.png" alt="Your Logo">
                 </a>
             </div>
             <nav class="main-nav">
