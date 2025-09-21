@@ -322,7 +322,6 @@
 
     /* --- ADDED FOR RESPONSIVENESS --- */
     @media (max-width: 768px) {
-      /* --- THIS IS THE FIX: Reduced hero image height on mobile --- */
       .hero {
         height: 30vh;
       }
@@ -506,7 +505,7 @@
     }
     .pc-only-strip .logo img {
         height: 55px; 
-        width: auto; 
+        width: 55px; /* --- THIS IS THE FIX: Ensured width and height are equal for a perfect circle --- */
         display: block; 
         -webkit-user-drag: none;
         user-drag: none;
@@ -516,6 +515,8 @@
         user-select: none;
         pointer-events: none;
         mix-blend-mode: multiply;
+        border-radius: 50%; /* --- THIS IS THE FIX: Makes the image container circular --- */
+        object-fit: cover; /* --- THIS IS THE FIX: Prevents the image from being distorted --- */
     }
     .pc-only-strip .main-nav {
         display: flex;
@@ -588,7 +589,7 @@
     /* --- END: CSS FOR THE NEW NAVIGATION BAR --- */
 
 
-    /* --- Media query to target PC screens --- */
+    /* Media query to target PC screens */
     @media (min-width: 769px) {
       /* Show the strip only when the 'content' section is active */
       body.showing-content .pc-only-strip {
@@ -596,13 +597,12 @@
       }
 
       /* --- START: PC-only hero background styles --- */
-      /* These rules will ONLY apply on screens wider than 768px */
-      .hero.hero-informations {
-        background-image: url('fz.png');
+      body.showing-informations .hero {
+        background-image: url('https://images.pexels.com/photos/29451002/pexels-photo-29451002.jpeg');
       }
 
-      .hero.hero-owner {
-        background-image: url('frrr.png');
+      body.showing-owner .hero {
+        background-image: url('https://images.pexels.com/photos/32654385/pexels-photo-32654385.jpeg');
       }
       /* --- END: PC-only hero background styles --- */
     }
@@ -713,7 +713,7 @@ const newContentHTML = `
 <p>He Who knows Will Not Obey to Those,But to Only One</p>
 </div>
 <div class="content-area-inner">
-<div class="card"><img src="https://media2.thrillophilia.com/images/photos/000/178/603/original/1670915909_shutterstock_291252509.jpg?w=753&h=450&dpr=1.0"><div class="card-content"><h2>17 Places YouMust Visit in Turkey</h2><p>Turkey is a land of contrasts, where ancient meets modern, Europe is separated from Asia and the East.</p></div></div>
+<div class="card"><img src="https://media2.thrillophilia.com/images/photos/000/178/603/original/1670915909_shutterstock_291252509.jpg?w=753&h=450&dpr=1.0"><div class="card-content"><h2>17 Places You Must Visit in Turkey</h2><p>Turkey is a land of contrasts, where ancient meets modern, Europe is separated from Asia and the East.</p></div></div>
 <div class="card"><img src="https://www.thetimes.com/imageserver/image/%2Fe7026f07-497e-4213-b61c-2dd58b474c01.jpg?crop=1600%2C900%2C0%2C0&format=webp&quality=9&resize=1500"><div class="card-content"><h2>Thailand’s Top 11 Gems</h2><p>Thailand is a vibrant country with stunning places and a fascinating history that draws people from all over.</p></div></div>
 <div class="card"><img src="https://images.pexels.com/photos/21014/pexels-photo.jpg"><div class="card-content"><h2>A Guide to Traveling the World</h2><p>Discovering hidden cafes in Kyoto, navigating bustling souks in Marrakech, or stargazing in the Atacama Desert—each journey unveils a unique story.</p></div></div>
 <div class="card"><img src="https://wildnordics.com/wp-content/uploads/2019/01/Dolomites_Italy.jpg"><div class="card-content"><h2>European Countryside</h2><p>Explore the charming villages, scenic landscapes, and rich history of Europe’s countryside regions.</p></div></div>
@@ -817,7 +817,7 @@ const informationHTML = `
 </div>
 `;
 
-// --- SCRIPT SECTION (No changes needed) ---
+// --- SCRIPT SECTION (UPDATED) ---
 
 // --- START: JAVASCRIPT FOR MUSIC TOGGLE COMPONENT (Placed early for access by other functions) ---
 const musicToggle = document.getElementById('music-toggle');
@@ -915,7 +915,7 @@ const overlay = document.getElementById('overlay');
 const contentArea = document.getElementById('contentArea');
 const links = document.querySelectorAll('.color-strip a');
 
-// --- SCRIPT TO CONTROL VISIBILITY (No changes needed) ---
+// --- SCRIPT TO CONTROL VISIBILITY AND BACKGROUNDS (UPDATED) ---
 function showSection(key, fromPopState = false){
   // --- JavaScript logic to switch hero backgrounds ---
   const heroSection = document.querySelector('.hero');
@@ -934,10 +934,15 @@ function showSection(key, fromPopState = false){
     history.pushState({ key: key }, '', `#${key}`);
   }
   
-  document.body.classList.remove('showing-content');
+  document.body.classList.remove('showing-content', 'showing-informations', 'showing-owner');
   if (key === 'content') {
     document.body.classList.add('showing-content');
+  } else if (key === 'informations') {
+    document.body.classList.add('showing-informations');
+  } else if (key === 'owner') {
+    document.body.classList.add('showing-owner');
   }
+
 
   links.forEach(link => link.classList.remove('active'));
   const sel = document.querySelector(`.color-strip a[data-key="${key}"]`);
