@@ -6,6 +6,10 @@
   <title>The Gate Way</title>
   <!-- Refined Google Fonts import with more weights for better typography -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&family=Roboto:wght@400&family=Cinzel:wght@400;700&display=swap" rel="stylesheet" />
+  
+  <!-- THIS IS THE NEW LINE FOR YOUR WEBSITE ICON -->
+  <link rel="shortcut icon" href="jjr.png" type="image/x-icon">
+
   <style>
     /* Unified Color Scheme & CSS Variables for a professional look */
     :root {
@@ -505,7 +509,7 @@
     }
     .pc-only-strip .logo img {
         height: 55px; 
-        width: 55px; /* --- THIS IS THE FIX: Ensured width and height are equal for a perfect circle --- */
+        width: 55px; 
         display: block; 
         -webkit-user-drag: none;
         user-drag: none;
@@ -515,8 +519,8 @@
         user-select: none;
         pointer-events: none;
         mix-blend-mode: multiply;
-        border-radius: 50%; /* --- THIS IS THE FIX: Makes the image container circular --- */
-        object-fit: cover; /* --- THIS IS THE FIX: Prevents the image from being distorted --- */
+        border-radius: 50%; 
+        object-fit: cover; 
     }
     .pc-only-strip .main-nav {
         display: flex;
@@ -597,11 +601,11 @@
       }
 
       /* --- START: PC-only hero background styles --- */
-      body.showing-informations .hero {
+      .hero.hero-informations {
         background-image: url('fz.png');
       }
 
-      body.showing-owner .hero {
+      .hero.hero-owner {
         background-image: url('frrr.png');
       }
       /* --- END: PC-only hero background styles --- */
