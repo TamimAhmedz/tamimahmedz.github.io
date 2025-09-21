@@ -31,7 +31,7 @@
 
     /* HERO */
     .hero {
-      height: 45vh;
+      height: 38vh;
       background: url('ohh.jpg') no-repeat center center fixed;
       background-size: cover;
       display: flex;
@@ -40,7 +40,9 @@
       padding-top: 0;
       position: relative;
       overflow: hidden;
+      transition: background-image 0.3s ease-in-out;
     }
+
     .hero h1 {
       font-family: 'Playfair Display', serif;
       font-weight: 400;
@@ -260,7 +262,7 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      transition: background-color 0.2s ease;
+      transition: background-color: 0.2s ease;
     }
     .side-panel nav a:hover {
       background-color: #3a3a3a;
@@ -320,6 +322,10 @@
 
     /* --- ADDED FOR RESPONSIVENESS --- */
     @media (max-width: 768px) {
+      /* --- THIS IS THE FIX: Reduced hero image height on mobile --- */
+      .hero {
+        height: 30vh;
+      }
       .hero h1 {
         font-size: 2.5rem; /* Smaller title on mobile */
       }
@@ -498,9 +504,8 @@
     .pc-only-strip .logo a {
         text-decoration: none;
     }
-    /* --- THIS IS THE FIX: Styles for the logo image --- */
     .pc-only-strip .logo img {
-        height: 55px; /* Increased size */
+        height: 55px; 
         width: auto; 
         display: block; 
         -webkit-user-drag: none;
@@ -510,7 +515,7 @@
         -ms-user-select: none;
         user-select: none;
         pointer-events: none;
-        mix-blend-mode: multiply; /* THIS IS THE FIX: Removes white background on light/grey surfaces */
+        mix-blend-mode: multiply;
     }
     .pc-only-strip .main-nav {
         display: flex;
@@ -583,12 +588,23 @@
     /* --- END: CSS FOR THE NEW NAVIGATION BAR --- */
 
 
-    /* Media query to target PC screens */
+    /* --- Media query to target PC screens --- */
     @media (min-width: 769px) {
       /* Show the strip only when the 'content' section is active */
       body.showing-content .pc-only-strip {
         display: block;
       }
+
+      /* --- START: PC-only hero background styles --- */
+      /* These rules will ONLY apply on screens wider than 768px */
+      .hero.hero-informations {
+        background-image: url('ht.jpg');
+      }
+
+      .hero.hero-owner {
+        background-image: url('htt.jpg');
+      }
+      /* --- END: PC-only hero background styles --- */
     }
   </style>
 </head>
@@ -697,7 +713,7 @@ const newContentHTML = `
 <p>He Who knows Will Not Obey to Those,But to Only One</p>
 </div>
 <div class="content-area-inner">
-<div class="card"><img src="https://media2.thrillophilia.com/images/photos/000/178/603/original/1670915909_shutterstock_291252509.jpg?w=753&h=450&dpr=1.0"><div class="card-content"><h2>17 Places You Must Visit in Turkey</h2><p>Turkey is a land of contrasts, where ancient meets modern, Europe is separated from Asia and the East.</p></div></div>
+<div class="card"><img src="https://media2.thrillophilia.com/images/photos/000/178/603/original/1670915909_shutterstock_291252509.jpg?w=753&h=450&dpr=1.0"><div class="card-content"><h2>17 Places YouMust Visit in Turkey</h2><p>Turkey is a land of contrasts, where ancient meets modern, Europe is separated from Asia and the East.</p></div></div>
 <div class="card"><img src="https://www.thetimes.com/imageserver/image/%2Fe7026f07-497e-4213-b61c-2dd58b474c01.jpg?crop=1600%2C900%2C0%2C0&format=webp&quality=9&resize=1500"><div class="card-content"><h2>Thailand’s Top 11 Gems</h2><p>Thailand is a vibrant country with stunning places and a fascinating history that draws people from all over.</p></div></div>
 <div class="card"><img src="https://images.pexels.com/photos/21014/pexels-photo.jpg"><div class="card-content"><h2>A Guide to Traveling the World</h2><p>Discovering hidden cafes in Kyoto, navigating bustling souks in Marrakech, or stargazing in the Atacama Desert—each journey unveils a unique story.</p></div></div>
 <div class="card"><img src="https://wildnordics.com/wp-content/uploads/2019/01/Dolomites_Italy.jpg"><div class="card-content"><h2>European Countryside</h2><p>Explore the charming villages, scenic landscapes, and rich history of Europe’s countryside regions.</p></div></div>
@@ -901,6 +917,19 @@ const links = document.querySelectorAll('.color-strip a');
 
 // --- SCRIPT TO CONTROL VISIBILITY (No changes needed) ---
 function showSection(key, fromPopState = false){
+  // --- JavaScript logic to switch hero backgrounds ---
+  const heroSection = document.querySelector('.hero');
+  
+  // First, remove any special classes to reset to default
+  heroSection.classList.remove('hero-informations', 'hero-owner');
+
+  // Then, add the specific class based on which section is active
+  if (key === 'informations') {
+    heroSection.classList.add('hero-informations');
+  } else if (key === 'owner') {
+    heroSection.classList.add('hero-owner');
+  }
+  
   if (!fromPopState) {
     history.pushState({ key: key }, '', `#${key}`);
   }
