@@ -1,1034 +1,1000 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Gate Way</title>
-  <!-- Refined Google Fonts import with more weights for better typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&family=Roboto:wght@400&family=Cinzel:wght@400;700&display=swap" rel="stylesheet" />
-  
-  <!-- THIS IS THE NEW LINE FOR YOUR WEBSITE ICON -->
-  <link rel="shortcut icon" href="jjr.png" type="image/x-icon">
-
-  <style>
-    /* Unified Color Scheme & CSS Variables for a professional look */
-    :root {
-      --background-color: #050505;
-      --primary-text-color: #e0e0e0;
-      --heading-color: #ffffff;
-      --accent-color: #a9d638;
-      --accent-shadow-color: rgba(169, 214, 56, 0.7); /* CHANGED */
-      --border-color: rgba(255, 255, 255, 0.1);
-    }
-
-    html, body {
-      margin: 0;
-      /* Refined Typography */
-      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--primary-text-color);
-      background: #000;
-      overflow-x: hidden;
-      user-select: none;          
-      -webkit-user-drag: none;    
-      transition: all 0.3s ease;
-    }
-
-    /* HERO */
-    .hero {
-      height: 36vh;
-      background: url('ohh.jpg') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center; 
-      padding-top: 0;
-      position: relative;
-      overflow: hidden;
-      transition: background-image 0.3s ease-in-out;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 400;
-      font-size: 4rem;
-      color: #ffffff;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-      position: relative;
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-    .hero h1::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: -20%;
-      width: 40%;
-      height: 150%;
-      background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 80%);
-      transform: translateY(-50%) rotate(25deg);
-      pointer-events: none;
-      z-index: 1;
-      filter: blur(12px);
-      border-radius: 50%;
-    }
-
-    /* --- NAVIGATION BAR STYLES UPDATED --- */
-    .navbar-wrapper {
-      background-color: #d3d3d3; /* ADDED */
-      padding: 10px 0;
-      position: sticky;
-      top: 0;
-      z-index: 998;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estate Explore - Final Version</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
     
-    .color-strip {
-      background-color: #000; /* CHANGED */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem; /* CHANGED */
-      font-size: 1.1rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      position: relative; /* CHANGED */
-      z-index: 999;
-      width: fit-content; /* ADDED */
-      margin: 0 auto; /* ADDED */
-      padding: 8px; /* ADDED */
-      border-radius: 50px; /* ADDED */
-      /* REMOVED height, border-bottom, padding, top */
-    }
+    <!-- ADDED FROM NEW CODE -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&family=Roboto:wght@400&family=Cinzel:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" href="jjr.png" type="image/x-icon">
 
-    .color-strip a {
-      color: var(--primary-text-color);
-      text-decoration: none;
-      padding: 0.6rem 1.5rem;
-      border-radius: 50px; /* Modern pill shape */
-      background: transparent;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    .color-strip a:hover, .color-strip a:focus {
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--heading-color);
-    }
-    .color-strip a.active {
-      background-color: var(--accent-color);
-      color: #000; /* Active text color changed to black */
-      box-shadow: 0 0 12px var(--accent-shadow-color);
-    }
+    <style>
+        /* FONT IMPORTS */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap');
 
-    /* Transparent mode for Content */
-    body.content-active .hero h1 {
-      color: rgba(255, 255, 255, 0.25); /* Adjusted transparent color */
-      text-shadow: none;
-    }
-    body.content-active .color-strip a {
-      color: rgba(255,255,255,0.4);
-    }
-    body.content-active .color-strip a.active {
-      background-color: var(--accent-color);
-      color: #000; /* Active text color changed to black */
-      box-shadow: 0 0 12px var(--accent-shadow-color);
-    }
+        /* COMBINED CSS VARIABLES */
+        :root {
+            /* Variables from Estate Page */
+            --brand-color: #a9d638;
+            --background-color: #121212;
+            --card-background: #1c1c1c;
+            --glow-color: rgba(169, 214, 56, 0.1);
+            --border-color: rgba(169, 214, 56, 0.15);
+            --border-hover-color: rgba(169, 214, 56, 0.6);
+            --text-light-color: #f0f0f0;
+            --text-dark-color: #a0a0a0;
+            --shadow-color: rgba(0, 0, 0, 0.5);
 
+            /* Variables from Original Navigation Bar */
+            --nav-container-bg: #FFF9E6;
+            --nav-active-bg: #ffffff;
+            --accent-yellow: #e2e222;
+            --button-dark: #222222;
+            --text-primary: #333333;
+            --text-light: #ffffff;
+            --text-dark: #000000;
+            --border-color-nav: #4a4a4a; /* Renamed to avoid conflict */
+            --border-radius-pill: 50px;
+            --transition-speed: 0.3s;
+            --accent-green-border: #a9d638;
 
-    /* MAIN CONTENT AREA - ADJUSTED FOR NEW LAYOUT */
-    .content {
-      display: block; 
-      min-height: auto; 
-      padding: 0; 
-      text-align: left; 
-      position: relative;
-      overflow: hidden; 
-      color: white; 
-      transition: opacity 0.2s ease-in-out; /* For smooth transition */
-    }
-    .content-fullscreen {
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      text-align: center;
-      font-size: 1.5rem;
-      position: relative;
-      z-index: 1;
-    }
+            /* Variables for Page 3 Nav */
+            --primary-text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #a9d638;
+            --accent-shadow-color: rgba(169, 214, 56, 0.7);
+        }
 
-    /* OWNER SECTION */
-    .owner-section {
-      position: relative;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      padding: 60px 0;
-      background: url('thu.jpg') no-repeat center top;
-      background-size: cover;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .owner-container {
-      width: min(92vw, 800px);
-      /* MODIFICATION: Reduced background opacity to make blur visible */
-      background: rgba(17,17,17,0.65); 
-      backdrop-filter: blur(6px); 
-      -webkit-backdrop-filter: blur(6px); 
-      padding: 40px;
-      border-radius: 20px;
-      /* Golden box-shadow is preserved as requested */
-      box-shadow: 0 0 40px rgba(255, 215, 0, 0.45);
-      color: #f5f5f5;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 600px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-    .owner-container * { user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none; }
-    .owner-pic { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid #ffd700; box-shadow: 0 0 18px rgba(255,215,0,0.35); margin-bottom: 16px; align-self: center; }
-    .owner-container h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #ffd700; margin: 8px 0; text-shadow: 0 0 12px rgba(255,215,0,0.35); }
-    .owner-container p { font-family: 'Roboto', sans-serif; color: #ddd; font-size: 1rem; line-height: 1.6; }
-    .social-text { font-weight: bold; margin-bottom: 12px; }
-    .social-links { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
-    .social-links a {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: rgba(0,0,0,0.55);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.25s;
-      border: 2px solid #000;
-    }
-    .social-links a:hover { transform: scale(1.15); border-color: #ffd700; box-shadow: 0 0 18px rgba(255,215,0,0.45); }
-    .social-links svg { width: 44px; height: 44px; fill: #ffd700; }
-
-    /* --- SIDE PANEL (Z-INDEX CHANGES HERE) --- */
-    .hamburger { 
-        position: fixed; 
-        top: 20px; 
-        left: 20px; 
-        width: 30px; 
-        height: 24px; 
-        cursor: pointer; 
-        z-index: 1003; 
-        display: flex; 
-        flex-direction: column; 
-        justify-content: space-between; 
-    }
-    .hamburger div { height: 4px; background-color: #ffffff; border-radius: 2px; }
-    .side-panel { 
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      width: 100%; 
-      max-width: 350px;
-      height: 100vh; 
-      background-color: #1a1a1a; 
-      padding: 1.5rem; 
-      transform: translateX(-100%); 
-      transition: transform 0.3s ease; 
-      z-index: 1005;
-      display: flex; 
-      flex-direction: column; 
-      color: #eee; 
-      box-sizing: border-box;
-    }
-    .side-panel.open { transform: translateX(0); }
-    .close-btn { 
-      align-self: flex-end; 
-      cursor: pointer; 
-      color: #a9d638; /* kinda green color for the X */
-      margin-bottom: 2rem;
-    }
-    .close-btn svg {
-      width: 28px;
-      height: 28px;
-    }
-    .side-panel nav {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .side-panel nav a { 
-      background-color: #2c2c2c;
-      color: #fff; 
-      text-decoration: none; 
-      font-size: 1.1rem; 
-      font-weight: 600;
-      padding: 1rem; 
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      transition: background-color: 0.2s ease;
-    }
-    .side-panel nav a:hover {
-      background-color: #3a3a3a;
-    }
-    .side-panel nav a svg {
-      width: 24px;
-      height: 24px;
-      color: #a9d638; /* kinda green color for icons */
-    }
-
-    .overlay { 
-        position: fixed; 
-        top: 0; 
-        left: 0; 
-        height: 100vh; 
-        width: 100vw; 
-        background: rgba(0,0,0,0.5); 
-        opacity: 0; 
-        visibility: hidden; 
-        transition: opacity 0.3s ease; 
-        z-index: 1004;
-    }
-    .overlay.active { opacity: 1; visibility: visible; }
-
-    /* New CSS from the second file for content section */
-    .content .video-bg{
-        position: absolute; 
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 0; 
-        pointer-events: none;
-    }
-
-    .top-text{text-align:center;padding:60px 20px;color:rgba(255,255,255,0.85);text-shadow:2px 2px 5px rgba(0,0,0,0.7); z-index: 2; position: relative;}
-    .top-text h1{margin:0;font-size:3em; font-family: 'Cinzel', serif;}
-    .top-text p:first-of-type{font-size:1.6em;margin:10px auto 0; font-family: 'Cinzel', serif;}
-    .top-text p:last-of-type{font-size:1.4em;margin:5px auto 0; font-family: 'Cinzel', serif;}
-    .content-area-inner{position:relative;padding:100px 40px 60px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px; z-index: 2; position: relative;}
-    .card{background:rgba(0,0,0,0.4);border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.4);text-align:left;transition:transform 0.3s}
-    .card:hover{transform:translateY(-5px)}
-    .card img{width:100%;height:200px;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none}
-    .card-content{padding:20px}
-    .card h2{font-size:1.5em;margin:0 0 10px}
-    .card p{font-size:1em;color:#e0e0e0;line-height:1.5;margin:0 0 10px}
-    .summary-creative{position:relative;margin:60px 40px;background:rgba(0,0,0,0.55);border-radius:18px;padding:50px 40px;box-shadow:0 10px 30px rgba(0,0,0,0.8);color:#fff;text-align:center; z-index: 2; position: relative;}
-    .summary-creative h2{font-size:2.2em;margin-bottom:40px;text-shadow:2px 2px 6px rgba(0,0,0,0.8);letter-spacing:1px}
-    .summary-columns{display:flex;flex-wrap:wrap;gap:40px;justify-content:center;text-align:left}
-    .summary-columns .col{flex:1 1 250px;min-width:250px;padding:0 10px;border-left:2px solid rgba(169, 214, 56, 0.2);} /* --- CHANGE 1: Line color updated --- */
-    .summary-columns .col:first-child{border-left:none}
-    .summary-columns .col p{font-size:1.1em;line-height:1.7;margin-bottom:20px}
-    .footer{background:black;color:white;text-align:center;padding:60px 20px;font-size:2em;font-weight:bold;letter-spacing:2px; z-index: 2; position: relative;}
-    .footer span{display:block;font-size:1em;margin-top:10px;opacity:0.9;font-weight:normal; color: #a9d638;} /* --- CHANGE 2: Text color updated --- */
-
-
-    /* --- ADDED FOR RESPONSIVENESS --- */
-    @media (max-width: 768px) {
-      .hero {
-        height: 30vh;
-      }
-      .hero h1 {
-        font-size: 2.5rem; /* Smaller title on mobile */
-      }
-
-      .content {
-        background: url('phonee.jpeg') no-repeat center center;
-        background-size: cover;
-      }
-      
-      .color-strip {
-        gap: 0.5rem; /* Tighter gap for nav links */
-        font-size: 0.9rem; /* Smaller font for nav links */
-      }
-      .color-strip a {
-        padding: 0.5rem 1rem; /* Adjust padding for smaller links */
-      }
-
-      .owner-container {
-        padding: 30px 20px;
-        min-height: auto;
-      }
-      .owner-pic {
-        width: 140px;
-        height: 140px;
-      }
-      .social-links {
-        gap: 1.2rem;
-      }
-       .social-links a {
-        width: 50px;
-        height: 50px;
-       }
-       .social-links svg {
-        width: 32px;
-        height: 32px;
-       }
-
-      .top-text h1 {
-        font-size: 2.2em;
-      }
-      .top-text p:first-of-type {
-        font-size: 1.2em;
-      }
-      .top-text p:last-of-type {
-        font-size: 1em;
-      }
-
-      .content-area-inner {
-        padding: 60px 20px;
-        gap: 20px;
-      }
-      
-      .summary-creative {
-        margin: 60px 20px;
-        padding: 40px 25px;
-      }
-      .summary-creative h2 {
-        font-size: 1.8em;
-      }
-      .summary-columns .col {
-        border-left: none; /* Remove side borders */
-        border-top: 1px solid rgba(169, 214, 56, 0.2); /* --- CHANGE 1: Line color updated for mobile --- */
-        padding: 20px 0 0 0;
-      }
-      .summary-columns .col:first-child {
-        border-top: none; /* No border on the very first item */
-        padding-top: 0;
-      }
-
-      .footer {
-        font-size: 1.5em;
-        padding: 40px 20px;
-      }
-    }
-
-    /* --- START: CSS FOR MUSIC TOGGLE COMPONENT --- */
-    .settings-box {
-        background-color: #2a2a2a;
-        border-radius: 12px;
-        padding: 15px 20px; /* Adjusted padding for side panel */
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%; /* Make it fit the container */
-        box-sizing: border-box; /* Ensures padding is included in width */
-    }
-    .settings-label {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-    .settings-label .icon {
-        width: 24px;
-        height: 24px;
-        transition: color 0.3s ease-in-out, filter 0.3s ease-in-out;
-    }
-    .settings-label .icon.glowing {
-        filter: drop-shadow(0 0 7px #bdef5a);
-    }
-    .settings-label .text {
-        color: #ffffff;
-        font-size: 1.1rem; /* Matched font size to nav links */
-        font-weight: 600; /* Matched font weight to nav links */
-    }
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 54px;
-        height: 30px;
-    }
-    .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #4a4a4a;
-        transition: all 0.3s ease-in-out;
-        border-radius: 30px;
-    }
-    .slider:before {
-        position: absolute;
-        content: "";
-        height: 22px;
-        width: 22px;
-        left: 4px;
-        bottom: 4px;
-        background-color: #dcdcdc;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        transition: all 0.3s ease-in-out;
-        border-radius: 50%;
-    }
-    input:checked + .slider {
-        background-color: #a9d638;
-    }
-    input:checked + .slider:before {
-        background-color: white;
-        transform: translateX(24px);
-    }
-    /* --- END: CSS FOR MUSIC TOGGLE COMPONENT --- */
-
-    /* --- Container for the new navigation bar --- */
-    .pc-only-strip {
-        display: none; 
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1002;
-    }
-    
-    /* --- START: CSS FOR THE NEW NAVIGATION BAR --- */
-    .pc-only-strip header {
-        background-color: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        /* --- START: ANIMATION KEYFRAME --- */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
         
-        padding: 15px 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .pc-only-strip .nav-left {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-        margin-left: 60px;
-    }
-    .pc-only-strip .logo a {
-        text-decoration: none;
-    }
-    .pc-only-strip .logo img {
-        height: 55px; 
-        width: 55px; 
-        display: block; 
-        -webkit-user-drag: none;
-        user-drag: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        pointer-events: none;
-        mix-blend-mode: multiply;
-        border-radius: 50%; 
-        object-fit: cover; 
-    }
-    .pc-only-strip .main-nav {
-        display: flex;
-        align-items: center;
-        gap: 32px;
-    }
-    .pc-only-strip .nav-btn {
-        background-color: transparent;
-        color: #d1d5db;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-        transition: background-color 0.3s, color 0.3s;
-        position: relative;
-    }
-    .pc-only-strip .nav-btn:not(:last-child):after {
-        content: '';
-        position: absolute;
-        height: 16px;
-        width: 1px;
-        background-color: #4a4a4a;
-        right: -16px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    .pc-only-strip .nav-btn:hover {
-        background-color: #a9d638;
-        color: #000;
-    }
-    .pc-only-strip .action-buttons {
-        display: flex;
-        gap: 15px;
-    }
-    .pc-only-strip .btn {
-        border: none;
-        padding: 10px 20px;
-        border-radius: 20px;
-        font-weight: 600;
-        font-size: 14px;
-        cursor: pointer;
-        text-decoration: none;
-        display: inline-block;
-        transition: background-color 0.3s, box-shadow 0.3s;
-    }
-    .pc-only-strip .btn-light {
-        background-color: #e2e222;
-        color: black;
-        box-shadow: 0 0 0px #e2e222;
-    }
-    .pc-only-strip .btn-light:hover {
-        background-color: #f0f066;
-        box-shadow: 0 0 5px #e2e222, 
-                    0 0 15px #e2e222, 
-                    0 0 25px #e2e222;
-    }
-    .pc-only-strip .btn-dark {
-        background-color: #1f1f1f;
-        color: white;
-        border: 1px solid #4a4a4a;
-        box-shadow: 0 0 0px #ffffff;
-    }
-    .pc-only-strip .btn-dark:hover {
-        background-color: #333;
-        box-shadow: 0 0 5px #ffffff,
-                    0 0 10px #ffffff;
-    }
-    /* --- END: CSS FOR THE NEW NAVIGATION BAR --- */
+        /* --- CORE WEBSITE & SCROLLING STYLES --- */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color); 
+            color: var(--text-light-color);
+            overflow: hidden; /* Critical for the page-by-page scroll effect */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .master-container {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+        }
+        
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            transition: transform 1.0s cubic-bezier(0.76, 0, 0.24, 1);
+            overflow: hidden; 
+        }
+        
+        #page2, #page3 {
+            transform: translateY(100%);
+            background-color: var(--background-color);
+        }
+        
+        body.show-page-2 #page1 { transform: translateY(-100%); }
+        body.show-page-2 #page2 { transform: translateY(0); }
+
+        body.show-page-3 #page1 { transform: translateY(-200%); }
+        body.show-page-3 #page2 { transform: translateY(-100%); }
+        body.show-page-3 #page3 { transform: translateY(0); }
+
+        /* --- STYLES FOR THE ORIGINAL ANIMATED NAVIGATION BAR --- */
+        header.new-navbar {
+            font-family: 'Poppins', sans-serif;
+            position: fixed;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            box-sizing: border-box;
+            animation: fadeIn 0.8s ease-in-out;
+            transition: transform 1.0s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+        body.show-page-2 header.new-navbar,
+        body.show-page-3 header.new-navbar {
+            transform: translateY(-150px);
+        }
+
+        header.new-navbar .logo {
+            margin-left: 80px;
+        }
+
+        header.new-navbar .logo img {
+            height: 40px;
+            width: 40px;
+            display: block;
+            border-radius: 50%;
+            object-fit: cover;
+            -webkit-user-drag: none;
+            user-select: none;
+        }
+        
+        header.new-navbar .main-nav {
+            background-color: var(--nav-container-bg);
+            border-radius: var(--border-radius-pill);
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 40px; 
+            border: 2px solid var(--accent-green-border);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        header.new-navbar .nav-btn {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: none;
+            padding: 10px 24px;
+            border-radius: var(--border-radius-pill);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all var(--transition-speed) ease-in-out;
+        }
+        
+        header.new-navbar .nav-btn.active {
+            background-color: var(--nav-active-bg);
+            color: var(--text-dark);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+        }
+
+        header.new-navbar .nav-btn:not(.active):hover {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 2px var(--nav-active-bg);
+            color: var(--text-dark);
+        }
+        
+        header.new-navbar .nav-btn.active:hover {
+            box-shadow: inset 0 0 0 2px var(--text-dark), 0 3px 8px rgba(0,0,0,0.05);
+        }
+
+        header.new-navbar .action-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: auto; 
+        }
+
+        header.new-navbar .btn {
+            border: none;
+            padding: 12px 28px;
+            border-radius: var(--border-radius-pill);
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: box-shadow var(--transition-speed) ease-in-out, background-color var(--transition-speed) ease-in-out;
+        }
+
+        .btn-light {
+            background-color: var(--accent-yellow);
+            color: var(--text-dark);
+            box-shadow: 0 0 0px var(--accent-yellow);
+        }
+        .btn-light:hover {
+            box-shadow: 0 0 8px rgba(226, 226, 34, 0.8), 
+                        0 0 20px rgba(226, 226, 34, 0.5);
+        }
+
+        .btn-dark {
+            background-color: var(--button-dark);
+            color: var(--text-light);
+            border: 1px solid var(--border-color-nav);
+            box-shadow: 0 0 0px rgba(255, 255, 255, 0.4);
+        }
+        .btn-dark:hover {
+            background-color: #333;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+        }
 
 
-    /* Media query to target PC screens */
-    @media (min-width: 769px) {
-      /* Show the strip only when the 'content' section is active */
-      body.showing-content .pc-only-strip {
-        display: block;
-      }
+        /* --- STYLES FOR PAGE 1 (UNCHANGED) --- */
+        #page1 {
+            background-color: var(--background-color);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 2rem;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        #line-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+        #page1::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(circle, var(--glow-color) 0%, transparent 60%);
+            transform: translate(-50%, -50%);
+            filter: blur(100px);
+            z-index: 0;
+            opacity: 0;
+            animation: fadeInGlow 2s 0.5s forwards, pulseGlow 8s infinite alternate ease-in-out;
+        }
+        @keyframes fadeInGlow { to { opacity: 1; } }
+        @keyframes pulseGlow { from { transform: translate(-50%, -50%) scale(0.95); } to { transform: translate(-50%, -50%) scale(1.05); } }
+        .background-text-wrapper { position: absolute; top: 50%; left: 2rem; transform: translateY(-45%); z-index: 1; pointer-events: none; }
+        .background-text { font-weight: 900; font-size: 10vw; color: white; line-height: 0.85; position: relative; z-index: 2; }
+        .background-text > div {
+            opacity: 0;
+            transform: translateY(40px);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            animation: slideUpFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .background-text div:first-child { position: relative; bottom: 40px; animation-delay: 1.5s; }
+        .background-text div:last-child { animation-delay: 1.7s; }
+        @keyframes slideUpFadeIn { to { opacity: 1; transform: translateY(0); } }
+        .blueprint-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: visible; z-index: 1; }
+        .blueprint-svg path, .blueprint-svg circle, .blueprint-svg line {
+            stroke: var(--border-hover-color);
+            stroke-width: 0.75;
+            fill: none;
+            stroke-linecap: round;
+            filter: drop-shadow(0 0 5px var(--glow-color));
+            animation: draw 2.5s 0.7s cubic-bezier(0.6, 0.01, 0.05, 0.95) forwards;
+        }
+        @keyframes draw { to { stroke-dashoffset: 0; } }
+        .main-content { position: relative; z-index: 10; display: flex; align-items: center; gap: 2rem; opacity: 0; transform: translateY(30px); animation: slideUpFadeIn 1s 2.2s forwards; }
+        .info-card { background-color: var(--card-background); border-radius: 16px; padding: 2.5rem; border: 1px solid var(--border-color); transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; }
+        .info-card:hover { transform: translateY(-5px); border-color: var(--border-hover-color); box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 0 15px var(--glow-color); }
+        .card-large, .card-small { width: 300px; }
+        .stat-number { font-size: 5rem; font-weight: 700; color: var(--brand-color); margin: 0; line-height: 1; text-shadow: 0 0 10px var(--glow-color); }
+        .card-large .stat-number { font-size: 6rem; }
+        .card-description { font-size: 1rem; color: var(--text-dark-color); margin: 0; }
+        .card-large .card-description { margin-top: 0.5rem; }
+        .card-small .stat-number { margin-top: 1rem; }
+        .card-small .card-description-bottom { margin-top: 0.5rem; color: var(--text-dark-color); }
 
-      /* --- START: PC-only hero background styles --- */
-      .hero.hero-informations {
-        background-image: url('fz.png');
-      }
+        @media (max-width: 1200px) { .background-text { font-size: 15vw; } .main-content { flex-direction: column; } }
 
-      .hero.hero-owner {
-        background-image: url('frrr.png');
-      }
-      /* --- END: PC-only hero background styles --- */
-    }
-  </style>
+        /* --- START: STYLES FOR PAGE 2 --- */
+        #page2 {
+            --brand-color-p2: #a9d638;
+            --brand-color-light-p2: #c1f241;
+            --brand-color-dark-p2: #84a62c;
+            --chart-color-1-p2: #8a3ffc;
+            --chart-color-2-p2: #41f2c9;
+            --chart-color-3-p2: #6ea5ff;
+            --chart-color-4-p2: #f2c94c;
+            --background-color-p2: #000000;
+            --card-color-p2: rgba(28, 28, 28, 0.75);
+            --card-benefits-color-p2: rgba(34, 34, 34, 0.75);
+            --border-color-p2: rgba(169, 214, 56, 0.2);
+            --border-hover-color-p2: rgba(169, 214, 56, 0.6);
+            --border-benefits-color-p2: rgba(132, 166, 44, 0.4);
+            --text-primary-p2: #ffffff;
+            --text-secondary-p2: #b3b3b3;
+            background-color: var(--background-color-p2);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary-p2);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-y: auto; /* Allow this page to scroll internally */
+        }
+        
+        #page2 #background-chart {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #page2 .wrapper {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: stretch;
+            padding: 80px 40px;
+            box-sizing: border-box;
+        }
+
+        #page2 .content-block {
+            text-align: left;
+            background: var(--card-color-p2);
+            padding: 30px 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color-p2);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        #page2 .content-block:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-hover-color-p2);
+        }
+
+        #page2 .animate-text-container { overflow: hidden; }
+        #page2 .animated-text { transform: translateY(110%); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        #page2 .animated-text.visible { transform: translateY(0); }
+        #page2 .animated-text.stagger { transition-delay: 0.15s; }
+
+        #page2 .graphic-container { height: 350px; position: relative; display: flex; justify-content: center; align-items: center; margin-bottom: 30px; flex-grow: 1; overflow: hidden; }
+        #page2 .shape { position: absolute; transition: transform 0.1s linear; }
+        #page2 .stripe { width: 250%; height: 90px; background: linear-gradient(to right, var(--brand-color-p2), var(--brand-color-dark-p2)); transform: rotate(-35deg); }
+        #page2 .sphere { width: 150px; height: 150px; background: radial-gradient(circle at 35% 35%, var(--brand-color-light-p2) 0%, var(--brand-color-dark-p2) 80%); border-radius: 50%; z-index: 2; }
+        
+        #page2 .chart-layout-container { display: flex; align-items: center; justify-content: center; gap: 50px; flex-wrap: wrap; }
+        #page2 .pie-chart { 
+            width: 200px; height: 200px; border-radius: 50%; position: relative; 
+            background-image: conic-gradient( 
+                var(--chart-color-1-p2) 0% 43%, var(--chart-color-2-p2) 43% 71%,
+                var(--chart-color-3-p2) 71% 86%, var(--chart-color-4-p2) 86% 100%
+            ); 
+            transform: rotateX(60deg) rotateZ(-30deg); 
+            box-shadow: 0 18px 25px rgba(0,0,0,0.4); 
+            flex-shrink: 0; 
+        }
+        #page2 .pie-chart::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%; box-shadow: inset 0 0 15px rgba(0,0,0,0.5); }
+        #page2 .chart-legend ul { list-style: none; padding: 0; margin: 0; font-size: 15px; text-align: left; }
+        #page2 .chart-legend li { display: flex; align-items: center; margin-bottom: 12px; color: var(--text-secondary-p2); }
+        #page2 .chart-legend .legend-color { width: 16px; height: 16px; border-radius: 4px; margin-right: 12px; flex-shrink: 0; }
+
+        #page2 .benefits-card { grid-column: 1 / -1; margin-top: 40px; background-color: var(--card-benefits-color-p2); border-color: var(--border-benefits-color-p2); padding: 80px 60px; text-align: center; }
+        #page2 .benefits-card .benefits-grid { display: flex; flex-direction: column; align-items: center; gap: 40px; }
+        #page2 .benefits-card .benefits-row { display: flex; justify-content: center; gap: 100px; width: 100%; flex-wrap: wrap; }
+        #page2 .benefits-card h2.benefits-title { font-size: 40px; font-weight: 700; margin-bottom: 60px; color: var(--brand-color-p2); text-shadow: 0 0 15px rgba(169, 214, 56, 0.25); }
+        #page2 .benefits-card .benefit-item { position: relative; padding-left: 25px; max-width: 300px; text-align: left; }
+        #page2 .benefits-card .benefit-item::before { content: '•'; color: var(--text-primary-p2); font-size: 16px; position: absolute; left: 0; top: 5px; }
+        #page2 .benefits-card .benefit-item strong { display: block; font-size: 20px; font-weight: 700; color: var(--text-primary-p2); margin-bottom: 10px; }
+        #page2 .benefits-card .benefit-item .description { font-size: 20px; line-height: 1.7; color: var(--text-secondary-p2); }
+
+        #page2 h2 { font-size: 32px; font-weight: 700; margin: 0 0 15px 0; letter-spacing: -0.5px; text-shadow: 0 0 15px rgba(169, 214, 56, 0.2); }
+        #page2 p { font-size: 16px; line-height: 1.7; margin: 0; color: var(--text-secondary-p2); max-width: 450px; }
+        #page2 .content-block:nth-child(2) p, #page2 .content-block:nth-child(2) h2 { margin-left: auto; margin-right: auto; text-align: center; }
+
+        @media (max-width: 900px) {
+            #page2 .wrapper { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px; }
+            #page2 .benefits-card { margin-top: 0; padding: 60px 40px; }
+            #page2 .benefits-card .benefits-row { flex-direction: column; align-items: center; gap: 40px; }
+        }
+
+
+        /* --- START: STYLES FOR PAGE 3 --- */
+        #page3 {
+            background-color: #000;
+            overflow-y: auto;
+            height: 100%;
+        }
+        
+        #page3 {
+            margin: 0;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--primary-text-color);
+            background: #000;
+            overflow-x: hidden;
+            user-select: none;          
+            -webkit-user-drag: none;    
+            transition: all 0.3s ease;
+        }
+
+        /* --- REPLACED NAVIGATION BAR STYLES FOR PAGE 3 --- */
+        #page3 .navbar-wrapper {
+            background-color: #a9d638;
+            padding: 4px; 
+            border-radius: 50px;
+            width: fit-content;
+            margin: 10px auto 0;
+        }
+        
+        #page3 .color-strip {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 8px;
+            border-radius: 50px;
+        }
+
+        #page3 .color-strip a {
+            color: var(--primary-text-color);
+            text-decoration: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            background: transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        #page3 .color-strip a:hover, #page3 .color-strip a:focus {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--heading-color);
+        }
+
+        #page3 .color-strip a.active {
+            background-color: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 12px var(--accent-shadow-color);
+        }
+        /* --- END OF REPLACED NAV STYLES --- */
+
+        #page3 .content {
+            display: block; 
+            min-height: auto; 
+            padding: 0; 
+            text-align: left; 
+            position: relative;
+            overflow: hidden; 
+            color: white; 
+            transition: opacity 0.2s ease-in-out;
+        }
+        #page3 .content-fullscreen {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        #page3 .owner-section {
+            position: relative; width: 100%; display: flex; justify-content: center; padding: 60px 0;
+            background: url('thu.jpg') no-repeat center top; background-size: cover; z-index: 0; overflow: hidden;
+        }
+        #page3 .owner-container {
+            width: min(92vw, 800px); background: rgba(17,17,17,0.65); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); 
+            padding: 40px; border-radius: 20px; box-shadow: 0 0 40px rgba(255, 215, 0, 0.45); color: #f5f5f5;
+            display: flex; flex-direction: column; justify-content: space-between; min-height: 600px; text-align: center; position: relative; z-index: 1;
+        }
+        #page3 .owner-container * { user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none; }
+        #page3 .owner-pic { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid #ffd700; box-shadow: 0 0 18px rgba(255,215,0,0.35); margin-bottom: 16px; align-self: center; }
+        #page3 .owner-container h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #ffd700; margin: 8px 0; text-shadow: 0 0 12px rgba(255,215,0,0.35); }
+        #page3 .owner-container p { font-family: 'Roboto', sans-serif; color: #ddd; font-size: 1rem; line-height: 1.6; }
+        #page3 .social-text { font-weight: bold; margin-bottom: 12px; }
+        #page3 .social-links { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+        #page3 .social-links a { width: 60px; height: 60px; border-radius: 50%; background: rgba(0,0,0,0.55); display: flex; align-items: center; justify-content: center; transition: 0.25s; border: 2px solid #000; }
+        #page3 .social-links a:hover { transform: scale(1.15); border-color: #ffd700; box-shadow: 0 0 18px rgba(255,215,0,0.45); }
+        #page3 .social-links svg { width: 44px; height: 44px; fill: #ffd700; }
+
+        /* --- GLOBAL SIDE PANEL STYLES (No longer tied to #page3) --- */
+        .hamburger { 
+            position: fixed; top: 20px; left: 20px; width: 30px; height: 24px; cursor: pointer; z-index: 1003; 
+            display: flex; flex-direction: column; justify-content: space-between; 
+        }
+        .hamburger div { height: 4px; background-color: #ffffff; border-radius: 2px; }
+        .side-panel { 
+            position: fixed; top: 0; left: 0; width: 100%; max-width: 350px; height: 100vh; background-color: #1a1a1a; 
+            padding: 1.5rem; transform: translateX(-100%); transition: transform 0.3s ease; z-index: 1005;
+            display: flex; flex-direction: column; color: #eee; box-sizing: border-box;
+        }
+        .side-panel.open { transform: translateX(0); }
+        .close-btn { align-self: flex-end; cursor: pointer; color: #a9d638; margin-bottom: 2rem; }
+        .close-btn svg { width: 28px; height: 28px; }
+        .side-panel nav { display: flex; flex-direction: column; gap: 1rem; }
+        .side-panel nav a { 
+            background-color: #2c2c2c; color: #fff; text-decoration: none; font-size: 1.1rem; font-weight: 600;
+            padding: 1rem; border-radius: 12px; display: flex; align-items: center; gap: 1rem; transition: background-color: 0.2s ease;
+        }
+        .side-panel nav a:hover { background-color: #3a3a3a; }
+        .side-panel nav a svg { width: 24px; height: 24px; color: #a9d638; }
+        .overlay { 
+            position: fixed; top: 0; left: 0; height: 100vh; width: 100vw; background: rgba(0,0,0,0.5); 
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease; z-index: 1004;
+        }
+        .overlay.active { opacity: 1; visibility: visible; }
+
+        #page3 .content .video-bg{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; }
+        #page3 .top-text{text-align:center;padding:60px 20px;color:rgba(255,255,255,0.85);text-shadow:2px 2px 5px rgba(0,0,0,0.7); z-index: 2; position: relative;}
+        #page3 .top-text h1{margin:0;font-size:3em; font-family: 'Cinzel', serif;}
+        #page3 .top-text p:first-of-type{font-size:1.6em;margin:10px auto 0; font-family: 'Cinzel', serif;}
+        #page3 .top-text p:last-of-type{font-size:1.4em;margin:5px auto 0; font-family: 'Cinzel', serif;}
+        #page3 .content-area-inner{position:relative;padding:100px 40px 60px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px; z-index: 2; position: relative;}
+        #page3 .card{background:rgba(0,0,0,0.4);border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.4);text-align:left;transition:transform 0.3s}
+        #page3 .card:hover{transform:translateY(-5px)}
+        #page3 .card img{width:100%;height:200px;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none}
+        #page3 .card-content{padding:20px}
+        #page3 .card h2{font-size:1.5em;margin:0 0 10px}
+        #page3 .card p{font-size:1em;color:#e0e0e0;line-height:1.5;margin:0 0 10px}
+        #page3 .summary-creative{position:relative;margin:60px 40px;background:rgba(0,0,0,0.55);border-radius:18px;padding:50px 40px;box-shadow:0 10px 30px rgba(0,0,0,0.8);color:#fff;text-align:center; z-index: 2; position: relative;}
+        #page3 .summary-creative h2{font-size:2.2em;margin-bottom:40px;text-shadow:2px 2px 6px rgba(0,0,0,0.8);letter-spacing:1px}
+        #page3 .summary-columns{display:flex;flex-wrap:wrap;gap:40px;justify-content:center;text-align:left}
+        #page3 .summary-columns .col{flex:1 1 250px;min-width:250px;padding:0 10px;border-left:2px solid rgba(169, 214, 56, 0.2);}
+        #page3 .summary-columns .col:first-child{border-left:none}
+        #page3 .summary-columns .col p{font-size:1.1em;line-height:1.7;margin-bottom:20px}
+        #page3 .footer{background:black;color:white;text-align:center;padding:60px 20px;font-size:2em;font-weight:bold;letter-spacing:2px; z-index: 2; position: relative;}
+        #page3 .footer span{display:block;font-size:1em;margin-top:10px;opacity:0.9;font-weight:normal; color: #a9d638;}
+
+        
+        .settings-box { background-color: #2a2a2a; border-radius: 12px; padding: 15px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box; }
+        .settings-label { display: flex; align-items: center; gap: 15px; }
+        .settings-label .icon { width: 24px; height: 24px; transition: color 0.3s ease-in-out, filter 0.3s ease-in-out; }
+        .settings-label .icon.glowing { filter: drop-shadow(0 0 7px #bdef5a); }
+        .settings-label .text { color: #ffffff; font-size: 1.1rem; font-weight: 600; }
+        .switch { position: relative; display: inline-block; width: 54px; height: 30px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #4a4a4a; transition: all 0.3s ease-in-out; border-radius: 30px; }
+        .slider:before { position: absolute; content: ""; height: 22px; width: 22px; left: 4px; bottom: 4px; background-color: #dcdcdc; box-shadow: 0 1px 3px rgba(0,0,0,0.2); transition: all 0.3s ease-in-out; border-radius: 50%; }
+        input:checked + .slider { background-color: #a9d638; }
+        input:checked + .slider:before { background-color: white; transform: translateX(24px); }
+
+        #page3 .pc-only-strip { display: none; position: absolute; top: 0; left: 0; width: 100%; z-index: 1002; }
+        #page3 .pc-only-strip header { background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
+        #page3 .pc-only-strip .nav-left { display: flex; align-items: center; gap: 30px; margin-left: 60px; }
+        #page3 .pc-only-strip .logo a { text-decoration: none; }
+        #page3 .pc-only-strip .logo img { height: 55px; width: 55px; display: block; -webkit-user-drag: none; user-drag: none; user-select: none; pointer-events: none; mix-blend-mode: multiply; border-radius: 50%; object-fit: cover; }
+        #page3 .pc-only-strip .main-nav { display: flex; align-items: center; gap: 32px; }
+        #page3 .pc-only-strip .nav-btn { background-color: transparent; color: #d1d5db; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 16px; font-weight: bold; transition: background-color 0.3s, color 0.3s; position: relative; }
+        #page3 .pc-only-strip .nav-btn:not(:last-child):after { content: ''; position: absolute; height: 16px; width: 1px; background-color: #4a4a4a; right: -16px; top: 50%; transform: translateY(-50%); }
+        #page3 .pc-only-strip .nav-btn:hover { background-color: #a9d638; color: #000; }
+        #page3 .pc-only-strip .action-buttons { display: flex; gap: 15px; }
+        #page3 .pc-only-strip .btn { border: none; padding: 10px 20px; border-radius: 20px; font-weight: 600; font-size: 14px; cursor: pointer; text-decoration: none; display: inline-block; transition: background-color 0.3s, box-shadow 0.3s; }
+        #page3 .pc-only-strip .btn-light { background-color: #e2e222; color: black; box-shadow: 0 0 0px #e2e222; }
+        #page3 .pc-only-strip .btn-light:hover { background-color: #f0f066; box-shadow: 0 0 5px #e2e222, 0 0 15px #e2e222, 0 0 25px #e2e222; }
+        #page3 .pc-only-strip .btn-dark { background-color: #1f1f1f; color: white; border: 1px solid #4a4a4a; box-shadow: 0 0 0px #ffffff; }
+        #page3 .pc-only-strip .btn-dark:hover { background-color: #333; box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff; }
+        
+        #page3 #information-content{margin:0;padding:0;background:linear-gradient(135deg,#e0f2f7,#9ff5d0);font-family:'Roboto',sans-serif;color:#333;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+        #page3 #information-content header{text-align:center;padding:2rem 1rem;background:linear-gradient(45deg,#2c7a7b,#319795);color:white;border-bottom:6px solid #285e61}
+        #page3 #information-content header h1{font-family:'Fredoka One',cursive;font-size:3rem;margin:0;letter-spacing:2px}
+        #page3 #information-content .container{display:grid;grid-template-columns:repeat(4,1fr);gap:4rem;row-gap:8rem;padding:6rem}
+        @media (max-width:1024px){#page3 #information-content .container{grid-template-columns:repeat(2,1fr)}}
+        @media (max-width:600px){#page3 #information-content .container{grid-template-columns:1fr}}
+        #page3 #information-content .card{background:white;border-radius:20px;padding:1.5rem;text-align:center;box-shadow:0 8px 15px rgba(0,0,0,0.1);position:relative;overflow:hidden;transition:transform .3s;min-height:480px;display:flex;flex-direction:column;justify-content:flex-start}
+        #page3 #information-content .card:hover{transform:translateY(-10px)}
+        #page3 #information-content .card img{width:100%;height:200px;object-fit:cover;border-radius:15px;margin-bottom:1rem;-webkit-user-drag:none;-khtml-user-drag:none;-moz-user-drag:none;-o-user-drag:none;user-drag:none}
+        #page3 #information-content .card h2{color:#2c7a7b;margin-bottom:.5rem;font-size:1.3rem;font-family:'Fredoka One',cursive}
+        #page3 #information-content .card p{font-size:1rem;line-height:1.5;color:#000000;}
+        #page3 #information-content footer{text-align:center;padding:1.5rem;background:#319795;border-top:6px solid #285e61;color:#fff;font-weight:bold;font-family:'Fredoka One',cursive;letter-spacing:1px}
+        #page3 #information-content .card::after{content:"🕊️";font-size:4rem;position:absolute;bottom:-10px;right:-10px;opacity:.05;transform:rotate(-20deg)}
+        #page3 #information-content .summary-section{background:#f0f8f8;padding:4rem 6rem;margin-top:4rem;text-align:center;border-top:4px solid #319795;border-bottom:4px solid #319795}
+        #page3 #information-content .summary-section h2{font-family:'Fredoka One',cursive;font-size:2.5rem;color:#2c7a7b;margin-bottom:2rem}
+        #page3 #information-content .summary-section ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:800px;margin:0 auto;text-align:left}
+        #page3 #information-content .summary-section li{background:white;padding:1rem 1.5rem;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.08);font-size:1.1rem;color:#444;display:flex;align-items:center}
+        #page3 #information-content .summary-section li::before{content:"✴";margin-right:10px;font-size:1.2rem}
+        
+        @media (max-width: 768px) {
+             /* MOBILE ONLY STYLES */
+            body {
+                overflow-y: auto; /* Allow normal scrolling on mobile */
+            }
+            .master-container {
+                height: auto; /* Let the container size itself */
+            }
+            header.new-navbar,
+            #page1,
+            #page2 {
+                display: none; /* Hide the first two pages and the old header */
+            }
+            #page3 {
+                transform: none; /* Make page 3 visible by default */
+                position: relative; /* Allow it to be part of the normal document flow */
+                height: auto; /* Allow its height to be determined by its content */
+            }
+
+
+            /* Existing responsive styles */
+            #page3 .content { background: url('phonee.jpeg') no-repeat center center; background-size: cover; }
+            #page3 .color-strip { gap: 0.5rem; font-size: 0.9rem; }
+            #page3 .color-strip a { padding: 0.5rem 1rem; }
+            #page3 .owner-container { padding: 30px 20px; min-height: auto; }
+            #page3 .owner-pic { width: 140px; height: 140px; }
+            #page3 .social-links { gap: 1.2rem; }
+            #page3 .social-links a { width: 50px; height: 50px; }
+            #page3 .social-links svg { width: 32px; height: 32px; }
+            #page3 .top-text h1 { font-size: 2.2em; }
+            #page3 .top-text p:first-of-type { font-size: 1.2em; }
+            #page3 .top-text p:last-of-type { font-size: 1em; }
+            #page3 .content-area-inner { padding: 60px 20px; gap: 20px; }
+            #page3 .summary-creative { margin: 60px 20px; padding: 40px 25px; }
+            #page3 .summary-creative h2 { font-size: 1.8em; }
+            #page3 .summary-columns .col { border-left: none; border-top: 1px solid rgba(169, 214, 56, 0.2); padding: 20px 0 0 0; }
+            #page3 .summary-columns .col:first-child { border-top: none; padding-top: 0; }
+            #page3 .footer { font-size: 1.5em; padding: 40px 20px; }
+            #information-content .summary-section ul{grid-template-columns:1fr} 
+            #information-content .summary-section{padding:2rem}
+            #information-content .container { padding: 2rem 1.5rem; gap: 2rem; }
+            #information-content .card { min-height: auto; }
+            #information-content header h1 { font-size: 2.2rem; }
+            #information-content .summary-section h2 { font-size: 1.8rem; }
+        }
+
+    </style>
 </head>
 <body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
-
-<!-- START: HTML FOR THE NEW NAVIGATION BAR (REPLACES THE OLD STRIP) -->
-<div class="pc-only-strip">
-    <header>
-        <div class="nav-left">
-            <div class="logo">
-                <a href="#">
-                     <img src="jjr.png" alt="Your Logo">
-                </a>
-            </div>
-            <nav class="main-nav">
-                <button class="nav-btn">Support</button>
-                <button class="nav-btn">Business</button>
-                <button class="nav-btn">Contact us</button>
-            </nav>
+    
+    <!-- GLOBAL HAMBURGER MENU & SIDE PANEL -->
+    <div class="hamburger" id="hamburger"><div></div><div></div><div></div></div>
+    <aside class="side-panel" id="sidePanel">
+        <div class="close-btn" id="closeBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </div>
-        
+        <nav>
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                <span>Home</span>
+            </a>
+    
+            <div class="settings-box">
+                <div class="settings-label">
+                    <svg id="music-icon" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24" fill="currentColor">
+                        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55c-2.21 0-4 1.79-4 4s1.79 4 4 4s4-1.79 4-4V7h4V3h-6z"/>
+                    </svg>
+                    <span id="music-status-text" class="text">Music On</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="music-toggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+    
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <span>About</span>
+            </a>
+        </nav>
+    </aside>
+    <div class="overlay" id="overlay"></div>
+
+
+    <!-- ORIGINAL HEADER FOR PAGE 1 (RESTORED) -->
+    <header class="new-navbar">
+        <div class="logo">
+            <a href="#"><img src="https://via.placeholder.com/40" alt="Your Logo"></a>
+        </div>
+        <nav class="main-nav">
+            <button class="nav-btn active">Support</button>
+            <button class="nav-btn">Business</button>
+            <button class="nav-btn">Contact us</button>
+        </nav>
         <div class="action-buttons">
             <button class="btn btn-light">Learn more</button>
             <a href="https://www.facebook.com/inventhrax" target="_blank" class="btn btn-dark">Follow us</a>
         </div>
     </header>
-</div>
-<!-- END: HTML FOR THE NEW NAVIGATION BAR -->
 
-<div class="hamburger" id="hamburger"><div></div><div></div><div></div></div>
-<aside class="side-panel" id="sidePanel">
-  <div class="close-btn" id="closeBtn">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-  </div>
-  <nav>
-    <a href="#">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-      <span>Home</span>
-    </a>
+    <div class="master-container">
+        <section id="page1" class="page">
+            <canvas id="line-canvas"></canvas>
+            <div class="background-text-wrapper" aria-hidden="true">
+                <div class="background-text">
+                    <div>Explore</div>
+                    <div>Estate</div>
+                </div>
+                <svg class="blueprint-svg" viewBox="0 0 1000 350">
+                    <g transform="translate(0, -170)"> <circle cx="485" cy="265" r="70"/><line x1="485" y1="195" x2="485" y2="335"/><line x1="415" y1="265" x2="555" y2="265"/><path d="M600,190 H750 V340 H600"/> </g>
+                    <g transform="translate(0, 170)"> <path d="M-10,0 H120 V150 H-10 Z"/><path d="M210,75 h-90 M130,0 v150"/><path d="M420,150 L420,0 L300,0"/> </g>
+                </svg>
+            </div>
+            <main class="main-content">
+                <div id="card1" class="info-card card-large"> <h1 class="stat-number">950+</h1> <p class="card-description">Assets Under Management</p> </div>
+                <div id="card2" class="info-card card-small"> <p class="card-description">Renowned for powering the backbone of premier properties...</p> <h1 class="stat-number">32</h1> <p class="card-description-bottom">Exclusive Delegators</p> </div>
+            </main>
+        </section>
 
-    <!-- START: HTML FOR MUSIC TOGGLE COMPONENT -->
-    <div class="settings-box">
-      <div class="settings-label">
-          <svg id="music-icon" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24" fill="currentColor">
-            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55c-2.21 0-4 1.79-4 4s1.79 4 4 4s4-1.79 4-4V7h4V3h-6z"/>
-          </svg>
-          <span id="music-status-text" class="text">Music On</span>
-      </div>
-      <label class="switch">
-          <input type="checkbox" id="music-toggle" checked>
-          <span class="slider"></span>
-      </label>
+        <section id="page2" class="page">
+            <canvas id="background-chart"></canvas>
+            <div class="wrapper">
+              <div class="content-block">
+                <div class="graphic-container"> <div class="shape stripe"></div> <div class="shape sphere"></div> </div>
+                <div class="animate-text-container"> <h2 class="animated-text">Solid Foundations for Your Crypto Future</h2> </div>
+                <div class="animate-text-container"> <p class="animated-text stagger">Establish a solid foundation for your crypto journey through reliable and secure solutions.</p> </div>
+              </div>
+              <div class="content-block">
+                <div class="graphic-container">
+                  <div class="chart-layout-container">
+                      <div class="pie-chart"></div>
+                      <div class="chart-legend">
+                        <ul>
+                          <li><span class="legend-color" style="background-color: var(--chart-color-1-p2);"></span>Furniture: 43%</li>
+                          <li><span class="legend-color" style="background-color: var(--chart-color-2-p2);"></span>Electronics: 28%</li>
+                          <li><span class="legend-color" style="background-color: var(--chart-color-3-p2);"></span>Home Décor: 15%</li>
+                          <li><span class="legend-color" style="background-color: var(--chart-color-4-p2);"></span>Toys: 14%</li>
+                        </ul>
+                      </div>
+                  </div>
+                </div>
+                 <div class="animate-text-container"> <h2 class="animated-text">Portfolio Distribution</h2> </div>
+                 <div class="animate-text-container"> <p class="animated-text stagger">A clear overview of asset allocation, providing insight into your investment strategy and diversification.</p> </div>
+              </div>
+              <div class="content-block benefits-card">
+                <div>
+                  <div class="animate-text-container"> <h2 class="benefits-title animated-text">Benefit you get.</h2> </div>
+                  <div class="benefits-grid">
+                    <div class="benefits-row">
+                      <div class="animate-text-container"> <div class="benefit-item animated-text stagger"> <strong>Proven Security:</strong> <span class="description">Your assets are protected with industry-leading security protocols and robust infrastructure.</span> </div> </div>
+                      <div class="animate-text-container"> <div class="benefit-item animated-text stagger"> <strong>Data-Driven Clarity:</strong> <span class="description">Make informed decisions with transparent analytics and insightful portfolio tracking.</span> </div> </div>
+                    </div>
+                    <div class="benefits-row">
+                       <div class="animate-text-container"> <div class="benefit-item animated-text stagger"> <strong>Future-Proof Growth:</strong> <span class="description">Invest in a platform that is constantly innovating and built for long-term scalability.</span> </div> </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+
+        <section id="page3" class="page">
+            <div class="pc-only-strip">
+                <header>
+                    <div class="nav-left">
+                        <div class="logo"> <a href="#"> <img src="jjr.png" alt="Your Logo"> </a> </div>
+                        <nav class="main-nav"> <button class="nav-btn">Support</button> <button class="nav-btn">Business</button> <button class="nav-btn">Contact us</button> </nav>
+                    </div>
+                    <div class="action-buttons"> <button class="btn btn-light">Learn more</button> <a href="https://www.facebook.com/inventhrax" target="_blank" class="btn btn-dark">Follow us</a> </div>
+                </header>
+            </div>
+            
+            <!-- REPLACED NAVIGATION BAR FOR PAGE 3 -->
+            <div class="navbar-wrapper">
+                <section class="color-strip">
+                    <a href="#" data-key="content" class="active">Content</a>
+                    <a href="#" data-key="informations">Informations</a>
+                    <a href="#" data-key="owner">Owner</a>
+                </section>
+            </div>
+            
+            <div style="width: 100%; height: 5px; background-color: black;"></div>
+
+            <section class="content" id="contentArea"></section>
+        </section>
     </div>
-    <!-- END: HTML FOR MUSIC TOGGLE COMPONENT -->
 
-    <a href="#">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-      <span>About</span>
-    </a>
-  </nav>
-</aside>
-<div class="overlay" id="overlay"></div>
-
-<section class="hero"><h1>The Gate Way</h1></section>
-
-<!--  HTML STRUCTURE UPDATED HERE -->
-<div class="navbar-wrapper">
-  <section class="color-strip">
-    <a href="#" data-key="content" class="active">Content</a>
-    <a href="#" data-key="informations">Informations</a>
-    <a href="#" data-key="owner">Owner</a>
-  </section>
-</div>
-
-<section class="content" id="contentArea"></section>
-
-<script>
-// OWNER HTML
-const ownerHTML = `
-<section class="owner-section">
-  <div class="owner-container">
-    <div>
-      <img class="owner-pic" src="6779.jpg" alt="Tamim Ahmed" />
-      <h1>Tamim Ahmed</h1>
-      <p>Welcome to my website.I am the final boss.I am <strong>The Tamim Ahmed</strong>.</p>
-    </div>
-    <div style="margin-top:auto">
-      <p class="social-text">Well, here you can visit my social media:</p>
-      <div class="social-links">
-        <a href="https://www.facebook.com/tamimahmedxearth" target="_blank"><svg viewBox="0 0 24 24"><path d="M13.5 22V13.5H16.5L17 10.5H13.5V8.25c0-.75.375-1.5 1.875-1.5H17V4.125A23.2 23.2 0 0014.25 4c-2.625 0-4.375 1.575-4.375 4.5V10.5H8.25v3h1.625V22h3.625z"/></svg></a>
-        <a href="https://www.instagram.com/tamimahmedxearth" target="_blank"><svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6zm4.5-3a1.125 1.125 0 110 2.25 1.125 1.125 0 010-2.25z"/></svg></a>
-        <a href="https://x.com/TamimAhmedz" target="_blank"><svg viewBox="0 0 24 24"><path d="M18.244 2H21.5l-7.55 8.635L22 22h-6.955l-5.45-7.06L3.5 22H.243l8.243-9.414L2 2h6.955l5.163 6.608L18.244 2zM16.955 20h1.822L7.14 4H5.196l11.759 16z"/></svg></a>
-         <a href="https://discord.com/users/tamimahmedz" target="_blank"><svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561 19.9 19.9 0 006.0667 3.0354.0777.0777 0 00.0842-.0276c.4676-.6304.8827-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057 13.2393 13.2393 0 01-1.872-.8996.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.119.099.246.1981.372.2924a.0766.0766 0 01-.006.1276 12.8737 12.8737 0 01-1.873.8994.0766.0766 0 00-.0407.106c.3604.698.7751 1.3628 1.222 1.9932a.076.076 0 00.0842.028 19.876 19.876 0 006.067-3.0354.0823.0823 0 00.0305-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.9554 2.419-2.1569 2.419zm7.9748 0c-1.1826 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.946 2.419-2.1568 2.419z"/></svg></a>
-      </div>
-    </div>
-  </div>
-</section>
-`;
-
-// NEW CONTENT HTML
-const newContentHTML = `
-<video class="video-bg" autoplay muted loop><source src="https://www.pexels.com/download/video/2711116/" type="video/mp4">Your browser does not support HTML5 video.</video>
-<div class="top-text">
-<h1>Who Is He</h1>
-<p>Is he a visionary? Maybe an artist? or perhaps a man who can imagine?</p>
-<p>He Who knows Will Not Obey to Those,But to Only One</p>
-</div>
-<div class="content-area-inner">
-<div class="card"><img src="https://media2.thrillophilia.com/images/photos/000/178/603/original/1670915909_shutterstock_291252509.jpg?w=753&h=450&dpr=1.0"><div class="card-content"><h2>17 Places You Must Visit in Turkey</h2><p>Turkey is a land of contrasts, where ancient meets modern, Europe is separated from Asia and the East.</p></div></div>
-<div class="card"><img src="https://www.thetimes.com/imageserver/image/%2Fe7026f07-497e-4213-b61c-2dd58b474c01.jpg?crop=1600%2C900%2C0%2C0&format=webp&quality=9&resize=1500"><div class="card-content"><h2>Thailand’s Top 11 Gems</h2><p>Thailand is a vibrant country with stunning places and a fascinating history that draws people from all over.</p></div></div>
-<div class="card"><img src="https://images.pexels.com/photos/21014/pexels-photo.jpg"><div class="card-content"><h2>A Guide to Traveling the World</h2><p>Discovering hidden cafes in Kyoto, navigating bustling souks in Marrakech, or stargazing in the Atacama Desert—each journey unveils a unique story.</p></div></div>
-<div class="card"><img src="https://wildnordics.com/wp-content/uploads/2019/01/Dolomites_Italy.jpg"><div class="card-content"><h2>European Countryside</h2><p>Explore the charming villages, scenic landscapes, and rich history of Europe’s countryside regions.</p></div></div>
-<div class="card"><img src="https://media.istockphoto.com/id/1315260875/photo/aerial-view-over-a-tropical-forest-with-a-river-meandering-through-the-canopy-and-a-clouded.jpg?s=612x612&w=0&k=20&c=D-JOMC6tQVIJxNqmWwv8nOxagqqwBtsZK7dhAQePwgw="><div class="card-content"><h2>Amazon Rainforest Adventure</h2><p>The Amazon Rainforest offers unmatched biodiversity, thrilling adventures, and incredible wildlife encounters.</p></div></div>
-<div class="card"><img src="https://images.pexels.com/photos/8332567/pexels-photo-8332567.jpeg"><div class="card-content"><h2>Exploring Bali Beaches</h2><p>Bali is famous for its beaches, coral reefs, and vibrant culture, attracting millions of tourists yearly.</p></div></div>
-<div class="card"><img src="https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg"><div class="card-content"><h2>New York City Lights</h2><p>New York City is a bustling metropolis filled with iconic landmarks, culture, and endless opportunities.</p></div></div>
-<div class="card"><img src="https://picfiles.alphacoders.com/290/290260.jpg"><div class="card-content"><h2>Sahara Desert Wonders</h2><p>The Sahara Desert is an endless landscape of dunes, sunsets, and unique cultural experiences.</p></div></div>
-<div class="card"><img src="https://wallpapers.com/images/high/kiyomizu-dera-temple-kyoto-japan-llk3nbdkm05wqn0c.webp"><div class="card-content"><h2>Japan Travel Guide</h2><p>Japan blends tradition and modernity, offering stunning landscapes, cuisine, and cultural experiences.</p></div></div>
-</div>
-<div class="summary-creative">
-<h2>Magic of Traveling</h2>
-<div class="summary-columns">
-<div class="col"><p>Traveling exposes you to new histories, traditions, and worldviews.</p><p>Navigating unfamiliar places improves problem-solving and independence.</p><p>Seeing different art, architecture, and nature can spark fresh ideas.</p><p>Improves adaptability: You learn to adjust to different cultures, foods, and environments.</p></div>
-<div class="col"><p>Meeting people from around the world helps you appreciate their unique ways of life.</p><p>Experiencing cultures firsthand challenges false assumptions.</p><p>You can create meaningful connections with people from different backgrounds.</p><p>Celebrates diversity: It helps you enjoy and value different customs, languages, and lifestyles.</p></div>
-<div class="col"><p>Traveling provides a peaceful escape from daily routines and stress.</p><p>Each journey brings unique experiences and stories that last a lifetime.
-</p><p>Exploring new places with friends or family strengthens your connection and trust.</p><p>Seeing the beauty of the world helps you appreciate what you already have.</p></div>
-</div>
-</div>
-<div class="footer">THE GATE WAY<span>- by you know who</span></div>
-`;
-
-// --- CHANGE 2: CREATED A NEW MOBILE-ONLY HTML VARIABLE (VIDEO TAG IS REMOVED) ---
-const newContentHTML_Mobile = `
-<div class="top-text">
-<h1>Who Is He</h1>
-<p>Is he a visionary? Maybe an artist? or perhaps a man who can imagine?</p>
-<p>He Who knows Will Not Obey to Those,But to Only One</p>
-</div>
-<div class="content-area-inner">
-<div class="card"><img src="https://media2.thrillophilia.com/images/photos/000/178/603/original/1670915909_shutterstock_291252509.jpg?w=753&h=450&dpr=1.0"><div class="card-content"><h2>17 Places You Must Visit in Turkey</h2><p>Turkey is a land of contrasts, where ancient meets modern, Europe is separated from Asia and the East.</p></div></div>
-<div class="card"><img src="https://www.thetimes.com/imageserver/image/%2Fe7026f07-497e-4213-b61c-2dd58b474c01.jpg?crop=1600%2C900%2C0%2C0&format=webp&quality=9&resize=1500"><div class="card-content"><h2>Thailand’s Top 11 Gems</h2><p>Thailand is a vibrant country with stunning places and a fascinating history that draws people from all over.</p></div></div>
-<div class="card"><img src="https://images.pexels.com/photos/21014/pexels-photo.jpg"><div class="card-content"><h2>A Guide to Traveling the World</h2><p>Discovering hidden cafes in Kyoto, navigating bustling souks in Marrakech, or stargazing in the Atacama Desert—each journey unveils a unique story.</p></div></div>
-<div class="card"><img src="https://wildnordics.com/wp-content/uploads/2019/01/Dolomites_Italy.jpg"><div class="card-content"><h2>European Countryside</h2><p>Explore the charming villages, scenic landscapes, and rich history of Europe’s countryside regions.</p></div></div>
-<div class="card"><img src="https://media.istockphoto.com/id/1315260875/photo/aerial-view-over-a-tropical-forest-with-a-river-meandering-through-the-canopy-and-a-clouded.jpg?s=612x612&w=0&k=20&c=D-JOMC6tQVIJxNqmWwv8nOxagqqwBtsZK7dhAQePwgw="><div class="card-content"><h2>Amazon Rainforest Adventure</h2><p>The Amazon Rainforest offers unmatched biodiversity, thrilling adventures, and incredible wildlife encounters.</p></div></div>
-<div class="card"><img src="https://images.pexels.com/photos/8332567/pexels-photo-8332567.jpeg"><div class="card-content"><h2>Exploring Bali Beaches</h2><p>Bali is famous for its beaches, coral reefs, and vibrant culture, attracting millions of tourists yearly.</p></div></div>
-<div class="card"><img src="https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg"><div class="card-content"><h2>New York City Lights</h2><p>New York City is a bustling metropolis filled with iconic landmarks, culture, and endless opportunities.</p></div></div>
-<div class="card"><img src="https://picfiles.alphacoders.com/290/290260.jpg"><div class="card-content"><h2>Sahara Desert Wonders</h2><p>The Sahara Desert is an endless landscape of dunes, sunsets, and unique cultural experiences.</p></div></div>
-<div class="card"><img src="https://wallpapers.com/images/high/kiyomizu-dera-temple-kyoto-japan-llk3nbdkm05wqn0c.webp"><div class="card-content"><h2>Japan Travel Guide</h2><p>Japan blends tradition and modernity, offering stunning landscapes, cuisine, and cultural experiences.</p></div></div>
-</div>
-<div class="summary-creative">
-<h2>Magic of Traveling</h2>
-<div class="summary-columns">
-<div class="col"><p>Traveling exposes you to new histories, traditions, and worldviews.</p><p>Navigating unfamiliar places improves problem-solving and independence.</p><p>Seeing different art, architecture, and nature can spark fresh ideas.</p><p>Improves adaptability: You learn to adjust to different cultures, foods, and environments.</p></div>
-<div class="col"><p>Meeting people from around the world helps you appreciate their unique ways of life.</p><p>Experiencing cultures firsthand challenges false assumptions.</p><p>You can create meaningful connections with people from different backgrounds.</p><p>Celebrates diversity: It helps you enjoy and value different customs, languages, and lifestyles.</p></div>
-<div class="col"><p>Traveling provides a peaceful escape from daily routines and stress.</p><p>Each journey brings unique experiences and stories that last a lifetime.
-</p><p>Exploring new places with friends or family strengthens your connection and trust.</p><p>Seeing the beauty of the world helps you appreciate what you already have.</p></div>
-</div>
-</div>
-<div class="footer">THE GATE WAY<span>- by you know who</span></div>
-`;
-
-// INFORMATIONS HTML (FROM Z CODE)
-const informationHTML = `
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto&display=swap" rel="stylesheet">
-<style>
-#information-content{margin:0;padding:0;background:linear-gradient(135deg,#e0f2f7,#9ff5d0);font-family:'Roboto',sans-serif;color:#333;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
-#information-content header{text-align:center;padding:2rem 1rem;background:linear-gradient(45deg,#2c7a7b,#319795);color:white;border-bottom:6px solid #285e61}
-#information-content header h1{font-family:'Fredoka One',cursive;font-size:3rem;margin:0;letter-spacing:2px}
-#information-content .container{display:grid;grid-template-columns:repeat(4,1fr);gap:4rem;row-gap:8rem;padding:6rem}
-@media (max-width:1024px){#information-content .container{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:600px){#information-content .container{grid-template-columns:1fr}}
-#information-content .card{background:white;border-radius:20px;padding:1.5rem;text-align:center;box-shadow:0 8px 15px rgba(0,0,0,0.1);position:relative;overflow:hidden;transition:transform .3s;min-height:480px;display:flex;flex-direction:column;justify-content:flex-start}
-#information-content .card:hover{transform:translateY(-10px)}
-#information-content .card img{width:100%;height:200px;object-fit:cover;border-radius:15px;margin-bottom:1rem;-webkit-user-drag:none;-khtml-user-drag:none;-moz-user-drag:none;-o-user-drag:none;user-drag:none}
-#information-content .card h2{color:#2c7a7b;margin-bottom:.5rem;font-size:1.3rem;font-family:'Fredoka One',cursive}
-#information-content .card p{font-size:1rem;line-height:1.5;color:#000000;}
-#information-content footer{text-align:center;padding:1.5rem;background:#319795;border-top:6px solid #285e61;color:#fff;font-weight:bold;font-family:'Fredoka One',cursive;letter-spacing:1px}
-#information-content .card::after{content:"🕊️";font-size:4rem;position:absolute;bottom:-10px;right:-10px;opacity:.05;transform:rotate(-20deg)}
-#information-content .summary-section{background:#f0f8f8;padding:4rem 6rem;margin-top:4rem;text-align:center;border-top:4px solid #319795;border-bottom:4px solid #319795}
-#information-content .summary-section h2{font-family:'Fredoka One',cursive;font-size:2.5rem;color:#2c7a7b;margin-bottom:2rem}
-#information-content .summary-section ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:800px;margin:0 auto;text-align:left}
-#information-content .summary-section li{background:white;padding:1rem 1.5rem;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.08);font-size:1.1rem;color:#444;display:flex;align-items:center}
-#information-content .summary-section li::before{content:"✴";margin-right:10px;font-size:1.2rem}
-@media (max-width:768px){
-    #information-content .summary-section ul{grid-template-columns:1fr} 
-    #information-content .summary-section{padding:2rem}
-    #information-content .container { padding: 2rem 1.5rem; gap: 2rem; }
-    #information-content .card { min-height: auto; }
-    #information-content header h1 { font-size: 2.2rem; }
-    #information-content .summary-section h2 { font-size: 1.8rem; }
-}
-</style>
-<div id="information-content">
-  <header><h1>Voices of Gaza</h1></header>
-  <section class="container">
-    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Gaza_Skyline.jpg/800px-Gaza_Skyline.jpg" alt="Gaza City"><h2>Ancient City</h2><p>Gaza is one of the oldest cities in the world, with a history spanning over 3,000 years.</p></div>
-    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Gaza_Strip_map.png/800px-Gaza_Strip_map.png" alt="Gaza Map"><h2>Small but Mighty</h2><p>The Gaza Strip is only about 41 km long, yet home to over 2 million people.</p></div>
-    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Gaza_Fish_Market.jpg/800px-Gaza_Fish_Market.jpg" alt="Gaza Market"><h2>Rich Culture</h2><p>Gaza is known for its vibrant markets, traditional crafts, and warm community life.</p></div>
-    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Gaza_Mediterranean.jpg/800px-Gaza_Mediterranean.jpg" alt="Gaza Coast"><h2>Beautiful Coast</h2><p>It has a scenic Mediterranean coastline with sandy beaches and rich marine life.</p></div>
-    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Palestinian_children_Gaza.jpg/800px-Gaza_Children.jpg" alt="Gaza Children"><h2>Resilient People</h2><p>The people of Gaza show incredible strength, resilience, and hope despite hardships.</p></div>
-    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Olive_tree.jpg/800px-Olive_tree.jpg" alt="Olive Tree"><h2>Symbol of Peace</h2><p>The olive tree is a symbol of peace and endurance, deeply rooted in Gaza’s culture.</p></div>
-    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/com/thumb/e/e3/Gaza_University.jpg/800px-Gaza_University.jpg" alt="Gaza Education"><h2>Education & Future</h2><p>Despite challenges, Gaza has universities, schools, and many aspiring young minds.</p></div>
-    <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Gaza_Reconstruction.jpg/800px-Gaza_Reconstruction.jpg" alt="Rebuilding Gaza"><h2>Hope for Tomorrow</h2><p>Communities continue to rebuild and dream of a peaceful and free future.</p></div>
-  </section>
-  <section class="summary-section">
-    <h2>Gaza at a Glance</h2>
-    <ul><li>Ancient city with over 3,000 years of history.</li><li>A small but densely populated strip, home to over 2 million.</li><li>Rich cultural heritage with vibrant markets and crafts.</li><li>Features a beautiful Mediterranean coastline and beaches.</li><li>Inhabited by incredibly resilient and hopeful people.</li><li>The olive tree stands as a deep-rooted symbol of peace.</li><li>Committed to education with universities and schools.</li><li>A community that continuously rebuilds, fostering hope for peace.</li></ul>
-  </section>
-  <footer>Prayers for Peace and Freedom in Gaza</footer>
-  <script>document.addEventListener('contextmenu',function(e){e.preventDefault()});document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&(e.key==='c'||e.key==='x')){e.preventDefault()}if(e.keyCode==123){e.preventDefault()}if((e.ctrlKey||e.metaKey)&&e.shiftKey&&e.keyCode==73){e.preventDefault()}})<\/script>
-</div>
-`;
-
-// --- SCRIPT SECTION (UPDATED) ---
-
-// --- START: JAVASCRIPT FOR MUSIC TOGGLE COMPONENT (Placed early for access by other functions) ---
-const musicToggle = document.getElementById('music-toggle');
-const musicStatusText = document.getElementById('music-status-text');
-const musicIcon = document.getElementById('music-icon');
-
-const colorOn = '#bdef5a';
-const colorOff = '#6e6e6e';
-
-function updateMusicStatus(isMusicOn) {
-    if (isMusicOn) {
-        musicStatusText.textContent = 'Music On';
-        musicIcon.style.color = colorOn;
-        musicIcon.classList.add('glowing');
-    } else {
-        musicStatusText.textContent = 'Music Off';
-        musicIcon.style.color = colorOff;
-        musicIcon.classList.remove('glowing');
-    }
-}
-
-musicToggle.addEventListener('change', function() {
-    updateMusicStatus(this.checked);
-    // Save the user's preference in localStorage
-    localStorage.setItem('musicState', this.checked ? 'on' : 'off');
+    <!-- SCRIPT FOR PAGE 1 ANIMATIONS (WITH FIX) -->
+    <script>
+         document.addEventListener("DOMContentLoaded", () => {
+            if (window.innerWidth <= 768) return; // Don't run this animation on mobile
+            const animatedSvgElements = document.querySelectorAll('.blueprint-svg path, .blueprint-svg circle, .blueprint-svg line');
+            animatedSvgElements.forEach(el => { const length = el.getTotalLength ? el.getTotalLength() : (2 * Math.PI * (el.r?.baseVal.value || 0)); if (length) { el.style.strokeDasharray = length; el.style.strokeDashoffset = length; } });
+            const canvas = document.getElementById('line-canvas'); if (!canvas) return; const ctx = canvas.getContext('2d'); let lines = [];
+            function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+            function getElementCenter(selector) { const el = document.querySelector(selector); if (!el) return { x: 0, y: 0, width: 0, height: 0 }; const rect = el.getBoundingClientRect(); return { x: rect.left, y: rect.top, width: rect.width, height: rect.height }; }
+            class AnimatedLine { constructor(config) { this.start = config.start; this.end = config.end; this.cp1 = config.cp1; this.cp2 = config.cp2; this.delay = config.delay; this.progress = 0; this.startTime = null; this.duration = 2800; }
+                draw() { if (this.progress <= 0) return; const gradient = ctx.createLinearGradient(this.start.x, this.start.y, this.end.x, this.end.y); gradient.addColorStop(0, "rgba(169, 214, 56, 0.2)"); gradient.addColorStop(0.5, "rgba(169, 214, 56, 0.9)"); gradient.addColorStop(1, "rgba(169, 214, 56, 0.2)"); ctx.beginPath(); ctx.moveTo(this.start.x, this.start.y); const t = this.progress; if (this.cp2) { const p01 = { x: this.start.x + (this.cp1.x - this.start.x) * t, y: this.start.y + (this.cp1.y - this.start.y) * t }; const p12 = { x: this.cp1.x + (this.cp2.x - this.cp1.x) * t, y: this.cp1.y + (this.cp2.y - this.cp1.y) * t }; const p23 = { x: this.cp2.x + (this.end.x - this.cp2.x) * t, y: this.cp2.y + (this.end.y - this.cp2.y) * t }; const p012 = { x: p01.x + (p12.x - p01.x) * t, y: p01.y + (p12.y - p01.y) * t }; const p123 = { x: p12.x + (p23.x - p12.x) * t, y: p12.y + (p23.y - p12.y) * t }; const pFinal = { x: p012.x + (p123.x - p012.x) * t, y: p012.y + (p123.y - p012.y) * t }; ctx.bezierCurveTo(p01.x, p01.y, p012.x, p012.y, pFinal.x, pFinal.y); } else { const cp1x = this.start.x + (this.cp1.x - this.start.x) * t; const cp1y = this.start.y + (this.cp1.y - this.start.y) * t; const cpx = this.cp1.x + (this.end.x - this.cp1.x) * t; const cpy = this.cp1.y + (this.end.y - this.cp1.y) * t; const x = cp1x + (cpx - cp1x) * t; const y = cp1y + (cpy - cp1y) * t; ctx.quadraticCurveTo(cp1x, cp1y, x, y); }
+                    ctx.strokeStyle = gradient; ctx.lineWidth = 3; ctx.shadowColor = "rgba(169, 214, 56, 0.7)"; ctx.shadowBlur = 10; ctx.stroke(); ctx.shadowBlur = 0; }
+                update(timestamp) { if (!this.startTime) this.startTime = timestamp; const elapsed = timestamp - this.startTime; if (elapsed > this.delay) { const drawElapsed = elapsed - this.delay; this.progress = Math.min(drawElapsed / this.duration, 1); } } }
+            function definePaths() { const exploreRect = getElementCenter(".background-text div:first-child"); const estateRect = getElementCenter(".background-text div:last-child"); const card1Rect = getElementCenter("#card1"); const card2Rect = getElementCenter("#card2"); const w = window.innerWidth; const h = window.innerHeight;
+                lines = [ new AnimatedLine({ start: { x: exploreRect.x + exploreRect.width, y: exploreRect.y + exploreRect.height / 2 }, end: { x: card1Rect.x, y: card1Rect.y + card1Rect.height * 0.25 }, cp1: { x: (exploreRect.x + exploreRect.width) + (card1Rect.x - (exploreRect.x + exploreRect.width)) * 0.3, y: (exploreRect.y + exploreRect.height / 2) - 150 }, delay: 0 }), new AnimatedLine({ start: { x: estateRect.x + estateRect.width, y: estateRect.y + estateRect.height / 2 }, end: { x: card2Rect.x, y: card2Rect.y + card2Rect.height * 0.75}, cp1: { x: (estateRect.x + estateRect.width) + (card2Rect.x - (estateRect.x + estateRect.width)) * 0.6, y: (card2Rect.y + card2Rect.height * 0.75) + 100 }, delay: 250 }), new AnimatedLine({ start: { x: estateRect.x + estateRect.width * 0.85, y: estateRect.y + estateRect.height + 20 }, end: { x: card2Rect.x + card2Rect.width * 0.8, y: card2Rect.y + card2Rect.height}, cp1: { x: card1Rect.x + card1Rect.width, y: h + 100 }, cp2: { x: card2Rect.x + card2Rect.width + 150, y: h}, delay: 350 }), new AnimatedLine({ start: { x: estateRect.x + estateRect.width * 0.85, y: estateRect.y + estateRect.height + 20 }, end: { x: w - 20, y: 20 }, cp1: { x: card1Rect.x, y: h + 150 }, cp2: { x: w, y: h * 0.35 }, delay: 400 }) ]; }
+            function animate(timestamp) { ctx.clearRect(0, 0, canvas.width, canvas.height); let allDone = true; lines.forEach(line => { line.update(timestamp); line.draw(); if(line.progress < 1) allDone = false; }); if(!allDone) { requestAnimationFrame(animate); } }
+            resizeCanvas(); window.addEventListener('resize', () => { resizeCanvas(); definePaths(); }); setTimeout(() => { definePaths(); requestAnimationFrame(animate); }, 3300);
+        });
+    </script>
     
-    // If music is turned off, stop any currently playing audio
-    if (!this.checked) {
-        stopCurrentAudio();
-    }
-});
+    <!-- SCRIPT FOR SCROLLING & GLOBAL UI -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- PAGE SCROLLING LOGIC ---
+            if (window.innerWidth > 768) {
+                let currentPage = 1;
+                let isAnimating = false;
+                const animationCooldown = 1200; 
+                const page2 = document.getElementById('page2');
+                const page3 = document.getElementById('page3');
 
-function turnOn() {
-    musicToggle.checked = true;
-    updateMusicStatus(true);
-    localStorage.setItem('musicState', 'on');
-}
+                const setPage = (pageNumber) => {
+                    if (isAnimating) return;
+                    currentPage = pageNumber;
+                    isAnimating = true;
 
-function turnOff() {
-    musicToggle.checked = false;
-    updateMusicStatus(false);
-    localStorage.setItem('musicState', 'off');
-}
+                    if (currentPage === 1) document.body.className = '';
+                    else if (currentPage === 2) document.body.className = 'show-page-2';
+                    else if (currentPage === 3) document.body.className = 'show-page-3';
 
-// --- Initial State Logic with Local Storage ---
-// When the page loads, check for a saved state
-const savedMusicState = localStorage.getItem('musicState');
+                    setTimeout(() => { isAnimating = false; }, animationCooldown);
+                };
 
-// If a state was saved and it was 'off', turn the toggle off
-if (savedMusicState === 'off') {
-    musicToggle.checked = false;
-} else {
-    // Otherwise, for a first-time visit or if it was set to 'on', ensure it's on.
-    musicToggle.checked = true;
-}
-
-// Update the button's appearance to match the loaded state
-updateMusicStatus(musicToggle.checked);
-// --- END: JAVASCRIPT FOR MUSIC TOGGLE COMPONENT ---
-
-
-const contentData = {
-  content: { html: newContentHTML, audio: "good.mp3" },
-  informations: { html: informationHTML, audio: "cool.mp3" },
-  owner: { html: ownerHTML, audio: "cool.mp3" }
-};
-
-let currentAudio = null;
-let isInitialLoad = true; 
-
-function stopCurrentAudio() {
-  if(currentAudio){
-    currentAudio.pause();
-    try{currentAudio.currentTime=0;}catch(e){}
-    currentAudio=null;
-  }
-}
-
-function playAudioOnce(audioFile){
-  // Check if the music toggle is on before playing any audio
-  if (!musicToggle.checked) {
-      return; // Exit the function if music is turned off
-  }
-  
-  stopCurrentAudio();
-  currentAudio=new Audio(audioFile);
-  currentAudio.preload='auto';
-  currentAudio.play().catch(()=>{});
-}
-
-const hamburger = document.getElementById('hamburger');
-const sidePanel = document.getElementById('sidePanel');
-const closeBtn = document.getElementById('closeBtn');
-const overlay = document.getElementById('overlay');
-const contentArea = document.getElementById('contentArea');
-const links = document.querySelectorAll('.color-strip a');
-
-// --- SCRIPT TO CONTROL VISIBILITY AND BACKGROUNDS (UPDATED) ---
-function showSection(key, fromPopState = false){
-  // --- JavaScript logic to switch hero backgrounds ---
-  const heroSection = document.querySelector('.hero');
-  
-  // First, remove any special classes to reset to default
-  heroSection.classList.remove('hero-informations', 'hero-owner');
-
-  // Then, add the specific class based on which section is active
-  if (key === 'informations') {
-    heroSection.classList.add('hero-informations');
-  } else if (key === 'owner') {
-    heroSection.classList.add('hero-owner');
-  }
-  
-  if (!fromPopState) {
-    history.pushState({ key: key }, '', `#${key}`);
-  }
-  
-  document.body.classList.remove('showing-content', 'showing-informations', 'showing-owner');
-  if (key === 'content') {
-    document.body.classList.add('showing-content');
-  } else if (key === 'informations') {
-    document.body.classList.add('showing-informations');
-  } else if (key === 'owner') {
-    document.body.classList.add('showing-owner');
-  }
+                window.addEventListener('wheel', (event) => {
+                    if (isAnimating) return;
+                    const isScrollingDown = event.deltaY > 0;
+                    const isScrollingUp = event.deltaY < 0;
+                    if (currentPage === 1 && isScrollingDown) setPage(2);
+                    else if (currentPage === 2) {
+                        if (isScrollingUp && page2.scrollTop === 0) setPage(1);
+                        else if (isScrollingDown && (page2.scrollHeight - Math.ceil(page2.scrollTop)) <= page2.clientHeight) setPage(3);
+                    } else if (currentPage === 3 && isScrollingUp && page3.scrollTop === 0) setPage(2);
+                });
+            }
 
 
-  links.forEach(link => link.classList.remove('active'));
-  const sel = document.querySelector(`.color-strip a[data-key="${key}"]`);
-  if(sel) sel.classList.add('active');
+            // --- GLOBAL HAMBURGER/SIDE PANEL LOGIC (works on all screen sizes) ---
+            const hamburger = document.getElementById('hamburger');
+            const sidePanel = document.getElementById('sidePanel');
+            const closeBtn = document.getElementById('closeBtn');
+            const overlay = document.getElementById('overlay');
+            const sidePanelHomeButton = document.querySelector('.side-panel nav a:first-child');
+            
+            hamburger.onclick = ()=>{ sidePanel.classList.add('open'); overlay.classList.add('active'); hamburger.style.display='none'; };
+            closeBtn.onclick = overlay.onclick = ()=>{ sidePanel.classList.remove('open'); overlay.classList.remove('active'); hamburger.style.display='flex'; };
+            
+            sidePanelHomeButton.onclick = (e) => {
+              e.preventDefault();
+              showSection('content'); 
+              sidePanel.classList.remove('open'); 
+              overlay.classList.remove('active'); 
+              hamburger.style.display='flex'; 
+            };
+        });
+    </script>
 
-  const updateContent = () => {
-    const existingVideo = contentArea.querySelector('.video-bg');
-    if (existingVideo) {
-      existingVideo.pause();
-      existingVideo.currentTime = 0;
-    }
+    <!-- SCRIPT FOR ORIGINAL NAVBAR ACTIVE STATE -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('header.new-navbar .nav-btn');
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
 
-    if(key==='owner'){
-      document.body.classList.remove('content-active');
-      contentArea.innerHTML = contentData.owner.html;
-      if(contentData.owner.audio) playAudioOnce(contentData.owner.audio);
-    } 
-    else if (key === 'content') {
-      document.body.classList.add('content-active');
-      if (window.innerWidth <= 768) {
-        contentArea.innerHTML = newContentHTML_Mobile;
-      } else {
-        contentArea.innerHTML = newContentHTML;
-        const videoElement = contentArea.querySelector('.video-bg');
-        if (videoElement) {
-          videoElement.play().catch(e => console.error("Video autoplay failed:", e));
+    <!-- SCRIPTS FOR PAGE 2 -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (window.innerWidth <= 768) return; // Don't run page 2 scripts on mobile
+
+        const page2 = document.getElementById('page2'); if (!page2) return;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const textElements = entry.target.querySelectorAll('.animated-text');
+                    textElements.forEach(el => el.classList.add('visible'));
+                }
+            });
+        }, { root: null, threshold: 0.5 });
+        const animatedContainers = page2.querySelectorAll('.content-block');
+        animatedContainers.forEach((el) => observer.observe(el));
+
+        const stripe = page2.querySelector('.stripe');
+        const sphere = page2.querySelector('.sphere');
+        const initialStripeRotation = -35;
+        page2.addEventListener('scroll', () => {
+            const scrollTop = page2.scrollTop;
+            const scrollRotation = scrollTop * 0.1;
+            if (stripe && sphere) {
+                stripe.style.transform = `rotate(${initialStripeRotation + scrollRotation}deg)`;
+                sphere.style.transform = `rotate(${scrollRotation}deg)`;
+            }
+        });
+
+        const canvas = page2.querySelector('#background-chart'); if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let points = [], targetPoints = [], lastUpdate = 0; const updateInterval = 2000;
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initPoints(); }
+        function initPoints() {
+            points = []; targetPoints = []; const pointCount = Math.floor(canvas.width / 40);
+            for (let i = 0; i <= pointCount; i++) {
+                const x = i * 40; const y = canvas.height * (0.4 + Math.random() * 0.4);
+                points.push({ x, y }); targetPoints.push({ x, y: canvas.height * (0.4 + Math.random() * 0.4) });
+            }
         }
-      }
-      if(contentData.content.audio) playAudioOnce(contentData.content.audio);
-    } 
-    else if (key === 'informations') {
-      document.body.classList.add('content-active');
-      contentArea.innerHTML = contentData.informations.html;
-      if(contentData.informations.audio) playAudioOnce(contentData.informations.audio);
-    }
-    else { 
-      document.body.classList.add('content-active');
-      contentArea.innerHTML = `<div class="content-fullscreen">${contentData[key] ? contentData[key].html : 'Content not found'}</div>`;
-      if(contentData[key] && contentData[key].audio) playAudioOnce(contentData[key].audio);
-    }
-    contentArea.style.opacity = 1;
-  };
+        function lerp(start, end, amt) { return (1 - amt) * start + amt * end; }
+        function animate(timestamp) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < points.length; i++) points[i].y = lerp(points[i].y, targetPoints[i].y, 0.05);
+            if (timestamp - lastUpdate > updateInterval) {
+                lastUpdate = timestamp; targetPoints.shift();
+                targetPoints.push({ x: targetPoints[targetPoints.length - 1].x, y: canvas.height * (0.4 + Math.random() * 0.4) });
+                for (let i = 0; i < targetPoints.length; i++) targetPoints[i].x = i * 40;
+            }
+            ctx.strokeStyle = 'rgba(0, 255, 80, 0.1)'; ctx.lineWidth = 1;
+            for (let i = 0; i < points.length; i++) { ctx.beginPath(); ctx.moveTo(points[i].x, 0); ctx.lineTo(points[i].x, canvas.height); ctx.stroke(); }
+            ctx.beginPath(); ctx.moveTo(points[0].x, points[0].y);
+            for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
+            ctx.strokeStyle = '#00ff50'; ctx.lineWidth = 2.5; ctx.shadowColor = '#00ff50'; ctx.shadowBlur = 20; ctx.stroke(); ctx.shadowBlur = 0;
+            requestAnimationFrame(animate);
+        }
+        window.addEventListener('resize', resizeCanvas); resizeCanvas(); requestAnimationFrame(animate);
+      });
+    </script>
+    
+    <!-- SCRIPT FOR PAGE 3 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const page3 = document.getElementById('page3'); if (!page3) return;
 
-  if (isInitialLoad) {
-    updateContent();
-    isInitialLoad = false;
-  } else {
-    contentArea.style.opacity = 0;
-    setTimeout(updateContent, 200);
-  }
-}
+            const ownerHTML = `
+            <section class="owner-section"> <div class="owner-container"> <div> <img class="owner-pic" src="6779.jpg" alt="Tamim Ahmed" /> <h1>Tamim Ahmed</h1> <p>Welcome to my website.I am the final boss.I am <strong>The Tamim Ahmed</strong>.</p> </div> <div style="margin-top:auto"> <p class="social-text">Well, here you can visit my social media:</p> <div class="social-links"> <a href="https://www.facebook.com/tamimahmedxearth" target="_blank"><svg viewBox="0 0 24 24"><path d="M13.5 22V13.5H16.5L17 10.5H13.5V8.25c0-.75.375-1.5 1.875-1.5H17V4.125A23.2 23.2 0 0014.25 4c-2.625 0-4.375 1.575-4.375 4.5V10.5H8.25v3h1.625V22h3.625z"/></svg></a> <a href="https://www.instagram.com/tamimahmedxearth" target="_blank"><svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6zm4.5-3a1.125 1.125 0 110 2.25 1.125 1.125 0 010-2.25z"/></svg></a> <a href="https://x.com/TamimAhmedz" target="_blank"><svg viewBox="0 0 24 24"><path d="M18.244 2H21.5l-7.55 8.635L22 22h-6.955l-5.45-7.06L3.5 22H.243l8.243-9.414L2 2h6.955l5.163 6.608L18.244 2zM16.955 20h1.822L7.14 4H5.196l11.759 16z"/></svg></a> <a href="https://discord.com/users/tamimahmedz" target="_blank"><svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561 19.9 19.9 0 006.0667 3.0354.0777.0777 0 00.0842-.0276c.4676-.6304.8827-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057 13.2393 13.2393 0 01-1.872-.8996.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.119.099.246.1981.372.2924a.0766.0766 0 01-.006.1276 12.8737 12.8737 0 01-1.873.8994.0766.0766 0 00-.0407.106c.3604.698.7751 1.3628 1.222 1.9932a.076.076 0 00.0842.028 19.876 19.876 0 006.067-3.0354.0823.0823 0 00.0305-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.9554 2.419-2.1569 2.419zm7.9748 0c-1.1826 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.4189 0 1.3333-.946 2.419-2.1568 2.419z"/></svg></a> </div> </div> </div> </section>`;
+            const newContentHTML = `<video class="video-bg" autoplay muted loop><source src="https://www.pexels.com/download/video/2711116/" type="video/mp4">Your browser does not support HTML5 video.</video> <div class="top-text"><h1>Who Is He</h1><p>Is he a visionary? Maybe an artist? or perhaps a man who can imagine?</p><p>He Who knows Will Not Obey to Those,But to Only One</p></div> <div class="content-area-inner"> <div class="card"><img src="https://media2.thrillophilia.com/images/photos/000/178/603/original/1670915909_shutterstock_291252509.jpg?w=753&h=450&dpr=1.0"><div class="card-content"><h2>17 Places You Must Visit in Turkey</h2><p>Turkey is a land of contrasts, where ancient meets modern, Europe is separated from Asia and the East.</p></div></div> <div class="card"><img src="https://www.thetimes.com/imageserver/image/%2Fe7026f07-497e-4213-b61c-2dd58b474c01.jpg?crop=1600%2C900%2C0%2C0&format=webp&quality=9&resize=1500"><div class="card-content"><h2>Thailand’s Top 11 Gems</h2><p>Thailand is a vibrant country with stunning places and a fascinating history that draws people from all over.</p></div></div> <div class="card"><img src="https://images.pexels.com/photos/21014/pexels-photo.jpg"><div class="card-content"><h2>A Guide to Traveling the World</h2><p>Discovering hidden cafes in Kyoto, navigating bustling souks in Marrakech, or stargazing in the Atacama Desert—each journey unveils a unique story.</p></div></div> <div class="card"><img src="https://wildnordics.com/wp-content/uploads/2019/01/Dolomites_Italy.jpg"><div class="card-content"><h2>European Countryside</h2><p>Explore the charming villages, scenic landscapes, and rich history of Europe’s countryside regions.</p></div></div> <div class="card"><img src="https://media.istockphoto.com/id/1315260875/photo/aerial-view-over-a-tropical-forest-with-a-river-meandering-through-the-canopy-and-a-clouded.jpg?s=612x612&w=0&k=20&c=D-JOMC6tQVIJxNqmWwv8nOxagqqwBtsZK7dhAQePwgw="><div class="card-content"><h2>Amazon Rainforest Adventure</h2><p>The Amazon Rainforest offers unmatched biodiversity, thrilling adventures, and incredible wildlife encounters.</p></div></div> <div class="card"><img src="https://images.pexels.com/photos/8332567/pexels-photo-8332567.jpeg"><div class="card-content"><h2>Exploring Bali Beaches</h2><p>Bali is famous for its beaches, coral reefs, and vibrant culture, attracting millions of tourists yearly.</p></div></div> <div class="card"><img src="https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg"><div class="card-content"><h2>New York City Lights</h2><p>New York City is a bustling metropolis filled with iconic landmarks, culture, and endless opportunities.</p></div></div> <div class="card"><img src="https://picfiles.alphacoders.com/290/290260.jpg"><div class="card-content"><h2>Sahara Desert Wonders</h2><p>The Sahara Desert is an endless landscape of dunes, sunsets, and unique cultural experiences.</p></div></div> <div class="card"><img src="https://wallpapers.com/images/high/kiyomizu-dera-temple-kyoto-japan-llk3nbdkm05wqn0c.webp"><div class="card-content"><h2>Japan Travel Guide</h2><p>Japan blends tradition and modernity, offering stunning landscapes, cuisine, and cultural experiences.</p></div></div> </div> <div class="summary-creative"><h2>Magic of Traveling</h2><div class="summary-columns"><div class="col"><p>Traveling exposes you to new histories, traditions, and worldviews.</p><p>Navigating unfamiliar places improves problem-solving and independence.</p><p>Seeing different art, architecture, and nature can spark fresh ideas.</p><p>Improves adaptability: You learn to adjust to different cultures, foods, and environments.</p></div><div class="col"><p>Meeting people from around the world helps you appreciate their unique ways of life.</p><p>Experiencing cultures firsthand challenges false assumptions.</p><p>You can create meaningful connections with people from different backgrounds.</p><p>Celebrates diversity: It helps you enjoy and value different customs, languages, and lifestyles.</p></div><div class="col"><p>Traveling provides a peaceful escape from daily routines and stress.</p><p>Each journey brings unique experiences and stories that last a lifetime.</p><p>Exploring new places with friends or family strengthens your connection and trust.</p><p>Seeing the beauty of the world helps you appreciate what you already have.</p></div></div></div><div class="footer">THE GATE WAY<span>- by you know who</span></div>`;
+            const newContentHTML_Mobile = `<div class="top-text"><h1>Who Is He</h1><p>Is he a visionary? Maybe an artist? or perhaps a man who can imagine?</p><p>He Who knows Will Not Obey to Those,But to Only One</p></div> <div class="content-area-inner"> <div class="card"><img src="https://media2.thrillophilia.com/images/photos/000/178/603/original/1670915909_shutterstock_291252509.jpg?w=753&h=450&dpr=1.0"><div class="card-content"><h2>17 Places You Must Visit in Turkey</h2><p>Turkey is a land of contrasts, where ancient meets modern, Europe is separated from Asia and the East.</p></div></div> <div class="card"><img src="https://www.thetimes.com/imageserver/image/%2Fe7026f07-497e-4213-b61c-2dd58b474c01.jpg?crop=1600%2C900%2C0%2C0&format=webp&quality=9&resize=1500"><div class="card-content"><h2>Thailand’s Top 11 Gems</h2><p>Thailand is a vibrant country with stunning places and a fascinating history that draws people from all over.</p></div></div> <div class="card"><img src="https://images.pexels.com/photos/21014/pexels-photo.jpg"><div class="card-content"><h2>A Guide to Traveling the World</h2><p>Discovering hidden cafes in Kyoto, navigating bustling souks in Marrakech, or stargazing in the Atacama Desert—each journey unveils a unique story.</p></div></div> <div class="card"><img src="https://wildnordics.com/wp-content/uploads/2019/01/Dolomites_Italy.jpg"><div class="card-content"><h2>European Countryside</h2><p>Explore the charming villages, scenic landscapes, and rich history of Europe’s countryside regions.</p></div></div> <div class="card"><img src="https://media.istockphoto.com/id/1315260875/photo/aerial-view-over-a-tropical-forest-with-a-river-meandering-through-the-canopy-and-a-clouded.jpg?s=612x612&w=0&k=20&c=D-JOMC6tQVIJxNqmWwv8nOxagqqwBtsZK7dhAQePwgw="><div class="card-content"><h2>Amazon Rainforest Adventure</h2><p>The Amazon Rainforest offers unmatched biodiversity, thrilling adventures, and incredible wildlife encounters.</p></div></div> <div class="card"><img src="https://images.pexels.com/photos/8332567/pexels-photo-8332567.jpeg"><div class="card-content"><h2>Exploring Bali Beaches</h2><p>Bali is famous for its beaches, coral reefs, and vibrant culture, attracting millions of tourists yearly.</p></div></div> <div class="card"><img src="https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg"><div class="card-content"><h2>New York City Lights</h2><p>New York City is a bustling metropolis filled with iconic landmarks, culture, and endless opportunities.</p></div></div> <div class="card"><img src="https://picfiles.alphacoders.com/290/290260.jpg"><div class="card-content"><h2>Sahara Desert Wonders</h2><p>The Sahara Desert is an endless landscape of dunes, sunsets, and unique cultural experiences.</p></div></div> <div class="card"><img src="https://wallpapers.com/images/high/kiyomizu-dera-temple-kyoto-japan-llk3nbdkm05wqn0c.webp"><div class="card-content"><h2>Japan Travel Guide</h2><p>Japan blends tradition and modernity, offering stunning landscapes, cuisine, and cultural experiences.</p></div></div> </div> <div class="summary-creative"><h2>Magic of Traveling</h2><div class="summary-columns"><div class="col"><p>Traveling exposes you to new histories, traditions, and worldviews.</p><p>Navigating unfamiliar places improves problem-solving and independence.</p><p>Seeing different art, architecture, and nature can spark fresh ideas.</p><p>Improves adaptability: You learn to adjust to different cultures, foods, and environments.</p></div><div class="col"><p>Meeting people from around the world helps you appreciate their unique ways of life.</p><p>Experiencing cultures firsthand challenges false assumptions.</p><p>You can create meaningful connections with people from different backgrounds.</p><p>Celebrates diversity: It helps you enjoy and value different customs, languages, and lifestyles.</p></div><div class="col"><p>Traveling provides a peaceful escape from daily routines and stress.</p><p>Each journey brings unique experiences and stories that last a lifetime.</p><p>Exploring new places with friends or family strengthens your connection and trust.</p><p>Seeing the beauty of the world helps you appreciate what you already have.</p></div></div></div><div class="footer">THE GATE WAY<span>- by you know who</span></div>`;
+            const informationHTML = `<div id="information-content"> <header><h1>Voices of Gaza</h1></header> <section class="container"> <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Gaza_Skyline.jpg/800px-Gza_Skyline.jpg" alt="Gaza City"><h2>Ancient City</h2><p>Gaza is one of the oldest cities in the world, with a history spanning over 3,000 years.</p></div> <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Gaza_Strip_map.png/800px-Gaza_Strip_map.png" alt="Gaza Map"><h2>Small but Mighty</h2><p>The Gaza Strip is only about 41 km long, yet home to over 2 million people.</p></div> <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Gaza_Fish_Market.jpg/800px-Gaza_Fish_Market.jpg" alt="Gaza Market"><h2>Rich Culture</h2><p>Gaza is known for its vibrant markets, traditional crafts, and warm community life.</p></div> <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Gaza_Mediterranean.jpg/800px-Gaza_Mediterranean.jpg" alt="Gaza Coast"><h2>Beautiful Coast</h2><p>It has a scenic Mediterranean coastline with sandy beaches and rich marine life.</p></div> <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Palestinian_children_Gaza.jpg/800px-Gaza_Children.jpg" alt="Gaza Children"><h2>Resilient People</h2><p>The people of Gaza show incredible strength, resilience, and hope despite hardships.</p></div> <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Olive_tree.jpg/800px-Olive_tree.jpg" alt="Olive Tree"><h2>Symbol of Peace</h2><p>The olive tree is a symbol of peace and endurance, deeply rooted in Gaza’s culture.</p></div> <div class="card"><img src="https://upload.wikimedia.org/wikipedia/com/thumb/e/e3/Gaza_University.jpg/800px-Gaza_University.jpg" alt="Gaza Education"><h2>Education & Future</h2><p>Despite challenges, Gaza has universities, schools, and many aspiring young minds.</p></div> <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Gaza_Reconstruction.jpg/800px-Gaza_Reconstruction.jpg" alt="Rebuilding Gaza"><h2>Hope for Tomorrow</h2><p>Communities continue to rebuild and dream of a peaceful and free future.</p></div> </section> <section class="summary-section"> <h2>Gaza at a Glance</h2> <ul><li>Ancient city with over 3,000 years of history.</li><li>A small but densely populated strip, home to over 2 million.</li><li>Rich cultural heritage with vibrant markets and crafts.</li><li>Features a beautiful Mediterranean coastline and beaches.</li><li>Inhabited by incredibly resilient and hopeful people.</li><li>The olive tree stands as a deep-rooted symbol of peace.</li><li>Committed to education with universities and schools.</li><li>A community that continuously rebuilds, fostering hope for peace.</li></ul> </section> <footer>Prayers for Peace and Freedom in Gaza</footer> </div>`;
 
-links.forEach(link=>{
-  link.addEventListener('click', e=>{
-    e.preventDefault();
-    showSection(link.getAttribute('data-key'));
-  });
-});
+            const musicToggle = document.getElementById('music-toggle');
+            const musicStatusText = document.getElementById('music-status-text');
+            const musicIcon = document.getElementById('music-icon');
+            const colorOn = '#bdef5a', colorOff = '#6e6e6e';
 
-const sidePanelHomeButton = document.querySelector('.side-panel nav a:first-child');
-sidePanelHomeButton.onclick = (e) => {
-  e.preventDefault();
-  showSection('content');
-  sidePanel.classList.remove('open'); 
-  overlay.classList.remove('active'); 
-  hamburger.style.display='flex'; 
-};
+            function updateMusicStatus(isMusicOn) {
+                musicStatusText.textContent = isMusicOn ? 'Music On' : 'Music Off';
+                musicIcon.style.color = isMusicOn ? colorOn : colorOff;
+                isMusicOn ? musicIcon.classList.add('glowing') : musicIcon.classList.remove('glowing');
+            }
+            musicToggle.addEventListener('change', function() {
+                updateMusicStatus(this.checked);
+                localStorage.setItem('musicState', this.checked ? 'on' : 'off');
+                if (!this.checked) stopCurrentAudio();
+            });
+            const savedMusicState = localStorage.getItem('musicState');
+            musicToggle.checked = (savedMusicState !== 'off');
+            updateMusicStatus(musicToggle.checked);
 
-hamburger.onclick = ()=>{ sidePanel.classList.add('open'); overlay.classList.add('active'); hamburger.style.display='none'; };
-closeBtn.onclick = overlay.onclick = ()=>{ sidePanel.classList.remove('open'); overlay.classList.remove('active'); hamburger.style.display='flex'; };
+            const contentData = {
+                content: { html: newContentHTML, audio: "good.mp3" },
+                informations: { html: informationHTML, audio: "cool.mp3" },
+                owner: { html: ownerHTML, audio: "cool.mp3" }
+            };
+            let currentAudio = null, isInitialLoad = true;
+            function stopCurrentAudio() { if(currentAudio){ currentAudio.pause(); try{currentAudio.currentTime=0;}catch(e){} currentAudio=null; } }
+            function playAudioOnce(audioFile){ if (!musicToggle.checked) return; stopCurrentAudio(); currentAudio=new Audio(audioFile); currentAudio.preload='auto'; currentAudio.play().catch(()=>{}); }
 
-window.addEventListener('popstate', (event) => {
-  if (event.state && event.state.key) {
-    showSection(event.state.key, true);
-  } else {
-    showSection('content', true);
-  }
-});
+            const contentArea = page3.querySelector('#contentArea');
+            const links = page3.querySelectorAll('.color-strip a');
+            
+            window.showSection = function(key, fromPopState = false) {
+                if (!fromPopState) history.pushState({ key: key }, '', `#${key}`);
+                
+                links.forEach(link => link.classList.remove('active'));
+                const sel = page3.querySelector(`.color-strip a[data-key="${key}"]`);
+                if(sel) {
+                    sel.classList.add('active');
+                }
 
-history.replaceState({ key: 'content' }, '', '#content');
-showSection('content');
+                const updateContent = () => {
+                    if(key==='owner') contentArea.innerHTML = contentData.owner.html;
+                    else if (key === 'content') contentArea.innerHTML = window.innerWidth <= 768 ? newContentHTML_Mobile : newContentHTML;
+                    else if (key === 'informations') contentArea.innerHTML = contentData.informations.html;
+                    else contentArea.innerHTML = `<div class="content-fullscreen">${contentData[key] ? contentData[key].html : 'Content not found'}</div>`;
+                    if (contentData[key] && contentData[key].audio) playAudioOnce(contentData[key].audio);
+                    contentArea.style.opacity = 1;
+                };
 
-</script>
+                if (isInitialLoad) { updateContent(); isInitialLoad = false; } 
+                else { contentArea.style.opacity = 0; setTimeout(updateContent, 200); }
+            }
+
+            links.forEach(link => { link.addEventListener('click', e => { e.preventDefault(); showSection(link.getAttribute('data-key')); }); });
+            window.addEventListener('popstate', (event) => { showSection((event.state && event.state.key) ? event.state.key : 'content', true); });
+            
+            history.replaceState({ key: 'content' }, '', '#content');
+            showSection('content');
+        });
+    </script>
 </body>
 </html>
