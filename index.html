@@ -1014,7 +1014,7 @@
       });
     </script>
     
-    <!-- SCRIPT FOR PAGE 3 (UPDATED FOR MOBILE ANIMATIONS) -->
+    <!-- SCRIPT FOR PAGE 3 (UPDATED FOR MOBILE ANIMATIONS AND FIXED AUDIO) -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const page3 = document.getElementById('page3'); if (!page3) return;
@@ -1024,39 +1024,86 @@
             const newContentHTML_Mobile = `<div class="top-text hidden"><h1>Who Is He</h1><p>Is he a visionary? Maybe an artist? or perhaps a man who can imagine?</p><p>He Who knows Will Not Obey to Those,But to Only One</p></div> <div class="content-area-inner"> <div class="card hidden"><img src="https://media2.thrillophilia.com/images/photos/000/178/603/original/1670915909_shutterstock_291252509.jpg?w=753&h=450&dpr=1.0" alt="Turkey travel locations"><div class="card-content"><h2>17 Places You Must Visit in Turkey</h2><p>Turkey is a land of contrasts, where ancient meets modern, Europe is separated from Asia and the East.</p></div></div> <div class="card hidden"><img src="https://www.thetimes.com/imageserver/image/%2Fe7026f07-497e-4213-b61c-2dd58b474c01.jpg?crop=1600%2C900%2C0%2C0&format=webp&quality=9&resize=1500" alt="Thailand beaches"><div class="card-content"><h2>Thailand’s Top 11 Gems</h2><p>Thailand is a vibrant country with stunning places and a fascinating history that draws people from all over.</p></div></div> <div class="card hidden"><img src="https://images.pexels.com/photos/21014/pexels-photo.jpg" alt="Person hiking in nature"><div class="card-content"><h2>A Guide to Traveling the World</h2><p>Discovering hidden cafes in Kyoto, navigating bustling souks in Marrakech, or stargazing in the Atacama Desert—each journey unveils a unique story.</p></div></div> <div class="card hidden"><img src="https://wildnordics.com/wp-content/uploads/2019/01/Dolomites_Italy.jpg" alt="Dolomites in Italy"><div class="card-content"><h2>European Countryside</h2><p>Explore the charming villages, scenic landscapes, and rich history of Europe’s countryside regions.</p></div></div> <div class="card hidden"><img src="https://media.istockphoto.com/id/1315260875/photo/aerial-view-over-a-tropical-forest-with-a-river-meandering-through-the-canopy-and-a-clouded.jpg?s=612x612&w=0&k=20&c=D-JOMC6tQVIJxNqmWwv8nOxagqqwBtsZK7dhAQePwgw=" alt="Amazon rainforest from above"><div class="card-content"><h2>Amazon Rainforest Adventure</h2><p>The Amazon Rainforest offers unmatched biodiversity, thrilling adventures, and incredible wildlife encounters.</p></div></div> <div class="card hidden"><img src="https://images.pexels.com/photos/8332567/pexels-photo-8332567.jpeg" alt="Bali beach"><div class="card-content"><h2>Exploring Bali Beaches</h2><p>Bali is famous for its beaches, coral reefs, and vibrant culture, attracting millions of tourists yearly.</p></div></div> <div class="card hidden"><img src="https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg" alt="New York city at night"><div class="card-content"><h2>New York City Lights</h2><p>New York City is a bustling metropolis filled with iconic landmarks, culture, and endless opportunities.</p></div></div> <div class="card hidden"><img src="https://picfiles.alphacoders.com/290/290260.jpg" alt="Sahara desert dunes"><div class="card-content"><h2>Sahara Desert Wonders</h2><p>The Sahara Desert is an endless landscape of dunes, sunsets, and unique cultural experiences.</p></div></div> <div class="card hidden"><img src="https://wallpapers.com/images/high/kiyomizu-dera-temple-kyoto-japan-llk3nbdkm05wqn0c.webp" alt="Japanese temple"><div class="card-content"><h2>Japan Travel Guide</h2><p>Japan blends tradition and modernity, offering stunning landscapes, cuisine, and cultural experiences.</p></div></div> </div> <div class="summary-creative hidden"><h2>Magic of Traveling</h2><div class="summary-columns"><div class="col"><p>Traveling exposes you to new histories, traditions, and worldviews.</p><p>Navigating unfamiliar places improves problem-solving and independence.</p><p>Seeing different art, architecture, and nature can spark fresh ideas.</p><p>Improves adaptability: You learn to adjust to different cultures, foods, and environments.</p></div><div class="col"><p>Meeting people from around the world helps you appreciate their unique ways of life.</p><p>Experiencing cultures firsthand challenges false assumptions.</p><p>You can create meaningful connections with people from different backgrounds.</p><p>Celebrates diversity: It helps you enjoy and value different customs, languages, and lifestyles.</p></div><div class="col"><p>Traveling provides a peaceful escape from daily routines and stress.</p><p>Each journey brings unique experiences and stories that last a lifetime.</p><p>Exploring new places with friends or family strengthens your connection and trust.</p><p>Seeing the beauty of the world helps you appreciate what you already have.</p></div></div></div><div class="footer hidden">THE GATE WAY<span>- by you know who</span></div>`;
             const informationHTML = `<div id="information-content"> <header class="hidden"><h1>Voices of Gaza</h1></header> <section class="container"> <div class="card hidden"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Gaza_Skyline.jpg/800px-Gaza_Skyline.jpg" alt="Gaza City"><h2>Ancient City</h2><p>Gaza is one of the oldest cities in the world, with a history spanning over 3,000 years.</p></div> <div class="card hidden"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Gaza_Strip_map.png/800px-Gaza_Strip_map.png" alt="Gaza Map"><h2>Small but Mighty</h2><p>The Gaza Strip is only about 41 km long, yet home to over 2 million people.</p></div> <div class="card hidden"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Gaza_Fish_Market.jpg/800px-Gaza_Fish_Market.jpg" alt="Gaza Market"><h2>Rich Culture</h2><p>Gaza is known for its vibrant markets, traditional crafts, and warm community life.</p></div> <div class="card hidden"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Gaza_Mediterranean.jpg/800px-Gaza_Mediterranean.jpg" alt="Gaza Coast"><h2>Beautiful Coast</h2><p>It has a scenic Mediterranean coastline with sandy beaches and rich marine life.</p></div> <div class="card hidden"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Palestinian_children_Gaza.jpg/800px-Gaza_Children.jpg" alt="Gaza Children"><h2>Resilient People</h2><p>The people of Gaza show incredible strength, resilience, and hope despite hardships.</p></div> <div class="card hidden"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Olive_tree.jpg/800px-Olive_tree.jpg" alt="Olive Tree"><h2>Symbol of Peace</h2><p>The olive tree is a symbol of peace and endurance, deeply rooted in Gaza’s culture.</p></div> <div class="card hidden"><img src="https://upload.wikimedia.org/wikipedia/com/thumb/e/e3/Gaza_University.jpg/800px-Gaza_University.jpg" alt="Gaza Education"><h2>Education & Future</h2><p>Despite challenges, Gaza has universities, schools, and many aspiring young minds.</p></div> <div class="card hidden"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Gaza_Reconstruction.jpg/800px-Gaza_Reconstruction.jpg" alt="Rebuilding Gaza"><h2>Hope for Tomorrow</h2><p>Communities continue to rebuild and dream of a peaceful and free future.</p></div> </section> <section class="summary-section hidden"> <h2>Gaza at a Glance</h2> <ul><li>Ancient city with over 3,000 years of history.</li><li>A small but densely populated strip, home to over 2 million.</li><li>Rich cultural heritage with vibrant markets and crafts.</li><li>Features a beautiful Mediterranean coastline and beaches.</li><li>Inhabited by incredibly resilient and hopeful people.</li><li>The olive tree stands as a deep-rooted symbol of peace.</li><li>Committed to education with universities and schools.</li><li>A community that continuously rebuilds, fostering hope for peace.</li></ul> </section> <footer class="hidden">Prayers for Peace and Freedom in Gaza</footer> </div>`;
             
-            // --- START: ADDED MUSIC TOGGLE LOGIC ---
+            // --- START: FULLY INTEGRATED AUDIO LOGIC ---
+            
             const musicToggle = document.getElementById('music-toggle');
             const musicStatusText = document.getElementById('music-status-text');
             const musicIcon = document.getElementById('music-icon');
             
-            function updateMusicStatus(isMusicOn) {
-                if (isMusicOn) {
-                    musicStatusText.textContent = 'Music On';
-                    musicIcon.classList.add('glowing');
-                    // Future code to play music would go here
-                } else {
-                    musicStatusText.textContent = 'Music Off';
-                    musicIcon.classList.remove('glowing');
-                     // Future code to pause music would go here
-                }
-            }
-            
-            musicToggle.addEventListener('change', function() {
-                updateMusicStatus(this.checked);
-            });
-            
-            // Set initial state on page load
-            updateMusicStatus(musicToggle.checked);
-            // --- END: ADDED MUSIC TOGGLE LOGIC ---
-
+            // Merged data object with HTML and audio file references
             const contentData = {
-                content_pc: { html: newContentHTML_PC },
-                content_mobile: { html: newContentHTML_Mobile },
-                informations: { html: informationHTML },
-                owner: { html: ownerHTML }
+                content: { 
+                    html_pc: newContentHTML_PC, 
+                    html_mobile: newContentHTML_Mobile,
+                    audio: "good.mp3"
+                },
+                informations: { 
+                    html: informationHTML,
+                    audio: "cool.mp3"
+                },
+                owner: { 
+                    html: ownerHTML,
+                    audio: "cool.mp3"
+                }
             };
+            
+            let currentAudio = null;
             let isInitialLoad = true;
             
+            // Function to stop any currently playing audio
+            function stopCurrentAudio() {
+                if(currentAudio){
+                    currentAudio.pause();
+                    try { currentAudio.currentTime = 0; } catch(e){} // Reset time
+                    currentAudio = null;
+                }
+            }
+
+            // Function to play a new audio file with looping
+            function playAudioLooping(audioFile){
+                if (!musicToggle.checked) return; // Don't play if music is off
+                stopCurrentAudio(); // Stop previous track
+                
+                currentAudio = new Audio(audioFile);
+                currentAudio.loop = true; // --- THIS IS THE FIX FOR LOOPING ---
+                currentAudio.play().catch(()=>{
+                    // Catch errors if the browser blocks autoplay before user interaction
+                });
+            }
+            
+            // Function to update the visual status of the music toggle
+            function updateMusicStatus(isMusicOn) {
+                musicStatusText.textContent = isMusicOn ? 'Music On' : 'Music Off';
+                isMusicOn ? musicIcon.classList.add('glowing') : musicIcon.classList.remove('glowing');
+            }
+            
+            // Event listener for the toggle switch
+            musicToggle.addEventListener('change', function() {
+                updateMusicStatus(this.checked);
+                localStorage.setItem('musicState', this.checked ? 'on' : 'off');
+                
+                if (this.checked) {
+                    // When turning music ON, find the current page and play its audio
+                    const activeLink = page3.querySelector('.color-strip a.active');
+                    if (activeLink) {
+                        const currentKey = activeLink.getAttribute('data-key');
+                        if (contentData[currentKey] && contentData[currentKey].audio) {
+                            playAudioLooping(contentData[currentKey].audio);
+                        }
+                    }
+                } else {
+                    // When turning music OFF, stop all audio
+                    stopCurrentAudio();
+                }
+            });
+            
+            // On page load, retrieve the saved music preference
+            const savedMusicState = localStorage.getItem('musicState');
+            musicToggle.checked = (savedMusicState !== 'off'); // Default to 'on' if no setting is saved
+            updateMusicStatus(musicToggle.checked);
+
+            // --- END: FULLY INTEGRATED AUDIO LOGIC ---
+
             const contentArea = page3.querySelector('#contentArea');
             const links = page3.querySelectorAll('.color-strip a');
             
@@ -1077,13 +1124,19 @@
 
                 const updateContent = () => {
                     let htmlToLoad = '';
+                    let audioToPlay = contentData[key] ? contentData[key].audio : null; // Get audio file
+
                     if (key === 'content') {
-                        // CRITICAL FIX: Choose content based on screen size to keep PC version working
-                        htmlToLoad = window.innerWidth <= 768 ? contentData.content_mobile.html : contentData.content_pc.html;
+                        htmlToLoad = window.innerWidth <= 768 ? contentData.content.html_mobile : contentData.content.html_pc;
                     } else {
                         htmlToLoad = contentData[key] ? contentData[key].html : 'Content not found';
                     }
                     contentArea.innerHTML = htmlToLoad;
+                    
+                    // After content is loaded, play the associated audio
+                    if (audioToPlay) {
+                        playAudioLooping(audioToPlay);
+                    }
                     
                     const hiddenElements = contentArea.querySelectorAll('.hidden');
                     hiddenElements.forEach((el) => observer.observe(el));
