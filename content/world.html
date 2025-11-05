@@ -1,1 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Visual Journey Through Turkey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #121212;
+            --surface-color: #1e1e1e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --accent-color: #a9d638;
+        }
 
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* --- IMMERSIVE HERO HEADER --- */
+        .hero-header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-primary);
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://media.istockphoto.com/id/2183488470/vector/high-detailed-vintage-old-world-map-with-decorative-elements-on-parchment-background.jpg?s=612x612&w=0&k=20&c=AdTGlyrBteUjZUZqvECfikpbZMpnEwbL6PktCnD_TR0=');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden; 
+        }
+        
+        .hero-content {
+            padding: 20px;
+        }
+
+        .hero-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin: 0;
+            text-transform: capitalize;
+        }
+        
+        .hero-header h1 span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            animation: letterReveal 1s forwards;
+        }
+        
+        .hero-header p {
+            font-size: 1.1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: subtitleReveal 1s forwards;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes letterReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        @keyframes subtitleReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Main Content Area --- */
+        main {
+            padding: 120px 0;
+        }
+
+        /* --- Location Section --- */
+        .location-reveal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto 120px;
+            padding: 0 20px;
+        }
+
+        .location-reveal:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        /* --- MODIFIED IMAGE CONTAINER FOR POLAROID EFFECT --- */
+        .image-container {
+            flex-basis: 55%;
+            border-radius: 8px; /* Reduced for a sharper, more photo-like corner */
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+
+            /* --- Frame Effect Properties --- */
+            background-color: #e0e0e0; /* The color of the frame */
+            padding: 15px 15px 70px 15px; /* Top, Right, Bottom, Left padding */
+            
+            opacity: 0;
+            transform: translateX(-50px) scale(0.95);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .location-reveal:nth-child(even) .image-container {
+            transform: translateX(50px) scale(0.95);
+        }
+
+        .image-container img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Text Container */
+        .text-container {
+            flex-basis: 45%;
+            position: relative;
+            padding: 20px;
+
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition-delay: 0.2s;
+        }
+        .location-reveal:nth-child(even) .text-container {
+            transform: translateX(-50px);
+        }
+
+        /* Animation Trigger State */
+        .location-reveal.in-view .image-container,
+        .location-reveal.in-view .text-container {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+        
+        .location-subtitle {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .text-container h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.2;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .deco-number {
+            font-size: 8rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.05);
+            line-height: 0.7;
+            margin-top: -2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            user-select: none;
+        }
+        
+        .mobile-break {
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #000;
+        }
+        
+        /* Responsive */
+        @media (max-width: 950px) {
+            .hero-header h1 { font-size: 4rem; }
+            .location-reveal,
+            .location-reveal:nth-child(even) {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .text-container { text-align: center; }
+        }
+
+        @media (max-width: 600px) {
+            .hero-header h1 { font-size: 3rem; }
+            .text-container h2 { font-size: 2.2rem; }
+            .deco-number { font-size: 6rem; margin-top: -2rem; }
+            
+            .mobile-break {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-header">
+        <div class="hero-content">
+            <h1>
+                <span style="animation-delay: 0.1s">A</span>
+                <span style="animation-delay: 0.2s"> </span>
+                <span style="animation-delay: 0.3s">V</span><span style="animation-delay: 0.4s">i</span><span style="animation-delay: 0.5s">s</span><span style="animation-delay: 0.6s">u</span><span style="animation-delay: 0.7s">a</span><span style="animation-delay: 0.8s">l</span>
+                <br class="mobile-break">
+                <span style="animation-delay: 1.0s">J</span><span style="animation-delay: 1.1s">o</span><span style="animation-delay: 1.2s">u</span><span style="animation-delay: 1.3s">r</span><span style="animation-delay: 1.4s">n</span><span style="animation-delay: 1.5s">e</span><span style="animation-delay: 1.6s">y</span>
+            </h1>
+           <p>Let's Explore The World</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="location-reveal">
+            <div class="image-container">
+                <img src="https://st3.depositphotos.com/12982378/32200/i/600/depositphotos_322004976-stock-photo-top-view-cut-out-white.jpg" alt="Pamukkale">
+            </div>
+            <div class="text-container">
+                <p class="location-subtitle">Travel Foundation</p>
+                <h2>Plan Smartly</h2>
+                <div class="deco-number">01</div>
+                <p>Before setting off, research visa requirements, currency, weather, and local customs. A few hours of planning can save days of stress later.</p>
+            </div>
+        </section>
+
+        <section class="location-reveal">
+            <div class="image-container">
+                <img src="https://st3.depositphotos.com/6462898/14592/i/600/depositphotos_145922517-stock-photo-open-travelers-bag-with-clothing.jpg" alt="Hagia Sophia">
+            </div>
+            <div class="text-container">
+                <p class="location-subtitle">Freedom in a Bag</p>
+                <h2>Pack Light</h2>
+                <div class="deco-number">02</div>
+                <p>Choose essentials only — versatile clothing, a good pair of shoes, and travel-sized items. The lighter you travel, the freer you feel.</p>
+            </div>
+        </section>
+
+        <section class="location-reveal">
+            <div class="image-container">
+                <img src="https://media.istockphoto.com/id/2156905237/photo/advantage-of-embedded-sim-connection-for-network-services-concept-a-persons-mobile-phone.jpg?s=612x612&w=0&k=20&c=GNEJU2irJ3wQrGAaMAC6-SseWhb7EZ-WrmqPzw1gzYU=" alt="Sumela Monastery">
+            </div>
+            <div class="text-container">
+                <p class="location-subtitle">Digital Lifeline</p>
+                <h2>Stay Connected</h2>
+                <div class="deco-number">03</div>
+                <p>Buy a local SIM or eSIM for affordable data and maps. Keep your important documents in cloud storage for easy access anywhere.</p>
+            </div>
+        </section>
+        
+        <section class="location-reveal">
+            <div class="image-container">
+                <img src="https://st.depositphotos.com/2374875/2854/i/600/depositphotos_28547067-stock-photo-businessman-in-suit-and-tie.jpg" alt="Ephesus Ancient City">
+            </div>
+            <div class="text-container">
+                <p class="location-subtitle">Travel Safety Net</p>
+                <h2>Protect Yourself</h2>
+                <div class="deco-number">04</div>
+                <p>Always have travel insurance — it covers flight delays, lost luggage, and medical emergencies that could otherwise ruin your trip.</p>
+            </div>
+        </section>
+
+        <section class="location-reveal">
+            <div class="image-container">
+                <img src="https://st4.depositphotos.com/1075727/31569/i/600/depositphotos_315696238-stock-photo-mexican-folk-dance-dancers-from.jpg" alt="Blue Mosque">
+            </div>
+            <div class="text-container">
+                <p class="location-subtitle">Cultural Connection</p>
+                <h2>Embrace Local Life</h2>
+                <div class="deco-number">05</div>
+                <p>Learn a few local phrases, try street food, and interact with locals. The real magic of travel is in the people you meet.</p>
+            </div>
+        </section>
+
+        <section class="location-reveal">
+            <div class="image-container">
+                <img src="https://travelbud.com/hubfs/Imported_Blog_Media/tuk-tuk-1.png">
+            </div>
+            <div class="text-container">
+                <p class="location-subtitle">Local Experience</p>
+                <h2>Use Public Transport</h2>
+                <div class="deco-number">06</div>
+                <p>Subways, buses, and trains show you a city’s true rhythm. It’s cheaper, greener, and often faster than taxis.</p>
+            </div>
+        </section>
+
+        <section class="location-reveal">
+            <div class="image-container">
+                <img src="https://plus.unsplash.com/premium_photo-1722593856385-9dcd8778eec5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687" alt="Mount Nemrut">
+            </div>
+            <div class="text-container">
+                <p class="location-subtitle">Traveler’s Code</p>
+                <h2>Respect the Place</h2>
+                <div class="deco-number">07</div>
+                <p>Follow local customs, avoid littering, and treat sacred or natural sites with care — leave beauty as you found it.</p>
+            </div>
+        </section>
+
+        <section class="location-reveal">
+            <div class="image-container">
+                <img src="https://w0.peakpx.com/wallpaper/167/673/HD-wallpaper-man-grapher-camera-silhouette-sunset.jpg" alt="Göreme Open-Air Museum">
+            </div>
+            <div class="text-container">
+                <p class="location-subtitle">Memory Over Media</p>
+                <h2>Capture Moments</h2>
+                <div class="deco-number">08</div>
+                <p>Take photos, but don’t forget to live in the moment. Watch sunsets, taste new flavors, and collect stories, not just pictures.</p>
+            </div>
+        </section>
+
+        <section class="location-reveal">
+            <div class="image-container">
+                <img src="https://media.istockphoto.com/id/1347628652/photo/heartbeat-line-on-red-apple-and-stethoscope-healthy-heart-diet-concept.jpg?s=612x612&w=0&k=20&c=Tuk6M5oGJ-UmLaEDw01MCRcYGlLGzHS3PpyFo6YbraQ=" alt="Aspendos Theatre">
+            </div>
+            <div class="text-container">
+                <p class="location-subtitle">Traveler’s Energy</p>
+                <h2>Stay Healthy</h2>
+                <div class="deco-number">09</div>
+                <p>Drink clean water, rest well, and carry basic medicines. A healthy traveler enjoys every adventure to the fullest.</p>
+            </div>
+        </section>
+        
+        <section class="location-reveal">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1510018407610-ec28c7890e6d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1267" alt="Cappadocia">
+            </div>
+            <div class="text-container">
+                <p class="location-subtitle">True Explorer’s Spirit</p>
+                <h2>Be Open-Minded</h2>
+                <div class="deco-number">10</div>
+                <p>The world is vast and diverse — every country has something to teach. Stay curious, kind, and ready for surprises.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 A Guide to Traveling the World. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Intersection Observer for slide-in animations
+        const sections = document.querySelectorAll('.location-reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.25 
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
