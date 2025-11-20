@@ -1196,4 +1196,33 @@
             } else {
                 loopStatusText.textContent = 'Loop Off';
                 loopIcon.classList.remove('glowing');
-        
+            }
+        }
+
+        loopToggle.addEventListener('change', function() {
+            const isLooping = this.checked;
+            updateLoopStatus(isLooping);
+            localStorage.setItem('loopState', isLooping ? 'on' : 'off');
+            
+            // This is a simplified way to access the currently playing audio
+            // It relies on the 'currentAudio' variable being in the global scope from the other script
+            // This is not ideal but works given the current structure.
+            if (typeof currentAudio !== 'undefined' && currentAudio) {
+                currentAudio.loop = isLooping;
+            }
+        });
+
+        // When the page loads, check for a saved state
+        const savedLoopState = localStorage.getItem('loopState');
+        if (savedLoopState === 'off') {
+            loopToggle.checked = false;
+        } else {
+            loopToggle.checked = true;
+        }
+
+        // Update the button's appearance to match the loaded state
+        updateLoopStatus(loopToggle.checked);
+    </script>
+    <!-- END: JAVASCRIPT FOR THE NEW LOOP TOGGLE BUTTON -->
+</body>
+</html>
