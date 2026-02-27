@@ -503,24 +503,25 @@
             z-index: 1;
         }
 
+        /* --- OWNER SECTION - RE-THEMED TO #a9d638 --- */
         #page3 .owner-section {
             position: relative; width: 100%; display: flex; justify-content: center; padding: 60px 0;
             background: url('pic/thu.jpg') no-repeat center top; background-size: cover; z-index: 0; overflow: hidden;
         }
         #page3 .owner-container {
             width: min(92vw, 800px); background: rgba(17,17,17,0.65); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); 
-            padding: 40px; border-radius: 20px; box-shadow: 0 0 40px rgba(255, 215, 0, 0.45); color: #f5f5f5;
+            padding: 40px; border-radius: 20px; box-shadow: 0 0 40px rgba(169, 214, 56, 0.35); color: #f5f5f5;
             display: flex; flex-direction: column; justify-content: space-between; min-height: 600px; text-align: center; position: relative; z-index: 1;
         }
         #page3 .owner-container * { user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none; }
-        #page3 .owner-pic { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid #ffd700; box-shadow: 0 0 18px rgba(255,215,0,0.35); margin-bottom: 16px; align-self: center; }
-        #page3 .owner-container h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #ffd700; margin: 8px 0; text-shadow: 0 0 12px rgba(255,215,0,0.35); }
+        #page3 .owner-pic { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid #a9d638; box-shadow: 0 0 18px rgba(169, 214, 56, 0.35); margin-bottom: 16px; align-self: center; }
+        #page3 .owner-container h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #a9d638; margin: 8px 0; text-shadow: 0 0 12px rgba(169, 214, 56, 0.35); }
         #page3 .owner-container p { font-family: 'Roboto', sans-serif; color: #ddd; font-size: 1rem; line-height: 1.6; }
         #page3 .social-text { font-weight: bold; margin-bottom: 12px; }
         #page3 .social-links { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
         #page3 .social-links a { width: 60px; height: 60px; border-radius: 50%; background: rgba(0,0,0,0.55); display: flex; align-items: center; justify-content: center; transition: 0.25s; border: 2px solid #000; }
-        #page3 .social-links a:hover { transform: scale(1.15); border-color: #ffd700; box-shadow: 0 0 18px rgba(255,215,0,0.45); }
-        #page3 .social-links svg { width: 44px; height: 44px; fill: #ffd700; }
+        #page3 .social-links a:hover { transform: scale(1.15); border-color: #a9d638; box-shadow: 0 0 18px rgba(169, 214, 56, 0.45); }
+        #page3 .social-links svg { width: 44px; height: 44px; fill: #a9d638; }
 
         /* --- GLOBAL SIDE PANEL STYLES (No longer tied to #page3) --- */
         .hamburger { 
@@ -592,22 +593,140 @@
         input:checked + .slider:before { background-color: white; transform: translateX(24px); }
         /* --- END: STYLES FOR TOGGLE BUTTONS --- */
 
-        #page3 #information-content{margin:0;padding:0;background:linear-gradient(135deg,#e0f2f7,#9ff5d0);font-family:'Roboto',sans-serif;color:#333;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
-        #page3 #information-content header{text-align:center;padding:2rem 1rem;background:linear-gradient(45deg,#2c7a7b,#319795);color:white;border-bottom:6px solid #285e61}
-        #page3 #information-content header h1{font-family:'Fredoka One',cursive;font-size:3rem;margin:0;letter-spacing:2px}
-        #page3 #information-content .container{display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:4rem;padding:4rem}
-        #page3 #information-content .card{background:white;border-radius:20px;padding:1.5rem;text-align:center;box-shadow:0 68px 15px rgba(0,0,0,0.1);position:relative;overflow:hidden;transition:transform .3s;display:flex;flex-direction:column;justify-content:flex-start}
-        #page3 #information-content .card:hover{transform:translateY(-10px)}
-        #page3 #information-content .card img{width:100%;height:200px;object-fit:cover;border-radius:15px;margin-bottom:1rem;-webkit-user-drag:none;-khtml-user-drag:none;-moz-user-drag:none;-o-user-drag:none;user-drag:none}
-        #page3 #information-content .card h2{color:#2c7a7b;margin-bottom:.5rem;font-size:1.3rem;font-family:'Fredoka One',cursive}
-        #page3 #information-content .card p{font-size:1rem;line-height:3.5;color:#000000;}
-        #page3 #information-content footer{text-align:center;padding:1.5rem;background:#319795;border-top:6px solid #285e61;color:#fff;font-weight:bold;font-family:'Fredoka One',cursive;letter-spacing:1px}
-        #page3 #information-content .card::after{content:"🕊️";font-size:4rem;position:absolute;bottom:-10px;right:-10px;opacity:.05;transform:rotate(-20deg)}
-        #page3 #information-content .summary-section{background:#f0f8f8;padding:4rem;margin-top:4rem;text-align:center;border-top:4px solid #319795;border-bottom:4px solid #319795}
-        #page3 #information-content .summary-section h2{font-family:'Fredoka One',cursive;font-size:2.5rem;color:#2c7a7b;margin-bottom:2rem}
-        #page3 #information-content .summary-section ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:1rem;max-width:800px;margin:2rem auto 0;text-align:left}
-        #page3 #information-content .summary-section li{background:white;padding:1rem 1.5rem;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.08);font-size:1.1rem;color:#444;display:flex;align-items:center}
-        #page3 #information-content .summary-section li::before{content:"✴";margin-right:10px;font-size:1.2rem}
+        /* --- INFORMATIONS SECTION - RE-THEMED TO #a9d638 --- */
+        #page3 #information-content { 
+            margin: 0; 
+            padding: 0; 
+            background: #000000; 
+            font-family: 'Roboto', sans-serif; 
+            color: #f0f0f0; 
+            -webkit-touch-callout: none; 
+            -webkit-user-select: none; 
+            -moz-user-select: none; 
+            -ms-user-select: none; 
+            user-select: none; 
+        }
+        #page3 #information-content header { 
+            text-align: center; 
+            padding: 2rem 1rem; 
+            background: #1c1c1c; 
+            color: #a9d638; 
+            border-bottom: 6px solid #a9d638; 
+        }
+        #page3 #information-content header h1 { 
+            font-family: 'Fredoka One', cursive; 
+            font-size: 3rem; 
+            margin: 0; 
+            letter-spacing: 2px; 
+        }
+        #page3 #information-content .container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 4rem; 
+            padding: 4rem; 
+        }
+        #page3 #information-content .card { 
+            background: #1c1c1c; 
+            border: 1px solid rgba(169, 214, 56, 0.2); 
+            border-radius: 20px; 
+            padding: 1.5rem; 
+            text-align: center; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5); 
+            position: relative; 
+            overflow: hidden; 
+            transition: transform .3s, border-color .3s, box-shadow .3s; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-start; 
+        }
+        #page3 #information-content .card:hover { 
+            transform: translateY(-10px); 
+            border-color: #a9d638; 
+            box-shadow: 0 10px 30px rgba(169, 214, 56, 0.15); 
+        }
+        #page3 #information-content .card img { 
+            width: 100%; 
+            height: 200px; 
+            object-fit: cover; 
+            border-radius: 15px; 
+            margin-bottom: 1rem; 
+            -webkit-user-drag: none; 
+            -khtml-user-drag: none; 
+            -moz-user-drag: none; 
+            -o-user-drag: none; 
+            user-drag: none; 
+        }
+        #page3 #information-content .card h2 { 
+            color: #a9d638; 
+            margin-bottom: .5rem; 
+            font-size: 1.3rem; 
+            font-family: 'Fredoka One', cursive; 
+        }
+        #page3 #information-content .card p { 
+            font-size: 1rem; 
+            line-height: 1.6; 
+            color: #b3b3b3; 
+        }
+        #page3 #information-content footer { 
+            text-align: center; 
+            padding: 1.5rem; 
+            background: #1c1c1c; 
+            border-top: 6px solid #a9d638; 
+            color: #a9d638; 
+            font-weight: bold; 
+            font-family: 'Fredoka One', cursive; 
+            letter-spacing: 1px; 
+        }
+        #page3 #information-content .card::after { 
+            content: "🕊️"; 
+            font-size: 4rem; 
+            position: absolute; 
+            bottom: -10px; 
+            right: -10px; 
+            opacity: .05; 
+            transform: rotate(-20deg); 
+        }
+        #page3 #information-content .summary-section { 
+            background: #121212; 
+            padding: 4rem; 
+            margin-top: 4rem; 
+            text-align: center; 
+            border-top: 4px solid #a9d638; 
+            border-bottom: 4px solid #a9d638; 
+        }
+        #page3 #information-content .summary-section h2 { 
+            font-family: 'Fredoka One', cursive; 
+            font-size: 2.5rem; 
+            color: #a9d638; 
+            margin-bottom: 2rem; 
+        }
+        #page3 #information-content .summary-section ul { 
+            list-style: none; 
+            padding: 0; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 1rem; 
+            max-width: 800px; 
+            margin: 2rem auto 0; 
+            text-align: left; 
+        }
+        #page3 #information-content .summary-section li { 
+            background: #1c1c1c; 
+            padding: 1rem 1.5rem; 
+            border-radius: 10px; 
+            border: 1px solid rgba(169, 214, 56, 0.15); 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+            font-size: 1.1rem; 
+            color: #e0e0e0; 
+            display: flex; 
+            align-items: center; 
+        }
+        #page3 #information-content .summary-section li::before { 
+            content: "✴"; 
+            margin-right: 10px; 
+            font-size: 1.2rem; 
+            color: #a9d638;
+        }
         
         /* --- NEW: SCROLL ANIMATION STYLES --- */
         .hidden {
@@ -876,7 +995,7 @@
             if (window.innerWidth <= 768) return; // Don't run this animation on mobile
             const animatedSvgElements = document.querySelectorAll('.blueprint-svg path, .blueprint-svg circle, .blueprint-svg line');
             animatedSvgElements.forEach(el => { const length = el.getTotalLength ? el.getTotalLength() : (2 * Math.PI * (el.r?.baseVal.value || 0)); if (length) { el.style.strokeDasharray = length; el.style.strokeDashoffset = length; } });
-            const canvas = document.getElementById('line-canvas'); if (!canvas) return; const ctx = canvas.getContext('2d'); let lines = [];
+            const canvas = document.getElementById('line-canvas'); if (!canvas) return; const ctx = canvas.getContext('2d'); let lines =[];
             function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
             function getElementCenter(selector) { const el = document.querySelector(selector); if (!el) return { x: 0, y: 0, width: 0, height: 0 }; const rect = el.getBoundingClientRect(); return { x: rect.left, y: rect.top, width: rect.width, height: rect.height }; }
             class AnimatedLine { constructor(config) { this.start = config.start; this.end = config.end; this.cp1 = config.cp1; this.cp2 = config.cp2; this.delay = config.delay; this.progress = 0; this.startTime = null; this.duration = 2800; }
@@ -884,7 +1003,7 @@
                     ctx.strokeStyle = gradient; ctx.lineWidth = 3; ctx.shadowColor = "rgba(169, 214, 56, 0.7)"; ctx.shadowBlur = 10; ctx.stroke(); ctx.shadowBlur = 0; }
                 update(timestamp) { if (!this.startTime) this.startTime = timestamp; const elapsed = timestamp - this.startTime; if (elapsed > this.delay) { const drawElapsed = elapsed - this.delay; this.progress = Math.min(drawElapsed / this.duration, 1); } } }
             function definePaths() { const exploreRect = getElementCenter(".background-text div:first-child"); const estateRect = getElementCenter(".background-text div:last-child"); const card1Rect = getElementCenter("#card1"); const card2Rect = getElementCenter("#card2"); const w = window.innerWidth; const h = window.innerHeight;
-                lines = [ new AnimatedLine({ start: { x: exploreRect.x + exploreRect.width, y: exploreRect.y + exploreRect.height / 2 }, end: { x: card1Rect.x, y: card1Rect.y + card1Rect.height * 0.25 }, cp1: { x: (exploreRect.x + exploreRect.width) + (card1Rect.x - (exploreRect.x + exploreRect.width)) * 0.3, y: (exploreRect.y + exploreRect.height / 2) - 150 }, delay: 0 }), new AnimatedLine({ start: { x: estateRect.x + estateRect.width, y: estateRect.y + estateRect.height / 2 }, end: { x: card2Rect.x, y: card2Rect.y + card2Rect.height * 0.75}, cp1: { x: (estateRect.x + estateRect.width) + (card2Rect.x - (estateRect.x + estateRect.width)) * 0.6, y: (card2Rect.y + card2Rect.height * 0.75) + 100 }, delay: 250 }), new AnimatedLine({ start: { x: estateRect.x + estateRect.width * 0.85, y: estateRect.y + estateRect.height + 20 }, end: { x: card2Rect.x + card2Rect.width * 0.8, y: card2Rect.y + card2Rect.height}, cp1: { x: card1Rect.x + card1Rect.width, y: h + 100 }, cp2: { x: card2Rect.x + card2Rect.width + 150, y: h}, delay: 350 }), new AnimatedLine({ start: { x: estateRect.x + estateRect.width * 0.85, y: estateRect.y + estateRect.height + 20 }, end: { x: w - 20, y: 20 }, cp1: { x: card1Rect.x, y: h + 150 }, cp2: { x: w, y: h * 0.35 }, delay: 400 }) ]; }
+                lines =[ new AnimatedLine({ start: { x: exploreRect.x + exploreRect.width, y: exploreRect.y + exploreRect.height / 2 }, end: { x: card1Rect.x, y: card1Rect.y + card1Rect.height * 0.25 }, cp1: { x: (exploreRect.x + exploreRect.width) + (card1Rect.x - (exploreRect.x + exploreRect.width)) * 0.3, y: (exploreRect.y + exploreRect.height / 2) - 150 }, delay: 0 }), new AnimatedLine({ start: { x: estateRect.x + estateRect.width, y: estateRect.y + estateRect.height / 2 }, end: { x: card2Rect.x, y: card2Rect.y + card2Rect.height * 0.75}, cp1: { x: (estateRect.x + estateRect.width) + (card2Rect.x - (estateRect.x + estateRect.width)) * 0.6, y: (card2Rect.y + card2Rect.height * 0.75) + 100 }, delay: 250 }), new AnimatedLine({ start: { x: estateRect.x + estateRect.width * 0.85, y: estateRect.y + estateRect.height + 20 }, end: { x: card2Rect.x + card2Rect.width * 0.8, y: card2Rect.y + card2Rect.height}, cp1: { x: card1Rect.x + card1Rect.width, y: h + 100 }, cp2: { x: card2Rect.x + card2Rect.width + 150, y: h}, delay: 350 }), new AnimatedLine({ start: { x: estateRect.x + estateRect.width * 0.85, y: estateRect.y + estateRect.height + 20 }, end: { x: w - 20, y: 20 }, cp1: { x: card1Rect.x, y: h + 150 }, cp2: { x: w, y: h * 0.35 }, delay: 400 }) ]; }
             function animate(timestamp) { ctx.clearRect(0, 0, canvas.width, canvas.height); let allDone = true; lines.forEach(line => { line.update(timestamp); line.draw(); if(line.progress < 1) allDone = false; }); if(!allDone) { requestAnimationFrame(animate); } }
             resizeCanvas(); window.addEventListener('resize', () => { resizeCanvas(); definePaths(); }); setTimeout(() => { definePaths(); requestAnimationFrame(animate); }, 3300);
         });
@@ -1000,10 +1119,10 @@
 
         const canvas = page2.querySelector('#background-chart'); if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        let points = [], targetPoints = [], lastUpdate = 0; const updateInterval = 2000;
+        let points = [], targetPoints =[], lastUpdate = 0; const updateInterval = 2000;
         function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initPoints(); }
         function initPoints() {
-            points = []; targetPoints = []; const pointCount = Math.floor(canvas.width / 40);
+            points = []; targetPoints =[]; const pointCount = Math.floor(canvas.width / 40);
             for (let i = 0; i <= pointCount; i++) {
                 const x = i * 40; const y = canvas.height * (0.4 + Math.random() * 0.4);
                 points.push({ x, y }); targetPoints.push({ x, y: canvas.height * (0.4 + Math.random() * 0.4) });
@@ -1031,6 +1150,9 @@
     
     <!-- SCRIPT FOR PAGE 3 (UPDATED FOR MOBILE ANIMATIONS AND FIXED AUDIO) -->
     <script>
+        // --- CHANGED: Made currentAudio globally accessible to fix loop scope issue ---
+        window.currentAudio = null;
+
         document.addEventListener('DOMContentLoaded', () => {
             const page3 = document.getElementById('page3'); if (!page3) return;
 
@@ -1062,19 +1184,17 @@
                 }
             };
             
-            let currentAudio = null;
             let isInitialLoad = true;
             
             // Function to stop any currently playing audio
             function stopCurrentAudio() {
-                if(currentAudio){
-                    currentAudio.pause();
-                    try { currentAudio.currentTime = 0; } catch(e){} // Reset time
-                    currentAudio = null;
+                if(window.currentAudio){
+                    window.currentAudio.pause();
+                    try { window.currentAudio.currentTime = 0; } catch(e){} // Reset time
+                    window.currentAudio = null;
                 }
             }
 
-            // --- CHANGED: Renamed function and updated logic ---
             // This function now plays audio and respects the loop toggle's state.
             function playAudioForSection(audioFile){
                 if (!musicToggle.checked) return; // Rule #1: Music button is the master switch.
@@ -1082,11 +1202,11 @@
                 
                 const loopToggle = document.getElementById('loop-toggle');
                 
-                currentAudio = new Audio(audioFile);
+                window.currentAudio = new Audio(audioFile);
                 // Rule #2: Set the loop property based on the loop toggle's current state.
-                currentAudio.loop = loopToggle.checked; 
+                window.currentAudio.loop = loopToggle.checked; 
                 
-                currentAudio.play().catch(()=>{
+                window.currentAudio.play().catch(()=>{
                     // Catch errors if the browser blocks autoplay before user interaction
                 });
             }
@@ -1097,7 +1217,6 @@
                 isMusicOn ? musicIcon.classList.add('glowing') : musicIcon.classList.remove('glowing');
             }
             
-            // --- CHANGED: Updated function call ---
             // Event listener for the toggle switch
             musicToggle.addEventListener('change', function() {
                 updateMusicStatus(this.checked);
@@ -1154,9 +1273,7 @@
                     }
                     contentArea.innerHTML = htmlToLoad;
                     
-                    // --- CHANGED: Simplified logic and updated function call ---
                     // After content is loaded, play the associated audio.
-                    // The function itself now handles all logic for the toggles.
                     if (audioToPlay) {
                         playAudioForSection(audioToPlay);
                     }
@@ -1204,11 +1321,9 @@
             updateLoopStatus(isLooping);
             localStorage.setItem('loopState', isLooping ? 'on' : 'off');
             
-            // This is a simplified way to access the currently playing audio
-            // It relies on the 'currentAudio' variable being in the global scope from the other script
-            // This is not ideal but works given the current structure.
-            if (typeof currentAudio !== 'undefined' && currentAudio) {
-                currentAudio.loop = isLooping;
+            // Apply the loop state to the currently playing audio (now globally scoped)
+            if (typeof window.currentAudio !== 'undefined' && window.currentAudio) {
+                window.currentAudio.loop = isLooping;
             }
         });
 
