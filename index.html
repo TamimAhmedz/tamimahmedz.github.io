@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- ─── BROWSER TAB TITLE & ICON (FAVICON) ─── -->
 <title>TamimAhmedz: Explorer of Abyss!</title>
 <link rel="icon" type="image/jpeg" href="pic/L.svg">
-
+ 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -65,27 +64,55 @@
     --grid-line: rgba(0,0,0,0.025);
   }
  
-  /* ─── GREEN THEME ─── */
-  [data-theme="green"] {
-    --bg: #0c0f08;
-    --bg2: #121509;
-    --bg3: #1a1e0e;
-    --surface: rgba(169,214,56,0.05);
-    --surface-hover: rgba(169,214,56,0.09);
-    --border: rgba(169,214,56,0.1);
-    --border-strong: rgba(169,214,56,0.22);
-    --text: #eef5e0;
-    --text-2: #8fa870;
-    --text-3: #4a5c30;
-    --accent: #a9d638;
-    --accent-dim: rgba(169,214,56,0.12);
-    --accent-glow: rgba(169,214,56,0.07);
-    --nav-bg: rgba(12,15,8,0.72);
-    --nav-border: rgba(169,214,56,0.08);
-    --tag-bg: rgba(169,214,56,0.1);
-    --tag-color: #a9d638;
-    --dot: rgba(169,214,56,0.12);
-    --grid-line: rgba(169,214,56,0.03);
+  /* ─── PURPLE THEME ─── */
+  [data-theme="purple"] {
+    --bg: #0a0510;
+    --bg2: #120a1c;
+    --bg3: #1a0f29;
+    --surface: rgba(176,132,255,0.05);
+    --surface-hover: rgba(176,132,255,0.09);
+    --border: rgba(176,132,255,0.15);
+    --border-strong: rgba(176,132,255,0.3);
+    --text: #eae3f5;
+    --text-2: #ab9bc2;
+    --text-3: #6b5c85;
+    --accent: #b084ff;
+    --accent-dim: rgba(176,132,255,0.12);
+    --accent-glow: rgba(176,132,255,0.1);
+    --nav-bg: rgba(10,5,16,0.72);
+    --nav-border: rgba(176,132,255,0.1);
+    --tag-bg: rgba(176,132,255,0.1);
+    --tag-color: #b084ff;
+    --dot: rgba(176,132,255,0.12);
+    --grid-line: rgba(176,132,255,0.06);
+  }
+ 
+  /* ─── PURPLE CSS BACKGROUND LAYERS ─── */
+  .bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  .bg-layer  { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; overflow: hidden; }
+  [data-theme="purple"] .layer-purple { opacity: 1; }
+  .layer-purple { background: var(--bg); }
+  .orb-1, .orb-2 {
+    position: absolute; border-radius: 50%;
+    animation: orb-pulse 15s ease-in-out infinite alternate;
+  }
+  .orb-1 {
+    width: 70vw; height: 70vw; top: -20vh; left: -20vw;
+    background: radial-gradient(circle, rgba(176,132,255,0.08) 0%, transparent 60%);
+  }
+  .orb-2 {
+    width: 60vw; height: 60vw; bottom: -20vh; right: -10vw;
+    background: radial-gradient(circle, rgba(88,28,255,0.06) 0%, transparent 60%);
+    animation-direction: alternate-reverse; animation-duration: 20s;
+  }
+  .layer-purple::after {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(var(--grid-line) 1.5px, transparent 1.5px);
+    background-size: 30px 30px;
+  }
+  @keyframes orb-pulse {
+    0%   { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.15) translate(3vw, -3vh); }
   }
  
   /* ─── RESET ─── */
@@ -101,28 +128,21 @@
     overflow-x: hidden;
     transition: background var(--transition), color var(--transition);
   }
-
-  /* ─── PREVENT DRAGGING ─── */
-  .about-photo img,
-  .contact-link {
-    -webkit-user-drag: none;
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
-    user-drag: none;
-  }
  
-  /* ─── GRID BACKGROUND ─── */
-  body::before {
-    content: '';
+  /* ─── BACKGROUND CANVAS ─── */
+  #bgCanvas {
     position: fixed;
     inset: 0;
-    background-image:
-      linear-gradient(var(--grid-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
     z-index: 0;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+  }
+ 
+  /* ─── PREVENT DRAGGING ─── */
+  .about-photo img, .contact-link {
+    -webkit-user-drag: none;
+    user-drag: none;
   }
  
   /* ─── HAMBURGER ─── */
@@ -245,9 +265,9 @@
   }
   .theme-btn:hover { transform: scale(1.15); }
   .theme-btn.active { border-color: var(--accent); }
-  .theme-btn.t-dark  { background: #0a0a0b; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15); }
-  .theme-btn.t-light { background: #f7f5f2; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12); }
-  .theme-btn.t-green { background: #a9d638; }
+  .theme-btn.t-dark   { background: #0a0a0b; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15); }
+  .theme-btn.t-light  { background: #f7f5f2; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12); }
+  .theme-btn.t-purple { background: #b084ff; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.2); }
  
   /* ─── LAYOUT ─── */
   .container { width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
@@ -260,6 +280,7 @@
     top: -200px; right: -150px; pointer-events: none;
     animation: pulse 8s ease-in-out infinite;
   }
+  @keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.1); opacity: 1; } }
   .hero-content { max-width: 900px; padding: 5rem 0; text-align: left; }
   .hero-label {
     font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.18em;
@@ -441,6 +462,17 @@
 </head>
 <body>
  
+<!-- ─── PURPLE CSS BACKGROUND ─── -->
+<div class="bg-canvas">
+  <div class="bg-layer layer-purple">
+    <div class="orb-1"></div>
+    <div class="orb-2"></div>
+  </div>
+</div>
+ 
+<!-- ─── BACKGROUND CANVAS (dark + light themes) ─── -->
+<canvas id="bgCanvas"></canvas>
+ 
 <!-- ─── DOWNLOAD TOAST ─── -->
 <div class="dl-toast" id="dlToast">⬇ Downloading CV…</div>
  
@@ -493,9 +525,9 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="theme-switcher" title="Switch theme">
-      <button class="theme-btn t-dark active" data-theme="dark" aria-label="Dark theme"></button>
-      <button class="theme-btn t-light" data-theme="light" aria-label="Light theme"></button>
-      <button class="theme-btn t-green" data-theme="green" aria-label="Green theme"></button>
+      <button class="theme-btn t-dark active" data-theme="dark"   aria-label="Dark theme"></button>
+      <button class="theme-btn t-light"        data-theme="light"  aria-label="Light theme"></button>
+      <button class="theme-btn t-purple"       data-theme="purple" aria-label="Purple theme"></button>
     </div>
   </div>
 </nav>
@@ -534,17 +566,10 @@
     <div class="about-grid">
       <div class="about-photo-wrap reveal">
         <div class="about-photo">
-          <!-- Added draggable="false" here -->
-          <img
-            src="pic/69.jpg"
-            alt="Colourful assorted fruits — placeholder"
-            loading="lazy"
-            draggable="false"
-          >
+          <img src="pic/69.jpg" alt="Tamim Ahmedz" loading="lazy" draggable="false">
           <div class="photo-badge">Tamim Ahmedz · Dev</div>
         </div>
       </div>
- 
       <div class="about-content reveal">
         <p>Hello — I'm <strong>Tamim Ahmedz</strong>, a web developer with over seven years of experience turning complex ideas into elegant, performant digital products. I work at the intersection of engineering and design, where clarity meets creativity.</p>
         <p>My journey started with a passion for open-source and a browser's "Inspect Element." Since then I've collaborated with startups, agencies, and Fortune 500 companies to ship products that millions of people use every day.</p>
@@ -580,77 +605,49 @@
       </div>
       <a href="#contact" class="btn-ghost" style="flex-shrink:0;">Commission a project →</a>
     </div>
- 
     <div class="works-grid reveal">
- 
-      <!-- CARD 1 — Oranges -->
       <a class="work-card" href="https://tamimahmedz.github.io/info" target="_blank">
         <div class="work-num">Project — 001</div>
-        <div class="work-thumb">
-          <img src="pic/firstex.png" alt="Oranges" loading="lazy">
-        </div>
+        <div class="work-thumb"><img src="pic/firstex.png" alt="Inventhrax" loading="lazy"></div>
         <div class="work-title">Inventhrax <span class="work-arrow">↗</span></div>
-        <p class="work-desc">A website that provides information on Gaza, compiled from verified articles and reputable news reports.
-All content is carefully sourced to ensure accuracy, credibility, and reliability.
- </p>
+        <p class="work-desc">A website that provides information on Gaza, compiled from verified articles and reputable news reports. All content is carefully sourced to ensure accuracy, credibility, and reliability.</p>
         <div class="work-tags"><span class="tag">React</span><span class="tag">D3.js</span><span class="tag">Node</span><span class="tag">PostgreSQL</span></div>
       </a>
- 
-      <!-- CARD 2 — Strawberries -->
       <a class="work-card" href="https://google.com" target="_blank">
         <div class="work-num">Project — 002</div>
-        <div class="work-thumb">
-          <img src="https://images.pexels.com/photos/2294471/pexels-photo-2294471.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Strawberries" loading="lazy">
-        </div>
+        <div class="work-thumb"><img src="https://images.pexels.com/photos/2294471/pexels-photo-2294471.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Fauna" loading="lazy"></div>
         <div class="work-title">Fauna E-commerce <span class="work-arrow">↗</span></div>
         <p class="work-desc">High-performance headless storefront achieving a 98 Lighthouse score, processing $4M+ monthly for a sustainable fashion brand.</p>
         <div class="work-tags"><span class="tag">Next.js</span><span class="tag">Shopify</span><span class="tag">Tailwind</span><span class="tag">Vercel</span></div>
       </a>
- 
-      <!-- CARD 3 — Bananas -->
       <a class="work-card" href="https://google.com" target="_blank">
         <div class="work-num">Project — 003</div>
-        <div class="work-thumb">
-          <img src="https://images.pexels.com/photos/1560932/pexels-photo-1560932.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Bananas" loading="lazy">
-        </div>
+        <div class="work-thumb"><img src="https://images.pexels.com/photos/1560932/pexels-photo-1560932.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Meridian" loading="lazy"></div>
         <div class="work-title">Meridian Bank App <span class="work-arrow">↗</span></div>
         <p class="work-desc">A mobile-first fintech web app with secure 2FA, transaction analytics, and WCAG 2.1 AA accessibility compliance.</p>
         <div class="work-tags"><span class="tag">Vue 3</span><span class="tag">TypeScript</span><span class="tag">AWS</span><span class="tag">A11y</span></div>
       </a>
- 
-      <!-- CARD 4 — Watermelon -->
       <a class="work-card" href="https://google.com" target="_blank">
         <div class="work-num">Project — 004</div>
-        <div class="work-thumb">
-          <img src="https://images.pexels.com/photos/1028599/pexels-photo-1028599.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Watermelon" loading="lazy">
-        </div>
+        <div class="work-thumb"><img src="https://images.pexels.com/photos/1028599/pexels-photo-1028599.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Arden" loading="lazy"></div>
         <div class="work-title">Arden Portfolio CMS <span class="work-arrow">↗</span></div>
         <p class="work-desc">A bespoke headless CMS and portfolio system for a globally touring visual artist, featuring 8 languages and a custom image pipeline.</p>
         <div class="work-tags"><span class="tag">Astro</span><span class="tag">Sanity</span><span class="tag">i18n</span><span class="tag">Cloudflare</span></div>
       </a>
- 
-      <!-- CARD 5 — Mango -->
       <a class="work-card" href="https://google.com" target="_blank">
         <div class="work-num">Project — 005</div>
-        <div class="work-thumb">
-          <img src="https://images.pexels.com/photos/3064979/pexels-photo-3064979.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mango" loading="lazy">
-        </div>
+        <div class="work-thumb"><img src="https://images.pexels.com/photos/3064979/pexels-photo-3064979.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Pulse" loading="lazy"></div>
         <div class="work-title">Pulse Health Portal <span class="work-arrow">↗</span></div>
         <p class="work-desc">HIPAA-compliant patient portal with appointment scheduling, encrypted messaging, and integration with three EHR platforms.</p>
         <div class="work-tags"><span class="tag">React</span><span class="tag">GraphQL</span><span class="tag">HIPAA</span><span class="tag">Redis</span></div>
       </a>
- 
-      <!-- CARD 6 — Grapes -->
       <a class="work-card" href="https://google.com" target="_blank">
         <div class="work-num">Project — 006</div>
-        <div class="work-thumb">
-          <img src="https://images.pexels.com/photos/1414110/pexels-photo-1414110.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Grapes" loading="lazy">
-        </div>
+        <div class="work-thumb"><img src="https://images.pexels.com/photos/1414110/pexels-photo-1414110.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Orbit" loading="lazy"></div>
         <div class="work-title">Orbit Design System <span class="work-arrow">↗</span></div>
         <p class="work-desc">A fully documented React + Figma design system of 120+ components deployed across 14 internal products for a media conglomerate.</p>
         <div class="work-tags"><span class="tag">Storybook</span><span class="tag">Tokens</span><span class="tag">Figma</span><span class="tag">Mono-repo</span></div>
       </a>
- 
     </div>
   </div>
 </section>
@@ -701,8 +698,7 @@ All content is carefully sourced to ensure accuracy, credibility, and reliabilit
       <h2 class="contact-tagline reveal">Let's build something<br>truly <em>remarkable</em></h2>
       <p class="contact-desc reveal">Whether you have a clear brief or just an idea on a napkin — I'd love to hear from you. I'm currently available for new projects.</p>
       <div class="contact-links reveal">
-        <!-- Added draggable="false" to all these links -->
-        <a class="contact-link" href="tamimahmedbangladeshz@gmail.com" draggable="false">
+        <a class="contact-link" href="mailto:tamimahmedbangladeshz@gmail.com" draggable="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           tamimahmedbangladeshz@gmail.com
         </a>
@@ -726,7 +722,6 @@ All content is carefully sourced to ensure accuracy, credibility, and reliabilit
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
           Facebook
         </a>
-        <!-- ─── DOWNLOAD CV — triggers both files ─── -->
         <button class="contact-link" onclick="downloadCV()" draggable="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download CV
@@ -740,95 +735,260 @@ All content is carefully sourced to ensure accuracy, credibility, and reliabilit
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-copy">© 2025 Tamim Ahmedz. Designed &amp; built with <span>perisition </span></div>
+      <div class="footer-copy">© 2025 Tamim Ahmedz. Designed &amp; built with <span>precision</span></div>
       <div class="footer-copy">Rajshahi · Available Worldwide</div>
     </div>
   </div>
 </footer>
  
 <script>
-  // ─── SIDEBAR ───
-  const hamburger   = document.getElementById('hamburger');
-  const sidePanel   = document.getElementById('sidePanel');
-  const closeBtn    = document.getElementById('closeBtn');
-  const overlay     = document.getElementById('overlay');
-  const sidebarLinks = document.querySelectorAll('.sidebar-link');
+// ════════════════════════════════════════════════════════════════
+//  BACKGROUND ENGINE
+// ════════════════════════════════════════════════════════════════
+const canvas = document.getElementById('bgCanvas');
+const ctx    = canvas.getContext('2d');
+let W = 0, H = 0;
+let particles = [];
+let animFrame = null;
+let currentTheme = 'dark';
  
-  const openMenu  = () => { sidePanel.classList.add('open');    overlay.classList.add('active'); };
-  const closeMenu = () => { sidePanel.classList.remove('open'); overlay.classList.remove('active'); };
+function resize() {
+  W = canvas.width  = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', () => {
+  resize();
+  if (currentTheme === 'purple') return;
+  rebuildParticles(currentTheme);
+  if (currentTheme === 'light') drawLightStatic();
+});
+resize();
  
-  hamburger.onclick = openMenu;
-  closeBtn.onclick  = closeMenu;
-  overlay.onclick   = closeMenu;
-  sidebarLinks.forEach(l => l.addEventListener('click', closeMenu));
+// ── Grid helper ──────────────────────────────────────────────
+function drawGrid(color) {
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 0.5;
+  for (let x = 0; x < W; x += 60) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+  }
+  for (let y = 0; y < H; y += 60) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+  }
+}
  
-  // ─── THEME ───
-  const themeBtns = document.querySelectorAll('.theme-btn');
-  const html = document.documentElement;
- 
-  themeBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const theme = btn.dataset.theme;
-      html.setAttribute('data-theme', theme);
-      themeBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      localStorage.setItem('portfolio-theme', theme);
+// ════════════════════════════════════════════════════════════════
+//  THEME 1 — DARK: Floating dust motes
+// ════════════════════════════════════════════════════════════════
+function buildDust() {
+  particles = [];
+  for (let i = 0; i < 160; i++) {
+    particles.push({
+      x:    Math.random() * W,
+      y:    Math.random() * H,
+      size: Math.random() * 1.6 + 0.2,
+      vx:   (Math.random() - 0.5) * 0.18,
+      vy:   -(Math.random() * 0.25 + 0.04),
+      op:   Math.random() * 0.45 + 0.05,
+      opD:  (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 0.004 + 0.001),
     });
+  }
+}
+ 
+function drawDark() {
+  ctx.clearRect(0, 0, W, H);
+  drawGrid('rgba(255,255,255,0.022)');
+ 
+  // Subtle vignette-ish ambient glow top-right
+  const grd = ctx.createRadialGradient(W * 0.85, H * 0.1, 0, W * 0.85, H * 0.1, W * 0.55);
+  grd.addColorStop(0, 'rgba(232,213,176,0.028)');
+  grd.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = grd;
+  ctx.fillRect(0, 0, W, H);
+ 
+  for (const p of particles) {
+    // drift
+    p.x += p.vx;
+    p.y += p.vy;
+    p.op += p.opD;
+    if (p.op > 0.55) p.opD = -Math.abs(p.opD);
+    if (p.op < 0.02) p.opD =  Math.abs(p.opD);
+    // wrap
+    if (p.y < -4) { p.y = H + 4; p.x = Math.random() * W; }
+    if (p.x < -4) p.x = W + 4;
+    if (p.x > W + 4) p.x = -4;
+ 
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(232,213,176,${p.op})`;
+    ctx.fill();
+  }
+}
+ 
+// ════════════════════════════════════════════════════════════════
+//  THEME 2 — LIGHT: Frozen blue dust lines (drawn once, static)
+// ════════════════════════════════════════════════════════════════
+function buildFrozenLines() {
+  particles = [];
+  for (let i = 0; i < 260; i++) {
+    const long = i < 30; // a few longer accent strokes
+    particles.push({
+      x:     Math.random() * W,
+      y:     Math.random() * H,
+      angle: Math.random() * Math.PI * 2,
+      len:   long ? (Math.random() * 55 + 28) : (Math.random() * 22 + 5),
+      hue:   [208, 218, 228, 200, 235][Math.floor(Math.random() * 5)],
+      sat:   Math.random() * 40 + 52,
+      op:    long ? (Math.random() * 0.22 + 0.09) : (Math.random() * 0.28 + 0.04),
+      width: long ? (Math.random() * 1.0 + 0.5)  : (Math.random() * 0.7 + 0.2),
+    });
+  }
+}
+ 
+function drawLightStatic() {
+  ctx.clearRect(0, 0, W, H);
+ 
+  // Subtle blue-tinted grid
+  ctx.strokeStyle = 'rgba(100,150,230,0.045)';
+  ctx.lineWidth = 0.5;
+  for (let x = 0; x < W; x += 60) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+  for (let y = 0; y < H; y += 60) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+ 
+  // Soft blue ambient wash bottom-left
+  const wash = ctx.createRadialGradient(W * 0.08, H * 0.92, 0, W * 0.08, H * 0.92, W * 0.55);
+  wash.addColorStop(0, 'rgba(150,190,255,0.07)');
+  wash.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = wash; ctx.fillRect(0, 0, W, H);
+ 
+  // Second wash top-right for depth
+  const wash2 = ctx.createRadialGradient(W * 0.9, H * 0.05, 0, W * 0.9, H * 0.05, W * 0.4);
+  wash2.addColorStop(0, 'rgba(180,210,255,0.045)');
+  wash2.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = wash2; ctx.fillRect(0, 0, W, H);
+ 
+  ctx.lineCap = 'round';
+  for (const p of particles) {
+    const cos = Math.cos(p.angle), sin = Math.sin(p.angle);
+    const hx = p.len / 2;
+    ctx.beginPath();
+    ctx.moveTo(p.x - cos * hx, p.y - sin * hx);
+    ctx.lineTo(p.x + cos * hx, p.y + sin * hx);
+    ctx.strokeStyle = `hsla(${p.hue},${p.sat}%,52%,${p.op})`;
+    ctx.lineWidth = p.width;
+    ctx.stroke();
+  }
+}
+ 
+// ── Dispatch ──────────────────────────────────────────────────
+function rebuildParticles(theme) {
+  if (theme === 'dark')  buildDust();
+  if (theme === 'light') buildFrozenLines();
+  // purple is pure CSS — no canvas particles
+}
+ 
+function drawFrame() {
+  if (currentTheme === 'dark') drawDark();
+  animFrame = requestAnimationFrame(drawFrame);
+}
+ 
+function startBg(theme) {
+  cancelAnimationFrame(animFrame);
+  currentTheme = theme;
+ 
+  if (theme === 'purple') {
+    // Hide canvas, CSS layer handles it
+    canvas.style.opacity = '0';
+    return;
+  }
+ 
+  canvas.style.opacity = '1';
+  rebuildParticles(theme);
+ 
+  if (theme === 'light') {
+    // Draw once — static, no animation loop
+    drawLightStatic();
+  } else {
+    drawFrame(); // animated rAF loop
+  }
+}
+ 
+// ════════════════════════════════════════════════════════════════
+//  SIDEBAR
+// ════════════════════════════════════════════════════════════════
+const hamburger    = document.getElementById('hamburger');
+const sidePanel    = document.getElementById('sidePanel');
+const closeBtn     = document.getElementById('closeBtn');
+const overlay      = document.getElementById('overlay');
+const sidebarLinks = document.querySelectorAll('.sidebar-link');
+ 
+const openMenu  = () => { sidePanel.classList.add('open');    overlay.classList.add('active'); };
+const closeMenu = () => { sidePanel.classList.remove('open'); overlay.classList.remove('active'); };
+ 
+hamburger.onclick = openMenu;
+closeBtn.onclick  = closeMenu;
+overlay.onclick   = closeMenu;
+sidebarLinks.forEach(l => l.addEventListener('click', closeMenu));
+ 
+// ════════════════════════════════════════════════════════════════
+//  THEME SWITCHER
+// ════════════════════════════════════════════════════════════════
+const themeBtns = document.querySelectorAll('.theme-btn');
+const html      = document.documentElement;
+ 
+themeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const theme = btn.dataset.theme;
+    html.setAttribute('data-theme', theme);
+    themeBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    localStorage.setItem('portfolio-theme', theme);
+    startBg(theme);
   });
+});
  
-  const saved = localStorage.getItem('portfolio-theme');
-  if (saved) {
-    html.setAttribute('data-theme', saved);
-    themeBtns.forEach(b => b.classList.toggle('active', b.dataset.theme === saved));
-  }
+// Restore saved theme
+const saved = localStorage.getItem('portfolio-theme') || 'dark';
+html.setAttribute('data-theme', saved);
+themeBtns.forEach(b => b.classList.toggle('active', b.dataset.theme === saved));
+startBg(saved);
  
-  // ─── SCROLL REVEAL ───
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('in-view'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
- 
-  // ─── DOWNLOAD CV ───
-  // Fetches both images as blobs so the browser saves them instead of opening them
-  async function downloadCV() {
-    const toast = document.getElementById('dlToast');
- 
-    // Show toast
-    toast.classList.add('show');
- 
-    const files = [
-      { url: 'https://images.pexels.com/photos/10177112/pexels-photo-10177112.jpeg', name: 'cv-page-1.jpg' },
-      { url: 'https://images.pexels.com/photos/36550471/pexels-photo-36550471.jpeg',  name: 'cv-page-2.jpg' }
-    ];
- 
-    for (const file of files) {
-      try {
-        const response = await fetch(file.url);
-        const blob     = await response.blob();
-        const blobUrl  = URL.createObjectURL(blob);
-        const a        = document.createElement('a');
-        a.href         = blobUrl;
-        a.download     = file.name;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(blobUrl);
-        // Small pause between the two downloads so browsers don't block them
-        await new Promise(r => setTimeout(r, 600));
-      } catch (err) {
-        console.error('Download failed for', file.name, err);
-      }
+// ════════════════════════════════════════════════════════════════
+//  SCROLL REVEAL
+// ════════════════════════════════════════════════════════════════
+const reveals  = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('in-view'), i * 80);
+      observer.unobserve(entry.target);
     }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
  
-    // Hide toast after downloads kick off
-    setTimeout(() => toast.classList.remove('show'), 2500);
+// ════════════════════════════════════════════════════════════════
+//  DOWNLOAD CV
+// ════════════════════════════════════════════════════════════════
+async function downloadCV() {
+  const toast = document.getElementById('dlToast');
+  toast.classList.add('show');
+  const files = [
+    { url: 'https://images.pexels.com/photos/10177112/pexels-photo-10177112.jpeg', name: 'cv-page-1.jpg' },
+    { url: 'https://images.pexels.com/photos/36550471/pexels-photo-36550471.jpeg',  name: 'cv-page-2.jpg' }
+  ];
+  for (const file of files) {
+    try {
+      const res  = await fetch(file.url);
+      const blob = await res.blob();
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url; a.download = file.name;
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a); URL.revokeObjectURL(url);
+      await new Promise(r => setTimeout(r, 600));
+    } catch(e) { console.error(e); }
   }
+  setTimeout(() => toast.classList.remove('show'), 2500);
+}
 </script>
 </body>
 </html>
