@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TamimAhmedz: Explorer of Abyss!</title>
  
+<!-- ─── FAVICON (FIXED) ─── -->
 <link rel="icon" type="image/svg+xml" href="pic/L.svg">
 <link rel="apple-touch-icon" href="pic/L.svg">
  
+<!-- ─── OPEN GRAPH / LINK PREVIEW ─── -->
 <meta property="og:title"       content="View -Tamim Ahmedz's website" />
 <meta property="og:description" content="Where strategy meets creativity. Witness the crafting of future by-Tamim Ahmedz." />
 <meta property="og:image"       content="https://tamimahmedz.github.io/pic/ptf.jpeg" />
@@ -15,13 +17,16 @@
 <meta property="og:type"        content="website" />
 <meta property="og:site_name"   content="Tamim Ahmedz" />
  
+<!-- Twitter/X card -->
 <meta name="twitter:card"        content="summary_large_image" />
 <meta name="twitter:title"       content="View -Tamim Ahmedz's website" />
 <meta name="twitter:description" content="Where strategy meets creativity. Witness the crafting of future by-Tamim Ahmedz." />
 <meta name="twitter:image"       content="https://tamimahmedz.github.io/pic/ptf.jpeg" />
  
+<!-- ─── GOOGLE SEARCH CONSOLE VERIFICATION ─── -->
 <meta name="google-site-verification" content="p-0__T0gjpmuCpfebVRLSmszmGnAqevPLvknaMuc4lA" />
  
+<!-- ─── SITE NAME & LOGO FOR GOOGLE ─── -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -56,6 +61,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
+  /* ─── DESIGN TOKENS ─── */
   :root {
     --transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     --radius: 2px;
@@ -64,9 +70,10 @@
     --font-mono: 'DM Mono', monospace;
   }
  
+  /* ─── DARK THEME ─── */
   [data-theme="dark"] {
     --bg: #0a0a0b;
-    --bg2: #111113;
+    --bg2: rgba(17, 17, 19, 0.75);
     --bg3: #1a1a1e;
     --surface: rgba(255,255,255,0.04);
     --surface-hover: rgba(255,255,255,0.07);
@@ -86,9 +93,10 @@
     --grid-line: rgba(255,255,255,0.03);
   }
  
+  /* ─── LIGHT THEME ─── */
   [data-theme="light"] {
     --bg: #f7f5f2;
-    --bg2: #eeebe6;
+    --bg2: rgba(238, 235, 230, 0.75);
     --bg3: #e4e0d8;
     --surface: rgba(0,0,0,0.03);
     --surface-hover: rgba(0,0,0,0.06);
@@ -108,6 +116,7 @@
     --grid-line: rgba(0,0,0,0.025);
   }
  
+  /* ─── PURPLE THEME ─── */
   [data-theme="purple"] {
     --bg: #0a0510;
     --bg2: #120a1c;
@@ -130,8 +139,34 @@
     --grid-line: rgba(176,132,255,0.06);
   }
  
+  /* ─── BACKGROUND LAYERS SYSTEM ─── */
   .bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-  .bg-layer  { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; overflow: hidden; }
+  .bg-layer  {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+ 
+  /* Dark Theme Layer */
+  [data-theme="dark"] .layer-dark { opacity: 1; }
+  .layer-dark {
+    background-image: linear-gradient(rgba(10, 10, 11, 0.78), rgba(10, 10, 11, 0.84)),
+      url("https://imgs.search.brave.com/_k-zMpyDwIZHeENiP7KqcyXDFK7yeMMVPZdkOwjkN1s/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMDgv/NDIzLzUyMi9zbWFs/bC8zZC1ibGFjay1n/ZW9tZXRyaWMtYWJz/dHJhY3QtYmFja2dy/b3VuZC1vdmVybGFw/LWxheWVyLW9uLWRh/cmstc3BhY2Utd2l0/aC1saW5lLW1vdGlv/bi1zdHlsZS1lZmZl/Y3QtZ3JhcGhpYy1k/ZXNpZ24tZWxlbWVu/dC1jYXJib24tZmli/ZXItdGV4dHVyZS1j/b25jZXB0LWZvci1i/YW5uZXItZmx5ZXIt/Y2FyZC1icm9jaHVy/ZS1jb3Zlci1ldGMt/dmVjdG9yLmpwZw");
+  }
+
+  /* Light Theme Layer */
+  [data-theme="light"] .layer-light { opacity: 1; }
+  .layer-light {
+    background-image: linear-gradient(rgba(247, 245, 242, 0.78), rgba(247, 245, 242, 0.84)),
+      url("https://imgs.search.brave.com/sYa-4z7A3rPYY8VdukSfjR1GU1KtIBI9lstL5o2BT9c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMucmF3cGl4ZWwu/Y29tL2ltYWdlXzgw/MC9jSEpwZG1GMFpT/OXNjaTlwYldGblpY/TXZkMlZpYzJsMFpT/OHlNREl6TFRFeEwz/SmhkM0JwZUdWc2Iy/Wm1hV05sT1Y5amFH/bHVaWE5sWDJGeWRG/OTNZV3hzY0dGd1pY/SmZiVzlrWlhKdVgz/ZHBiR3h2ZDE5d1lY/UjBaWEp1WDIxcGJs/OHlOMlU0TURNMU15/MWxaalU1TFRSak4y/VXRZakZpTWkwM09H/UmpaV0poWVRneE9H/TmZNUzVxY0djLmpw/Zw");
+  }
+
+  /* Purple Theme Layer */
   [data-theme="purple"] .layer-purple { opacity: 1; }
   .layer-purple { background: var(--bg); }
   .orb-1, .orb-2 {
@@ -156,7 +191,20 @@
     0%   { transform: scale(1) translate(0, 0); }
     100% { transform: scale(1.15) translate(3vw, -3vh); }
   }
+
+  /* Mobile adjustments for background image switching */
+  @media (max-width: 900px) {
+    .layer-dark {
+      background-image: linear-gradient(rgba(10, 10, 11, 0.78), rgba(10, 10, 11, 0.84)),
+        url("https://imgs.search.brave.com/srlcambQ_LFAX0_AQQB_dBhwWAo8DBQM6QReC5F1kaw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzEwLzEw/LzRlLzEwMTA0ZTE5/NjA1MGRlYWE3OWIz/YWQzZDE5NjdiMDg0/LmpwZw");
+    }
+    .layer-light {
+      background-image: linear-gradient(rgba(247, 245, 242, 0.78), rgba(247, 245, 242, 0.84)),
+        url("https://imgs.search.brave.com/tFL7kbijhwsEQyY5HgD1tkrocEpTGNS9kQirrYN-9QU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzk2L2Q3/L2Q2Lzk2ZDdkNjAy/YzU2MGI4ZWE3ZmUw/Mzg3MWI0MWViMmJl/LmpwZw");
+    }
+  }
  
+  /* ─── RESET ─── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
  
@@ -170,6 +218,7 @@
     transition: background var(--transition), color var(--transition);
   }
  
+  /* ─── BACKGROUND CANVAS ─── */
   #bgCanvas {
     position: fixed;
     inset: 0;
@@ -179,11 +228,13 @@
     transition: opacity 0.6s ease;
   }
  
+  /* ─── PREVENT DRAGGING ─── */
   .about-photo img, .contact-link {
     -webkit-user-drag: none;
     user-drag: none;
   }
  
+  /* ─── HAMBURGER ─── */
   .hamburger {
     position: fixed;
     top: 32px; left: 32px;
@@ -207,6 +258,7 @@
   .hamburger:hover div:nth-child(2) { transform: translateX(6px); background: var(--accent); }
   .hamburger:hover div:nth-child(3) { width: 80%; background: var(--accent); }
  
+  /* ─── SIDE PANEL ─── */
   .side-panel {
     position: fixed;
     top: 0; left: 0;
@@ -218,6 +270,7 @@
     transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 1005;
     display: flex; flex-direction: column; gap: 8px;
+    backdrop-filter: blur(16px);
   }
   .side-panel.open { transform: translateX(0); }
   .side-panel-header {
@@ -255,6 +308,7 @@
   }
   .overlay.active { opacity: 1; visibility: visible; }
  
+  /* ─── FLOATING CENTER NAV ─── */
   .center-nav {
     position: fixed; top: 1.5rem; left: 50%;
     transform: translateX(-50%);
@@ -288,6 +342,7 @@
   }
   .nav-links a:hover { color: var(--text); background: var(--surface); }
  
+  /* ─── THEME SWITCHER ─── */
   .theme-switcher {
     display: flex; align-items: center; gap: 6px;
     border: 1px solid var(--border); border-radius: 50px;
@@ -304,8 +359,10 @@
   .theme-btn.t-light  { background: #f7f5f2; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12); }
   .theme-btn.t-purple { background: #b084ff; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.2); }
  
+  /* ─── LAYOUT ─── */
   .container { width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
  
+  /* ─── HERO ─── */
   #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 64px; position: relative; overflow: hidden; }
   .hero-glow {
     position: absolute; width: 700px; height: 700px; border-radius: 50%;
@@ -355,6 +412,7 @@
   .stat-value { font-family: var(--font-display); font-size: 2.6rem; font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: 0.3rem; }
   .stat-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); }
  
+  /* ─── SECTION HEADER ─── */
   .section-header {
     display: flex; align-items: flex-end; justify-content: space-between;
     margin-bottom: 4rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border);
@@ -363,6 +421,7 @@
   .section-title { font-family: var(--font-display); font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; }
   .section-title em { font-style: italic; color: var(--accent); }
  
+  /* ─── ABOUT ─── */
   #about { padding: 10rem 0; }
   .about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 7rem; align-items: start; }
   .about-photo-wrap { position: relative; }
@@ -390,7 +449,8 @@
   .bio-key { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); min-width: 90px; padding-top: 0.1rem; }
   .bio-val { font-size: 0.9rem; color: var(--text-2); }
  
-  #portfolio { padding: 10rem 0; background: var(--bg2); position: relative; }
+  /* ─── PORTFOLIO ─── */
+  #portfolio { padding: 10rem 0; background: var(--bg2); position: relative; backdrop-filter: blur(12px); }
   #portfolio::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
     background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.3;
@@ -422,6 +482,7 @@
   .work-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .tag { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0.6rem; background: var(--tag-bg); color: var(--tag-color); border-radius: var(--radius); }
  
+  /* ─── EXPERIENCE ─── */
   #experience { padding: 10rem 0; }
   .timeline { position: relative; padding-left: 2rem; }
   .timeline::before { content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0; width: 1px; background: var(--border); }
@@ -432,7 +493,8 @@
   .timeline-company { font-size: 0.9rem; color: var(--text-2); margin-bottom: 0.9rem; }
   .timeline-desc { font-size: 0.9rem; color: var(--text-2); max-width: 580px; line-height: 1.75; }
  
-  #contact { padding: 10rem 0; background: var(--bg2); position: relative; overflow: hidden; }
+  /* ─── CONTACT ─── */
+  #contact { padding: 10rem 0; background: var(--bg2); position: relative; overflow: hidden; backdrop-filter: blur(12px); }
   #contact::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.3; }
   .contact-inner { max-width: 700px; }
   .contact-tagline { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 2rem; }
@@ -449,15 +511,18 @@
   }
   .contact-link:hover { border-color: var(--accent); color: var(--accent); }
  
+  /* ─── FOOTER ─── */
   footer { padding: 2.5rem 0; border-top: 1px solid var(--border); position: relative; z-index: 1; }
   .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
   .footer-copy { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.08em; color: var(--text-3); }
   .footer-copy span { color: var(--accent); }
  
+  /* ─── ANIMATIONS ─── */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.in-view { opacity: 1; transform: translateY(0); }
  
+  /* ─── DOWNLOAD TOAST ─── */
   .dl-toast {
     position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px);
     background: var(--accent); color: var(--bg);
@@ -468,6 +533,7 @@
   }
   .dl-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
  
+  /* ─── MOBILE ─── */
   @media (max-width: 900px) {
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .works-grid { grid-template-columns: 1fr; }
@@ -486,21 +552,29 @@
 </head>
 <body>
  
+<!-- ─── BACKGROUND LAYERS (Dark, Light, Purple) ─── -->
 <div class="bg-canvas">
+  <div class="bg-layer layer-dark"></div>
+  <div class="bg-layer layer-light"></div>
   <div class="bg-layer layer-purple">
     <div class="orb-1"></div>
     <div class="orb-2"></div>
   </div>
 </div>
  
+<!-- ─── BACKGROUND CANVAS (Particles & Grid) ─── -->
 <canvas id="bgCanvas"></canvas>
  
+<!-- ─── DOWNLOAD TOAST ─── -->
 <div class="dl-toast" id="dlToast">⬇ Downloading CV…</div>
  
+<!-- ─── HAMBURGER ─── -->
 <div class="hamburger" id="hamburger"><div></div><div></div><div></div></div>
  
+<!-- ─── OVERLAY ─── -->
 <div class="overlay" id="overlay"></div>
  
+<!-- ─── SIDEBAR ─── -->
 <aside class="side-panel" id="sidePanel">
   <div class="side-panel-header">
     <span class="side-panel-logo">Tamim <span>Ahmedz</span></span>
@@ -532,6 +606,7 @@
   </nav>
 </aside>
  
+<!-- ─── FLOATING NAV ─── -->
 <nav class="center-nav">
   <div class="nav-inner">
     <a class="nav-logo" href="#hero">Tamim <span>Ahmedz</span></a>
@@ -549,6 +624,7 @@
   </div>
 </nav>
  
+<!-- ─── HERO ─── -->
 <section id="hero">
   <div class="hero-glow"></div>
   <div class="container">
@@ -570,6 +646,7 @@
   </div>
 </section>
  
+<!-- ─── ABOUT ─── -->
 <section id="about">
   <div class="container">
     <div class="section-header reveal">
@@ -586,10 +663,10 @@
         </div>
       </div>
       <div class="about-content reveal">
-        <p>Today Your're here with <strong> Tamim Ahmedz </strong> the Founder of Inventhrax, an entrepreneur and excellent dev who thrives where others hesitate.</p>
-        <p>I lead and build teams to tackle the high-risk not to enjoy the comfort they're given, high-reward problems that define industries. My background blends five years of deep technical expertise with a visionary business mindset. From my early days in open-source to advising Fortune 31+ companies. My journey has been nothing but constant obstacles and I enjoyed those challenges eveytime.<strong> Achievement without challenge is not worth having</strong>.</p>
+        <p>Today You're here with <strong> Tamim Ahmedz </strong> the Founder of Inventhrax, an entrepreneur and excellent dev who thrives where others hesitate.</p>
+        <p>I lead and build teams to tackle the high-risk not to enjoy the comfort they're given, high-reward problems that define industries. My background blends five years of deep technical expertise with a visionary business mindset. From my early days in open-source to advising Fortune 31+ companies. My journey has been nothing but constant obstacles and I enjoyed those challenges everytime. <strong>Achievement without challenge is not worth having</strong>.</p>
         <p>I move with a partnership-first mindset. Shared vision is more valuable than any transaction, I am committed to building long-term success rather than just closing deals.</p>
-        <p>Interests: Reaching the goal, Reaching the Goal, REACHING THE GOAL. What else do you even expect. There is nothing more satisfying but reaching the <strong>Goal</strong> damn it.<p>
+        <p>Interests: Reaching the goal, Reaching the Goal, REACHING THE GOAL. What else do you even expect. There is nothing more satisfying but reaching the <strong>Goal</strong> damn it.</p>
         <div class="bio-table">
           <div class="bio-row"><span class="bio-key">Location</span><span class="bio-val">Rajshahi, Bangladesh</span></div>
           <div class="bio-row"><span class="bio-key">Education</span><span class="bio-val">Pursuing ongoing education</span></div>
@@ -611,6 +688,7 @@
   </div>
 </section>
  
+<!-- ─── PORTFOLIO ─── -->
 <section id="portfolio">
   <div class="container">
     <div class="section-header reveal">
@@ -667,6 +745,7 @@
   </div>
 </section>
  
+<!-- ─── EXPERIENCE ─── -->
 <section id="experience">
   <div class="container">
     <div class="section-header reveal">
@@ -704,6 +783,7 @@
   </div>
 </section>
  
+<!-- ─── CONTACT ─── -->
 <section id="contact">
   <div class="container">
     <div class="contact-inner">
@@ -744,6 +824,7 @@
   </div>
 </section>
  
+<!-- ─── FOOTER ─── -->
 <footer>
   <div class="container">
     <div class="footer-inner">
@@ -754,7 +835,9 @@
 </footer>
  
 <script>
-
+// ════════════════════════════════════════════════════════════════
+//  BACKGROUND ENGINE
+// ════════════════════════════════════════════════════════════════
 const canvas = document.getElementById('bgCanvas');
 const ctx    = canvas.getContext('2d');
 let W = 0, H = 0;
@@ -774,6 +857,7 @@ window.addEventListener('resize', () => {
 });
 resize();
  
+// ── Grid helper ──────────────────────────────────────────────
 function drawGrid(color) {
   ctx.strokeStyle = color;
   ctx.lineWidth = 0.5;
@@ -785,7 +869,9 @@ function drawGrid(color) {
   }
 }
  
-
+// ════════════════════════════════════════════════════════════════
+//  THEME 1 — DARK: Floating dust motes
+// ════════════════════════════════════════════════════════════════
 function buildDust() {
   particles = [];
   for (let i = 0; i < 160; i++) {
@@ -805,6 +891,7 @@ function drawDark() {
   ctx.clearRect(0, 0, W, H);
   drawGrid('rgba(255,255,255,0.022)');
  
+  // Subtle vignette ambient glow top-right
   const grd = ctx.createRadialGradient(W * 0.85, H * 0.1, 0, W * 0.85, H * 0.1, W * 0.55);
   grd.addColorStop(0, 'rgba(232,213,176,0.028)');
   grd.addColorStop(1, 'rgba(0,0,0,0)');
@@ -828,11 +915,13 @@ function drawDark() {
   }
 }
  
-
+// ════════════════════════════════════════════════════════════════
+//  THEME 2 — LIGHT: Frozen blue dust lines (drawn once, static)
+// ════════════════════════════════════════════════════════════════
 function buildFrozenLines() {
   particles = [];
   for (let i = 0; i < 260; i++) {
-    const long = i < 30; 
+    const long = i < 30;
     particles.push({
       x:     Math.random() * W,
       y:     Math.random() * H,
@@ -849,16 +938,19 @@ function buildFrozenLines() {
 function drawLightStatic() {
   ctx.clearRect(0, 0, W, H);
  
+  // Subtle blue-tinted grid
   ctx.strokeStyle = 'rgba(100,150,230,0.045)';
   ctx.lineWidth = 0.5;
   for (let x = 0; x < W; x += 60) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
   for (let y = 0; y < H; y += 60) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
  
+  // Soft blue ambient wash bottom-left
   const wash = ctx.createRadialGradient(W * 0.08, H * 0.92, 0, W * 0.08, H * 0.92, W * 0.55);
   wash.addColorStop(0, 'rgba(150,190,255,0.07)');
   wash.addColorStop(1, 'rgba(0,0,0,0)');
   ctx.fillStyle = wash; ctx.fillRect(0, 0, W, H);
  
+  // Second wash top-right for depth
   const wash2 = ctx.createRadialGradient(W * 0.9, H * 0.05, 0, W * 0.9, H * 0.05, W * 0.4);
   wash2.addColorStop(0, 'rgba(180,210,255,0.045)');
   wash2.addColorStop(1, 'rgba(0,0,0,0)');
@@ -877,6 +969,7 @@ function drawLightStatic() {
   }
 }
  
+// ── Dispatch ──────────────────────────────────────────────────
 function rebuildParticles(theme) {
   if (theme === 'dark')  buildDust();
   if (theme === 'light') buildFrozenLines();
@@ -902,11 +995,13 @@ function startBg(theme) {
   if (theme === 'light') {
     drawLightStatic();
   } else {
-    drawFrame(); 
+    drawFrame();
   }
 }
  
-
+// ════════════════════════════════════════════════════════════════
+//  SIDEBAR
+// ════════════════════════════════════════════════════════════════
 const hamburger    = document.getElementById('hamburger');
 const sidePanel    = document.getElementById('sidePanel');
 const closeBtn     = document.getElementById('closeBtn');
@@ -921,7 +1016,9 @@ closeBtn.onclick  = closeMenu;
 overlay.onclick   = closeMenu;
 sidebarLinks.forEach(l => l.addEventListener('click', closeMenu));
  
-
+// ════════════════════════════════════════════════════════════════
+//  THEME SWITCHER
+// ════════════════════════════════════════════════════════════════
 const themeBtns = document.querySelectorAll('.theme-btn');
 const html      = document.documentElement;
  
@@ -936,12 +1033,15 @@ themeBtns.forEach(btn => {
   });
 });
  
+// Restore saved theme
 const saved = localStorage.getItem('portfolio-theme') || 'dark';
 html.setAttribute('data-theme', saved);
 themeBtns.forEach(b => b.classList.toggle('active', b.dataset.theme === saved));
 startBg(saved);
  
-
+// ════════════════════════════════════════════════════════════════
+//  SCROLL REVEAL
+// ════════════════════════════════════════════════════════════════
 const reveals  = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
@@ -953,6 +1053,9 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 reveals.forEach(el => observer.observe(el));
  
+// ════════════════════════════════════════════════════════════════
+//  DOWNLOAD CV
+// ════════════════════════════════════════════════════════════════
 async function downloadCV() {
   const toast = document.getElementById('dlToast');
   toast.classList.add('show');
