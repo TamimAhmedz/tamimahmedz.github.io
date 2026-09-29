@@ -224,7 +224,7 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    opacity: 1;
+    opacity: 0;
     transition: opacity 0.6s ease;
   }
  
@@ -469,7 +469,7 @@
     width: 100%; aspect-ratio: 16/10;
     background: var(--bg3); border: 1px solid var(--border);
     margin-bottom: 1.5rem; position: relative; overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
+    display: align-items: center; justify-content: center;
   }
   .work-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
   .work-card:hover .work-thumb img { transform: scale(1.05); }
@@ -838,6 +838,9 @@
 // ════════════════════════════════════════════════════════════════
 //  BACKGROUND ENGINE
 // ════════════════════════════════════════════════════════════════
+// Particle effect toggle: Keep false to turn off, set to true to re-enable
+const ENABLE_PARTICLES = false;
+
 const canvas = document.getElementById('bgCanvas');
 const ctx    = canvas.getContext('2d');
 let W = 0, H = 0;
@@ -851,13 +854,13 @@ function resize() {
 }
 window.addEventListener('resize', () => {
   resize();
-  if (currentTheme === 'purple') return;
+  if (!ENABLE_PARTICLES || currentTheme === 'purple') return;
   rebuildParticles(currentTheme);
   if (currentTheme === 'light') drawLightStatic();
 });
 resize();
  
-// ── Grid helper ──────────────────────────────────────────────
+// ── Grid helper (Preserved) ──────────────────────────────────
 function drawGrid(color) {
   ctx.strokeStyle = color;
   ctx.lineWidth = 0.5;
@@ -870,7 +873,7 @@ function drawGrid(color) {
 }
  
 // ════════════════════════════════════════════════════════════════
-//  THEME 1 — DARK: Floating dust motes
+//  THEME 1 — DARK: Floating dust motes (Preserved)
 // ════════════════════════════════════════════════════════════════
 function buildDust() {
   particles = [];
@@ -916,7 +919,7 @@ function drawDark() {
 }
  
 // ════════════════════════════════════════════════════════════════
-//  THEME 2 — LIGHT: Frozen blue dust lines (drawn once, static)
+//  THEME 2 — LIGHT: Frozen blue dust lines (Preserved)
 // ════════════════════════════════════════════════════════════════
 function buildFrozenLines() {
   particles = [];
@@ -969,7 +972,7 @@ function drawLightStatic() {
   }
 }
  
-// ── Dispatch ──────────────────────────────────────────────────
+// ── Dispatch (Preserved) ──────────────────────────────────────
 function rebuildParticles(theme) {
   if (theme === 'dark')  buildDust();
   if (theme === 'light') buildFrozenLines();
@@ -984,7 +987,8 @@ function startBg(theme) {
   cancelAnimationFrame(animFrame);
   currentTheme = theme;
  
-  if (theme === 'purple') {
+  // If particles are turned off or theme is purple, keep canvas off
+  if (!ENABLE_PARTICLES || theme === 'purple') {
     canvas.style.opacity = '0';
     return;
   }
