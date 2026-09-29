@@ -370,13 +370,17 @@
  
   /* ─── HERO ─── */
   #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 64px; position: relative; overflow: hidden; }
+  
+  /* Hero Glow — Disabled */
   .hero-glow {
+    display: none; /* Turn off dim glowing circle */
     position: absolute; width: 700px; height: 700px; border-radius: 50%;
     background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
     top: -200px; right: -150px; pointer-events: none;
     animation: pulse 8s ease-in-out infinite;
   }
   @keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.1); opacity: 1; } }
+  
   .hero-content { max-width: 900px; padding: 5rem 0; text-align: left; }
   .hero-label {
     font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.18em;
@@ -669,10 +673,10 @@
         </div>
       </div>
       <div class="about-content reveal">
-        <p>Hii guys It's <strong> Tamim Ahmedz </strong> the Founder of Inventhrax, an entrepreneur as well as dev who thrives where others hesitate.</p>
-        <p>I lead and build teams to tackle the high-risk not to enjoy the comfort they're given, high-reward problems that define industries. My background blends five years of deep technical expertise with a visionary business mindset. From my early days in open-source to advising Fortune 31+ companies. My journey has been nothing but constant obstacles and I enjoyed those challenges everytime. <strong>Achievement without challenge is not worth having</strong>.</p>
+        <p>Hiie guys It's <strong> Tamim Ahmedz </strong> the Founder of Inventhrax, an entrepreneur as well as a dev who thrives where others hesitate.</p>
+        <p>I lead and build teams to tackle the high-risk .We ejoy diving deep and solve high-reward problems that define industries. My background blends five years of deep technical expertise with a visionary business mindset. From my early days in open-source to advising Fortune 31+ companies. My journey has been nothing but constant obstacles and I enjoyed those challenges everytime. <strong>Achievement without challenge is not worth having</strong>.</p>
         <p>I move with a partnership-first mindset. Shared vision is more valuable than any transaction, I am committed to building long-term success rather than just closing deals.</p>
-        <p>Interests: Get the work done. There is nothing more satisfying but reaching the <strong>Goal</strong>.</p>
+        <p>Interests: Get the work done. There is nothing more satisfying but reaching the <strong>Goal</strong> .</p>
         <div class="bio-table">
           <div class="bio-row"><span class="bio-key">Location</span><span class="bio-val">Rajshahi, Bangladesh</span></div>
           <div class="bio-row"><span class="bio-key">Education</span><span class="bio-val">Pursuing ongoing education</span></div>
@@ -762,19 +766,19 @@
     </div>
     <div class="timeline">
       <div class="timeline-item reveal">
-        <div class="timeline-meta">2035 — </div>
+        <div class="timeline-meta">2026 — Present</div>
         <div class="timeline-role">Senior Frontend dev</div>
         <div class="timeline-company">Global Fintech Leader | Remote</div>
         <p class="timeline-desc">Spearheading frontend strategy for high-traffic enterprise systems. Optimized render performance for 5M+ daily sessions and managed a multi-disciplinary engineering cohort across global time zones.</p>
       </div>
       <div class="timeline-item reveal">
-        <div class="timeline-meta">2027 — 2029</div>
+        <div class="timeline-meta">2024 — 2026</div>
         <div class="timeline-role">Full-Stack Developer</div>
         <div class="timeline-company">World-Class Design & Strategy Firm</div>
         <p class="timeline-desc">Delivered digital platforms for global industry leaders. Managed projects from concept to launch in collaboration with creative and strategy teams.</p>
       </div>
       <div class="timeline-item reveal">
-        <div class="timeline-meta">2024 — 2026</div>
+        <div class="timeline-meta">2022 — 2024</div>
         <div class="timeline-role">Web Developer</div>
         <div class="timeline-company">Freelance / Independent</div>
         <p class="timeline-desc">Built and shipped 15+ client projects spanning e-commerce, portfolio, and booking platforms. Established long-term retainer relationships with six recurring clients.</p>
